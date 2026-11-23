@@ -1,0 +1,41 @@
+# ANENJI RS485 component preview
+# Merge the following blocks into the existing working YAML.
+# Keep your device name, Wi-Fi, API and OTA settings unchanged.
+#
+# Requires a separate output: gpio definition for anenji_rs485_direction.
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/xadonxander/Anenji-inverters-modbus
+      ref: feature/esphome-anenji-component
+      path: .
+    components: [anenji]
+    refresh: 5min
+
+uart:
+  - id: anenji_rs485_uart
+    rx_pin: GPIO16
+    tx_pin: GPIO17
+    baud_rate: 9600
+    data_bits: 8
+    parity: NONE
+    stop_bits: 1
+    rx_buffer_size: 512
+
+output:
+  - platform: gpio
+    id: anenji_rs485_direction
+    pin: GPIO18
+
+anenji:
+  id: anenji_manager
+  uart_id: anenji_rs485_uart
+  direction_output: anenji_rs485_direction
+  scan_start: 1
+  scan_end: 6
+  max_inverters: 6
+  poll_interval: 5s
+
+# Current version: log-only discovery and voltage polling.
+# No per-inverter HA sensors, config writes or offline history yet.
