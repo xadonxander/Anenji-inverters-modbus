@@ -40,6 +40,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41100 | 0xA08C | `Battery Type` | 6 (`0x0006`) | **L16** confirmed; proposed zero-based menu enum: 0 User Defined, 1 Sealed Lead Acid, 2 Flooded Lead Acid, 3 Gel Cell, 4 L14, 5 L15, **6 L16**, 7 L7, 8 L8, 9 L9, 10 N7, 11 N8, 12 N13, 13 N14. **All except 6 inferred, not tested.** | Read confirmed; write unverified; battery charging safety-sensitive |
 | 41101 | 0xA08D | `Cv Volt` | 576 (`0x0240`) | **57.6 V**, raw ÷10, confirmed against SmartValue; constant-voltage charging setpoint | Read confirmed; write unverified; charging safety-sensitive |
 | 41102 | 0xA08E | `Float Volt` | 576 (`0x0240`) | **57.6 V**, raw ÷10, confirmed against SmartValue; float charging voltage setpoint | Read confirmed; write unverified; charging safety-sensitive |
+| 41104 | 0xA090 | `Cv Charge Time Set (min)` | 120 (`0x0078`) | **120 minutes (2 hours)**, raw units are minutes, confirmed against SmartValue; exact timer behavior unverified | Read confirmed; write unverified; charging safety-sensitive |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -148,6 +149,11 @@ RX  FF 03 02 02 40 91 00
 TX  FF 03 A0 8E 00 01 D3 FF
 RX  FF 03 02 02 40 91 00
 # 0x0240 = 576; divide by 10 for 57.6 V
+
+# Cv Charge Time Set (min), one register at 41104; SmartValue currently 120 minutes
+TX  FF 03 A0 90 00 01 B3 F9
+RX  FF 03 02 00 78 91 B2
+# 0x0078 = 120 minutes, no scaling
 # Raw 6 = L16 verified. Proposed zero-based enumeration 0..13 follows menu order; other 13 encodings are inferred, not captured.
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
