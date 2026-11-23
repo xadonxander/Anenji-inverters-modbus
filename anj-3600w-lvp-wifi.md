@@ -496,6 +496,10 @@ The register at 30072 was zero in the snapshot; its meaning is unknown. Sensor p
 
 SmartValue reports **57%**. In the 22:54 snapshot both **30030 (0x754E)** and **30048 (0x7560)** have raw value **57**. Each is a candidate for `L1 phase output load rate` with likely 1:1 percentage scaling; **neither is confirmed**. Compare a new capture after changing AC load to distinguish them. The reading may not be simultaneous with the snapshot.
 
+## AC output frequency — register 30026 (0x754A)
+
+Confirmed frequency-value decoding from repeated Modbus RTU polls at 23:08:47–23:08:56. Slave `0xFF`, function `0x03`, request `FF 03 75 4A 00 01 AA 0E` (one holding register). Responses `FF 03 02 17 6E 1F 8C` and `FF 03 02 17 6F DE 4C` give raw 5998 and 5999, or **59.98 Hz and 59.99 Hz** with ÷100 scaling. Earlier 22:54 snapshot raw 5997 = 59.97 Hz. **Frequency decoding confirmed; output-vs-grid attribution remains probable, not independently confirmed** (register is adjacent to output L1 voltage 30024). Candidate grid frequency 30060 remains unconfirmed.
+
 ## Full SmartValue poll snapshot — 2026-11-22 22:54:24–22:54:43
 
 Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire addresses. This is a **snapshot**, not proof of individual field meanings.
