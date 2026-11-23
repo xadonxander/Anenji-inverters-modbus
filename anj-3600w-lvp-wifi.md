@@ -39,6 +39,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41025 | 0xA041 | `Hybrid Priority Enable` | 1 (`0x0001`) | **Enabled**, confirmed against SmartValue display; 0=Disabled not yet verified; separate from `OutPriority` at 41000 | Read and enabled-state mapping confirmed; write and exact behavior unverified |
 | 41027 | 0xA043 | `On Grid Standard Set` | 0 (`0x0000`) | **N/A**, confirmed against SmartValue; enum 0=N/A confirmed, 1=VDE4105, 2=IEEE1547, 3=CEI0-21 inferred from menu order | Read confirmed; write unverified; safety-sensitive grid-interconnection profile |
 | 41031 | 0xA047 | `External CT Host Enable` | 1 (`0x0001`) | **Enabled**, confirmed against SmartValue; 1=Enabled verified, 0=Disabled inferred; CT host role and parallel-inverter behavior unverified | Read confirmed; write unverified; anti-backflow/CT configuration |
+| 41032 | 0xA048 | `Output phase setting` (SmartValue Default tab, 2/9; phase-angle selection) | 0 (`0x0000`) | **Phase difference 0°**, confirmed; enum 0=0° verified, 1=positive 120°, 2=positive 180°, 3=reverse 120° inferred from menu order; distinct from enable flag 41091 | Read confirmed; write unverified; safety-sensitive phase configuration |
 | 41065 | 0xA069 | `Island Enable` | 1 (`0x0001`) | **Enabled**, confirmed against SmartValue; 1=Enabled verified, 0=Disabled inferred; exact islanding/off-grid function unverified | Read confirmed; write unverified; safety-sensitive grid/islanding setting |
 | 41091 | 0xA083 | `Output Phase Setting` (SmartValue Default tab, 1/9) | 0 (`0x0000`) | **Disabled**, confirmed against SmartValue; 0=Disabled verified, 1=Enabled inferred; precise phase behavior unknown | Read confirmed; write unverified; phase/parallel configuration safety-sensitive |
 | 41100 | 0xA08C | `Battery Type` | 6 (`0x0006`) | **L16** confirmed; proposed zero-based menu enum: 0 User Defined, 1 Sealed Lead Acid, 2 Flooded Lead Acid, 3 Gel Cell, 4 L14, 5 L15, **6 L16**, 7 L7, 8 L8, 9 L9, 10 N7, 11 N8, 12 N13, 13 N14. **All except 6 inferred, not tested.** | Read confirmed; write unverified; battery charging safety-sensitive |
@@ -173,6 +174,12 @@ RX  FF 03 02 00 00 91 90
 TX  FF 03 A0 47 00 01 03 C1
 RX  FF 03 02 00 01 50 50
 # 1=Enabled confirmed; 0=Disabled inferred; CT host role and parallel-inverter behavior unverified
+
+# SmartValue Default tab (setting 2 of 9): Output phase setting (phase angle), register 41032; currently 0 degrees
+TX  FF 03 A0 48 00 01 33 C2
+RX  FF 03 02 00 00 91 90
+# Enum: 0=0 degrees (confirmed); 1=positive 120, 2=positive 180, 3=reverse 120 (inferred)
+# Separate from Output Phase Setting enable flag at 41091; writeability unverified
 
 # Island Enable, one register at 41065; SmartValue currently Enabled
 TX  FF 03 A0 69 00 01 63 C8
