@@ -43,6 +43,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41065 | 0xA069 | `Island Enable` | 1 (`0x0001`) | **Enabled**, confirmed against SmartValue; 1=Enabled verified, 0=Disabled inferred; exact islanding/off-grid function unverified | Read confirmed; write unverified; safety-sensitive grid/islanding setting |
 | 41078 | 0xA076 | `Anti-reserve Compensate (W)` (SmartValue Default tab, 3/9) | 150 (`0x0096`) | **150 W**, raw units watts (1:1), confirmed against SmartValue; anti-backflow compensation/offset semantics unverified | Read confirmed; write unverified; grid/CT control setting |
 | 41079 | 0xA077 | `Second Output On Time (min)` (SmartValue Default tab, 4/9) | 0 (`0x0000`) | **0 min** confirmed against SmartValue; 1 raw unit = 1 minute likely, not independently established from zero; zero semantics and secondary-output behavior unknown | Read confirmed; write unverified |
+| 41080 | 0xA078 | `Second Output Off Voltage (V)` (SmartValue Default tab, 6/9) | 500 (`0x01F4`) | **50.0 V**, divide raw by 10; confirmed against SmartValue; secondary output off-threshold behavior unverified | Read confirmed; write unverified; voltage-based output control |
 | 41091 | 0xA083 | `Output Phase Setting` (SmartValue Default tab, 1/9) | 0 (`0x0000`) | **Disabled**, confirmed against SmartValue; 0=Disabled verified, 1=Enabled inferred; precise phase behavior unknown | Read confirmed; write unverified; phase/parallel configuration safety-sensitive |
 | 41100 | 0xA08C | `Battery Type` | 6 (`0x0006`) | **L16** confirmed; proposed zero-based menu enum: 0 User Defined, 1 Sealed Lead Acid, 2 Flooded Lead Acid, 3 Gel Cell, 4 L14, 5 L15, **6 L16**, 7 L7, 8 L8, 9 L9, 10 N7, 11 N8, 12 N13, 13 N14. **All except 6 inferred, not tested.** | Read confirmed; write unverified; battery charging safety-sensitive |
 | 41101 | 0xA08D | `Cv Volt` | 576 (`0x0240`) | **57.6 V**, raw ÷10, confirmed against SmartValue; constant-voltage charging setpoint | Read confirmed; write unverified; charging safety-sensitive |
@@ -198,6 +199,11 @@ RX  FF 03 02 00 96 11 FE
 TX  FF 03 A0 77 00 01 03 CE
 RX  FF 03 02 00 00 91 90
 # Raw zero matches SmartValue 0 min; nonzero scaling, zero semantics and writeability unverified
+
+# SmartValue Default tab (setting 6 of 9): Second Output Off Voltage (V), register 41080; currently 50 V
+TX  FF 03 A0 78 00 01 33 CD
+RX  FF 03 02 01 F4 91 87
+# 0x01F4 = 500; divide by 10 for 50.0 V. Switching behavior and writeability unverified
 
 # SmartValue Default tab (setting 1 of 9): Output Phase Setting, register 41091; currently Disabled
 TX  FF 03 A0 83 00 01 42 3C
