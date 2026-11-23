@@ -36,7 +36,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41018–41020 | 0xA03A–0xA03C | `Local Time Set` (year/month/day/hour/minute/second) | Read: `0x180B`, `0x1E0B`, `0x0726`; write: `0x1A0B`, `0x1614`, `0x1F26` | Six packed bytes in Y/M/D/h/m/s order, year 2000+byte. Read **2024-11-30 11:07:38**; write **2026-11-22 20:31:38** | Read decoding confirmed against SmartValue; function-`0x10` write acknowledged; post-write readback pending |
 | 41022 | 0xA03E | `Battery Active Enable` | 1 (`0x0001`) | Likely **Enabled**; UI state and 0=Disabled mapping not yet confirmed; precise function unknown | Read confirmed; write unverified |
 | 41023 | 0xA03F | `On Grid Active Power Set (W)` | 3600 (`0x0E10`) | **3600 W**, raw value in watts (1:1), confirmed against SmartValue; meaning as grid power limit/export target not yet verified | Read confirmed; write unverified; grid-sensitive control |
-| 41025 | 0xA041 | `Hybrid Priority Enable` | 1 (`0x0001`) | Likely **Enabled**; SmartValue display and 0=Disabled mapping unverified; separate from `OutPriority` at 41000 | Read confirmed; write and exact behavior unverified |
+| 41025 | 0xA041 | `Hybrid Priority Enable` | 1 (`0x0001`) | **Enabled**, confirmed against SmartValue display; 0=Disabled not yet verified; separate from `OutPriority` at 41000 | Read and enabled-state mapping confirmed; write and exact behavior unverified |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -128,7 +128,7 @@ RX  FF 03 02 00 01 50 50
 TX  FF 03 A0 3F 00 01 83 D8
 RX  FF 03 02 0E 10 94 3C
 
-# Hybrid Priority Enable, one register at 41025; raw value 1, likely enabled
+# Hybrid Priority Enable, one register at 41025; raw value 1 = Enabled confirmed against SmartValue
 TX  FF 03 A0 41 00 01 E3 C0
 RX  FF 03 02 00 01 50 50
 # 41018: 0x180B = year 24, month 11
