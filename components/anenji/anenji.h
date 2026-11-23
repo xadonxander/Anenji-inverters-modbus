@@ -30,7 +30,7 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
     float battery_voltage{NAN};
     uint32_t last_seen{0};
   };
-  enum class Phase : uint8_t { IDLE, WAIT_SERIAL, WAIT_VOLTAGE };
+  enum class Phase : uint8_t { IDLE, WAIT_PROBE, WAIT_SERIAL, WAIT_VOLTAGE };
   static constexpr uint16_t SERIAL_REG = 51014;
   static constexpr uint8_t SERIAL_COUNT = 25;
   static constexpr uint16_t VOLTAGE_REG = 30000;
@@ -45,6 +45,7 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
   bool discovering_{true};
   size_t poll_index_{0};
   std::string pending_serial_;
+  uint8_t scan_retries_{0};
 
   static uint16_t crc16_(const uint8_t *data, size_t size);
   void send_read_(uint8_t address, uint16_t reg, uint16_t count, Phase next);
