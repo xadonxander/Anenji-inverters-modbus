@@ -471,6 +471,10 @@ Many values resemble battery-voltage settings, but **their names, scales, and wr
 | 30058 | 0x756A | `lineVolt_l1` (incoming line/grid L1 voltage) | 1227 (`0x04CB`) | **122.7 V** | ÷10 | Confirmed against corresponding SmartValue snapshot |
 | 30059 | 0x756B | `LineCurr_l1` (incoming line/grid L1 current) | 65497 (`0xFFD9`) = **−39 signed int16** | **−3.9 A** | Signed int16 ÷10 | Confirmed against SmartValue; direction convention not yet established |
 
+## AC generation total — register 52071 (0xCB67)
+
+SmartValue `GeneratedACPowerTotal` = **377.6 kWh**. Earlier Modbus read of 52071–52072: request `FF 03 CB 67 00 02 5E 2E`, response `FF 03 04 0E C0 00 00 E7 28`. Register **52071 = 0x0EC0 = 3776**, corresponding to **377.6 kWh (÷10)**; register **52072 = 0**. **Strong cross-time field match**; counter width, upper-word interpretation and rollover not yet verified. This is AC generation, distinct from PV generation total at 52054.
+
 ## Confirmed PV generation energy telemetry
 
 | Raw address | Hex | SmartValue field | Raw at 22:54 | Display | Scaling | Confidence |
@@ -554,7 +558,7 @@ Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire ad
 | 51014–51038 | 0xC746 | UTF-16BE-like ASCII `ZL-2601100518-00067` followed by zeros | Device/manufacturing identifier candidate; distinct from app identifier `dev19d9c768c13665b` |
 | 51044–51045 | 0xC764 | 510,111 | Unknown |
 | 52044–52059 | 0xCB4C | 7,0,9,0,0,0,1548,0,2327,0,4182,0,83,0,0,0 | **52054=4182 → PvGeneratEnergyTotal 418.2 kWh confirmed**; other fields unknown |
-| 52071–52072 | 0xCB67 | 3776,0 | Unknown |
+| 52071–52072 | 0xCB67 | 3776,0 | **52071 AC generation total 377.6 kWh (÷10), strong SmartValue match**; 52072=0, possible upper word unverified |
 | 41113 | 0xA099 | 1 | Enable 485-BMS |
 | 41027 | 0xA043 | 0 | Grid standard N/A |
 | 41065 | 0xA069 | 1 | Island Enable |
