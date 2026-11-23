@@ -471,6 +471,14 @@ Many values resemble battery-voltage settings, but **their names, scales, and wr
 | 30058 | 0x756A | `lineVolt_l1` (incoming line/grid L1 voltage) | 1227 (`0x04CB`) | **122.7 V** | ÷10 | Confirmed against corresponding SmartValue snapshot |
 | 30059 | 0x756B | `LineCurr_l1` (incoming line/grid L1 current) | 65497 (`0xFFD9`) = **−39 signed int16** | **−3.9 A** | Signed int16 ÷10 | Confirmed against SmartValue; direction convention not yet established |
 
+## Confirmed PV generation energy telemetry
+
+| Raw address | Hex | SmartValue field | Raw at 22:54 | Display | Scaling | Confidence |
+|---|---|---|---|---|---|---|
+| 52054 | 0xCB56 | `PvGeneratEnergyTotal` | 4182 (`0x1056`) | **418.2 kWh** | ÷10 | Confirmed against SmartValue; counter width/rollover unverified |
+
+The value is the 11th 16-bit register (zero-based offset 10) in the 52044–52059 block. Adjacent values may be parts of other counters; do not infer their semantics from this match alone.
+
 ## Full SmartValue poll snapshot — 2026-11-22 22:54:24–22:54:43
 
 Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire addresses. This is a **snapshot**, not proof of individual field meanings.
@@ -503,7 +511,7 @@ Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire ad
 | 51000–51001 | 0xC738 | 2,0 | Unknown |
 | 51014–51038 | 0xC746 | UTF-16BE-like ASCII `ZL-2601100518-00067` followed by zeros | Device/manufacturing identifier candidate; distinct from app identifier `dev19d9c768c13665b` |
 | 51044–51045 | 0xC764 | 510,111 | Unknown |
-| 52044–52059 | 0xCB4C | 7,0,9,0,0,0,1548,0,2327,0,4182,0,83,0,0,0 | Unknown; some 32-bit pairs possible |
+| 52044–52059 | 0xCB4C | 7,0,9,0,0,0,1548,0,2327,0,4182,0,83,0,0,0 | **52054=4182 → PvGeneratEnergyTotal 418.2 kWh confirmed**; other fields unknown |
 | 52071–52072 | 0xCB67 | 3776,0 | Unknown |
 | 41113 | 0xA099 | 1 | Enable 485-BMS |
 | 41027 | 0xA043 | 0 | Grid standard N/A |
