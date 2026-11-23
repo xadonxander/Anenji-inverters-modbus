@@ -53,7 +53,7 @@ void AnenjiManager::send_read_(uint8_t address, uint16_t reg, uint16_t count, Ph
 
 void AnenjiManager::complete_request_(bool success) {
   if (!success && phase_ == Phase::WAIT_SERIAL)
-    ESP_LOGD(TAG, "No valid serial response at Modbus address %u", active_address_);
+    ESP_LOGW(TAG, "Serial discovery failed at address %u (received %u bytes)", active_address_, unsigned(rx_.size()));
   phase_ = Phase::IDLE;
   rx_.clear();
 }
@@ -61,6 +61,7 @@ void AnenjiManager::complete_request_(bool success) {
 void AnenjiManager::process_frame_() {
   if (rx_.size() < 5) return;
   if (rx_[0] != active_address_ || rx_[1] != 0x03) {
+    ESP_LOGW(TAG, "Unexpected response: requested=%u received=%u function=0x%02X", active_address_, rx_[0], rx_[1]);
     complete_request_(false);
     return;
   }
@@ -79,6 +80,7 @@ void AnenjiManager::process_frame_() {
       char c = char(rx_[i]);
       if (c >= 32 && c <= 126) serial.push_back(c);
     }
+    ESP_LOGI(TAG, "Address %u serial response: %s", active_address_, serial.c_str());
     while (!serial.empty() && serial.back() == ' ') serial.pop_back();
     if (!serial.empty()) {
       auto it = std::find_if(devices_.begin(), devices_.end(),
@@ -101,6 +103,8 @@ void AnenjiManager::process_frame_() {
         break;
       }
     }
+  } else {
+    ESP_LOGW(TAG, "Unexpected byte count %u from address %u during phase %u", rx_[2], active_address_, unsigned(phase_));
   }
   complete_request_(true);
 }
@@ -108,12 +112,14 @@ void AnenjiManager::process_frame_() {
 void AnenjiManager::start_next_() {
   if (discovering_) {
     if (next_scan_ <= scan_end_) {
+      ESP_LOGI(TAG, "Scanning ANENJI Modbus address %u", next_scan_);
       send_read_(next_scan_++, SERIAL_REG, SERIAL_COUNT, Phase::WAIT_SERIAL);
       return;
     }
     discovering_ = false;
     last_discovery_ = millis();
     ESP_LOGI(TAG, "Discovery complete: %u serial-identified inverters", unsigned(devices_.size()));
+    for (const auto &d : devices_) ESP_LOGI(TAG, "  Address %u serial %s", d.address, d.serial.c_str());
     poll_index_ = 0;
   }
   if (devices_.empty()) {
@@ -132,7 +138,7 @@ void AnenjiManager::start_next_() {
     poll_index_ = 0;
     last_cycle_ = millis();
   }
-  if (millis() - last_discovery_ >= 300000) {
+  if (millis() - last_discovery_ >= (devices_.size() < max_inverters_ ? 30000UL : 300000UL)) {
     next_scan_ = scan_start_;
     discovering_ = true;
   }
@@ -147,8 +153,10 @@ void AnenjiManager::loop() {
     }
     if (phase_ != Phase::IDLE) {
       process_frame_();
-      if (phase_ != Phase::IDLE && millis() - request_started_ >= RESPONSE_TIMEOUT_MS)
+      if (phase_ != Phase::IDLE && millis() - request_started_ >= RESPONSE_TIMEOUT_MS) {
+        ESP_LOGW(TAG, "Modbus timeout address=%u phase=%u bytes=%u", active_address_, unsigned(phase_), unsigned(rx_.size()));
         complete_request_(false);
+      }
     }
   }
   if (phase_ == Phase::IDLE) start_next_();
