@@ -49,6 +49,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41112 | 0xA098 | `Battery End Of Discharge Volts (V)` | 512 (`0x0200`) | **51.2 V**, raw ÷10, confirmed against SmartValue; discharge termination threshold semantics relative to other low-voltage settings unverified | Read confirmed; write unverified; battery protection safety-sensitive |
 | 41115 | 0xA09B | `Battery State Of Charge Alarm (%)` | 15 (`0x000F`) | **15%**, raw units are percent (1:1), confirmed against SmartValue; alarm behavior and applicability by battery type unverified | Read confirmed; write unverified; battery protection setting |
 | 41116 | 0xA09C | `Battery Stop State Of Charge (%)` | 5 (`0x0005`) | **5%**, raw units are percent (1:1), confirmed against SmartValue; precise stop behavior and applicability by battery type unverified | Read confirmed; write unverified; battery protection safety-sensitive |
+| 41117 | 0xA09D | `Battery Full State Of Charge (%)` | 100 (`0x0064`) | **100%**, raw units are percent (1:1), confirmed against SmartValue; full-SOC threshold behavior unverified | Read confirmed; write unverified; battery charging configuration |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -203,6 +204,11 @@ RX  FF 03 02 00 0F D1 94
 TX  FF 03 A0 9C 00 01 73 FA
 RX  FF 03 02 00 05 51 93
 # 0x0005 = 5%, no scaling
+
+# Battery Full State Of Charge (%), one register at 41117; SmartValue currently 100%
+TX  FF 03 A0 9D 00 01 22 3A
+RX  FF 03 02 00 64 90 7B
+# 0x0064 = 100%, no scaling
 # Raw 6 = L16 verified. Proposed zero-based enumeration 0..13 follows menu order; other 13 encodings are inferred, not captured.
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
