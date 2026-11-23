@@ -7,7 +7,7 @@
 
 - Observed RTU traffic: **9600 baud, 8 data bits, no parity, 1 stop bit (8N1)**.
 - Observed slave address byte: **0xFF** (255). This is what the factory Wi-Fi module transmits; whether it is a conventional configurable device ID is unverified.
-- Read function: **0x03** (holding registers). No write transaction has yet been captured or validated.
+- Read function: **0x03** (holding registers). **Write function 0x06** (Write Single Register) is now captured and acknowledged for **Eco Enable at 41005**. Other registers' writeability is unverified.
 - The factory SmartValue/Eybond Wi-Fi module is the active polling device. Captures were made using an ESP32-S3 in receive-only mode.
 - On the tested RJ45 RS485-1 connector, the user verified **pin 1=A, pin 2=B, pin 7=+5 V, pin 8=GND**. Other hardware revisions may differ; verify before wiring.
 - Do **not** drive the bus or enable an additional termination resistor without checking the physical network. An automatic-direction RS485 adapter is not necessarily passive just because TXD is disconnected.
@@ -24,7 +24,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41002 | 0xA02A | `Output Frequency Set` | 6000 (`0x1770`) | Likely **60.00 Hz** (÷100); scale inferred | Confirmed read and field association; scale unverified |
 | 41003 | 0xA02B | `Line Range Set` | 0 (`0x0000`) | **UPS**; other app options APL and GEN, encodings unknown | Confirmed by SmartValue setting |
 | 41004 | 0xA02C | `Para Mode Set` | 2 (`0x0002`) | **2P0**; available modes: Single, Parallel, 2P0, 2P1, 2P2, 3P1, 3P2, 3P3; all other encodings unverified | Confirmed by SmartValue setting |
-| 41005 | 0xA02D | `Eco Enable` | 1 (`0x0001`) | **Enabled**; disabled encoding likely 0 but unverified | Confirmed by SmartValue setting |
+| 41005 | 0xA02D | `Eco Enable` | Read: 1 (`0x0001`); write: 0 (`0x0000`) | **1 = Enabled; 0 = Disabled** | Read confirmed; function-06 disable write acknowledged; persistence not yet checked |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -62,6 +62,10 @@ RX  FF 03 02 00 02 10 51
 # Eco Enable, one register starting at 41005; SmartValue currently enabled
 TX  FF 03 A0 2D 00 01 23 DD
 RX  FF 03 02 00 01 50 50
+
+# Eco Enable, disable using Write Single Register (function 0x06)
+TX  FF 06 A0 2D 00 00 2E 1D
+RX  FF 06 A0 2D 00 00 2E 1D
 
 # candidate grid-input measurements: 30024..30030
 TX  FF 03 75 48 00 07 8B CC
@@ -139,7 +143,7 @@ Many values resemble battery-voltage settings, but **their names, scales, and wr
 ## Safe next steps
 
 1. Capture readbacks while changing **one harmless setting at a time** in SmartValue; record old and new values and corresponding LCD setting.
-2. Capture SmartValue's actual write transaction to identify the write function (`0x06` or `0x10`), target register, encoding, and response.
+2. Function `0x06` has been captured for Eco Enable. Capture a **follow-up read** to verify the disabled setting persisted, and identify write functions/encodings for other settings individually.
 3. Do not test power-off or output-priority writes on a loaded/parallel inverter unless an interruption is acceptable.
 4. Confirm whether parallel inverter units have independent IDs or the factory interface addresses a shared controller.
 
