@@ -40,6 +40,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41027 | 0xA043 | `On Grid Standard Set` | 0 (`0x0000`) | **N/A**, confirmed against SmartValue; enum 0=N/A confirmed, 1=VDE4105, 2=IEEE1547, 3=CEI0-21 inferred from menu order | Read confirmed; write unverified; safety-sensitive grid-interconnection profile |
 | 41031 | 0xA047 | `External CT Host Enable` | 1 (`0x0001`) | **Enabled**, confirmed against SmartValue; 1=Enabled verified, 0=Disabled inferred; CT host role and parallel-inverter behavior unverified | Read confirmed; write unverified; anti-backflow/CT configuration |
 | 41065 | 0xA069 | `Island Enable` | 1 (`0x0001`) | **Enabled**, confirmed against SmartValue; 1=Enabled verified, 0=Disabled inferred; exact islanding/off-grid function unverified | Read confirmed; write unverified; safety-sensitive grid/islanding setting |
+| 41091 | 0xA083 | `Output Phase Setting` (SmartValue Default tab, 1/9) | 0 (`0x0000`) | **Disabled**, confirmed against SmartValue; 0=Disabled verified, 1=Enabled inferred; precise phase behavior unknown | Read confirmed; write unverified; phase/parallel configuration safety-sensitive |
 | 41100 | 0xA08C | `Battery Type` | 6 (`0x0006`) | **L16** confirmed; proposed zero-based menu enum: 0 User Defined, 1 Sealed Lead Acid, 2 Flooded Lead Acid, 3 Gel Cell, 4 L14, 5 L15, **6 L16**, 7 L7, 8 L8, 9 L9, 10 N7, 11 N8, 12 N13, 13 N14. **All except 6 inferred, not tested.** | Read confirmed; write unverified; battery charging safety-sensitive |
 | 41101 | 0xA08D | `Cv Volt` | 576 (`0x0240`) | **57.6 V**, raw ÷10, confirmed against SmartValue; constant-voltage charging setpoint | Read confirmed; write unverified; charging safety-sensitive |
 | 41102 | 0xA08E | `Float Volt` | 576 (`0x0240`) | **57.6 V**, raw ÷10, confirmed against SmartValue; float charging voltage setpoint | Read confirmed; write unverified; charging safety-sensitive |
@@ -177,6 +178,11 @@ RX  FF 03 02 00 01 50 50
 TX  FF 03 A0 69 00 01 63 C8
 RX  FF 03 02 00 01 50 50
 # 1=Enabled confirmed; 0=Disabled inferred; islanding function and safety behavior unverified
+
+# SmartValue Default tab (setting 1 of 9): Output Phase Setting, register 41091; currently Disabled
+TX  FF 03 A0 83 00 01 42 3C
+RX  FF 03 02 00 00 91 90
+# 0=Disabled confirmed; 1=Enabled inferred; phase behavior and writeability unverified
 
 # Battery Type, one register at 41100; SmartValue currently L16
 TX  FF 03 A0 8C 00 01 72 3F
