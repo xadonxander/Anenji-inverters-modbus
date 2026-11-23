@@ -47,6 +47,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41108 | 0xA094 | `Battery Low Voltage (v)` | 492 (`0x01EC`) | **49.2 V**, raw ÷10, confirmed against SmartValue; low-battery threshold, exact alarm/transfer/shutdown behavior unverified | Read confirmed; write unverified; battery protection safety-sensitive |
 | 41109 | 0xA095 | `Battery Delay Off Voltage (v)` | 452 (`0x01C4`) | **45.2 V**, raw ÷10, confirmed against SmartValue; likely delayed low-voltage shutdown threshold, delay behavior unverified | Read confirmed; write unverified; battery protection safety-sensitive |
 | 41112 | 0xA098 | `Battery End Of Discharge Volts (V)` | 512 (`0x0200`) | **51.2 V**, raw ÷10, confirmed against SmartValue; discharge termination threshold semantics relative to other low-voltage settings unverified | Read confirmed; write unverified; battery protection safety-sensitive |
+| 41115 | 0xA09B | `Battery State Of Charge Alarm (%)` | 15 (`0x000F`) | **15%**, raw units are percent (1:1), confirmed against SmartValue; alarm behavior and applicability by battery type unverified | Read confirmed; write unverified; battery protection setting |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -191,6 +192,11 @@ RX  FF 03 02 01 C4 91 93
 TX  FF 03 A0 98 00 01 32 3B
 RX  FF 03 02 02 00 90 F0
 # 0x0200 = 512; divide by 10 for 51.2 V
+
+# Battery State Of Charge Alarm (%), one register at 41115; SmartValue currently 15%
+TX  FF 03 A0 9B 00 01 C2 3B
+RX  FF 03 02 00 0F D1 94
+# 0x000F = 15%, no scaling
 # Raw 6 = L16 verified. Proposed zero-based enumeration 0..13 follows menu order; other 13 encodings are inferred, not captured.
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
