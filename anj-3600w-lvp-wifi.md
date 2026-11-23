@@ -76,9 +76,9 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41131 | 0xA0AB | `Battery Discharge End Time 2(HH-mm)` | 0 (`0x0000`) | **00:00**, confirmed against SmartValue; packed high byte=hour (0), low byte=minute (0); equal start/end behavior unverified | Read confirmed; write unverified; scheduled battery discharge |
 | 41135 | 0xA0AF | `Battery Connection Way` | 0 (`0x0000`) | **Battery Parallel Input**, confirmed against SmartValue; enum `0`=Battery Parallel Input confirmed, `1`=Battery Independent Input inferred from two available choices; physical behavior unverified | Read confirmed; write unverified; safety-sensitive battery topology configuration |
 | 41138 | 0xA0B2 | `Battery hybrid current (A)` (SmartValue Default tab, 8/9) | 500 (`0x01F4`) | **50.0 A**, raw divided by 10; confirmed against SmartValue; charging/discharging direction and hybrid control behavior unverified | Read confirmed; write unverified; battery current configuration |
-| 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
+| 30024 | 0x7548 | `out_volt_l1` — AC output L1 voltage | 1213 (earlier), 1225 (22:54 capture) | **122.5 V** in 22:54 capture, raw ÷10, matched SmartValue output reading | Confirmed 22:54 snapshot; earlier input-voltage hypothesis superseded |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
-| 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
+| 30058 | 0x756A | AC voltage, identity unknown | 1214 (earlier), 1227 (22:54 capture) | Possibly 122.7 V (÷10); do not assume output L1, since 30024 matches `out_volt_l1` | Hypothesis |
 | 30060 | 0x756C | AC output frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 
 **Output priority options in SmartValue:** PV, Grid, Battery, Hybrid. Only **3 = Hybrid** is verified. The proposed 0=PV, 1=Grid, 2=Battery sequence is **unverified** and must not be treated as a write-ready enum.
@@ -376,11 +376,11 @@ RX  FF 03 02 01 F4 91 87
 # 41020: 0x0726 = minute 7, second 38
 # Confirmed against SmartValue display: 2024-11-30 11:07:38; inverter clock is behind the actual date
 
-# candidate grid-input measurements: 30024..30030
+# 30024 confirmed as SmartValue out_volt_l1 in 22:54 capture; other 30024..30030 fields unresolved
 TX  FF 03 75 48 00 07 8B CC
 RX  FF 03 0E 04 BD 00 00 17 6D 00 0D 00 00 00 00 00 30 FB F4
 
-# candidate AC-output measurements: 30058..30065
+# 30058..30065 AC telemetry candidate block; 30058 voltage identity unresolved
 TX  FF 03 75 6A 00 08 6B C2
 RX  FF 03 10 04 BE FF F3 17 6D 00 00 00 00 00 00 00 00 FF 63 8B 9B
 ```
@@ -456,6 +456,13 @@ Many values resemble battery-voltage settings, but **their names, scales, and wr
 | 30000 | 0x7530 | Battery voltage | 508 (`0x01FC`) | **50.8 V** | ÷10 | Confirmed against simultaneous SmartValue reading |
 | 30001 | 0x7531 | Battery current | 115 (`0x0073`) | **11.5 A** | ÷10 | Magnitude confirmed; sign and charge/discharge direction not yet established |
 
+## Confirmed output L1 telemetry
+
+| Raw address | Hex | Name | Raw at 22:54 | SmartValue | Scaling | Confidence |
+|---|---|---|---|---|---|---|
+| 30024 | 0x7548 | `out_volt_l1` (output L1 voltage) | 1225 (`0x04C9`) | **122.5 V** | ÷10 | Confirmed against corresponding SmartValue snapshot |
+| Unknown | — | `outCurr_l1` (output L1 current) | Not identified | **0.0 A** | Unknown | Multiple zero-valued telemetry fields; cannot uniquely map yet |
+
 ## Full SmartValue poll snapshot — 2026-11-22 22:54:24–22:54:43
 
 Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire addresses. This is a **snapshot**, not proof of individual field meanings.
@@ -464,9 +471,9 @@ Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire ad
 |---|---|---|---|
 | 30000–30005 | 0x7530 | 508, 115, 20, 0, 0, 0 | **30000 battery voltage 50.8 V (÷10), confirmed; 30001 battery current 11.5 A (÷10), confirmed**; 30002=20 unknown; current sign/direction unverified |
 | 30011–30016 | 0x753B | 0, 0, 0, 0, 0, 0 | Unknown |
-| 30024–30030 | 0x7548 | 1225, 0, 5997, 41, 0, 0, 57 | 30024 candidate grid voltage 122.5 V; 30026 candidate grid frequency 59.97 Hz |
+| 30024–30030 | 0x7548 | 1225, 0, 5997, 41, 0, 0, 57 | 30024 **output L1 voltage 122.5 V (confirmed against SmartValue)**; 30026 candidate AC frequency 59.97 Hz |
 | 30046–30049 | 0x755E | 0, 0, 57, 474 | Unknown |
-| 30058–30065 | 0x756A | 1227, 65497, 5998, 0, 0, 0, 65058, 38706 | 30058 candidate AC output voltage 122.7 V; 30060 candidate AC output frequency 59.98 Hz; other fields unknown |
+| 30058–30065 | 0x756A | 1227, 65497, 5998, 0, 0, 0, 65058, 38706 | 30058 AC voltage 122.7 V (identity unverified); 30060 candidate AC frequency 59.98 Hz; other fields unknown |
 | 30071–30075 | 0x7577 | 2785, 0, 196, 237, 261 | Unknown; scaling unverified |
 | 30085–30087 | 0x7595 | 1, 0, 2 | Status/flags candidates; unknown |
 | 30101–30104 | 0x75A5 | 0, 0, 0, 0 | Unknown |
