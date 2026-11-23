@@ -27,6 +27,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41005 | 0xA02D | `Eco Enable` | Read: 1 (`0x0001`); write: 0 (`0x0000`) | **1 = Enabled; 0 = Disabled** | Read confirmed; function-06 disable write acknowledged; persistence not yet checked |
 | 41006 | 0xA02E | `Charge Priority` | 2 (`0x0002`) | **SNU**; app options OSO, OUO, SNU, NUC; other encodings unverified (likely 0,1,3 by display order) | Confirmed read and field association |
 | 41007 | 0xA02F | `Max Charge Current Set (A)` | 800 (`0x0320`) | **80 A** (raw ÷10) | Read and scale corroborated by SmartValue setting; write unverified |
+| 41008 | 0xA030 | `Charge Current By PV Set` | 800 (`0x0320`) | **80 A** (raw ÷10) | Read and scale corroborated by SmartValue setting; write unverified |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -75,6 +76,10 @@ RX  FF 03 02 00 02 10 51
 
 # Max Charge Current Set (A), one register starting at 41007; SmartValue currently 80 A
 TX  FF 03 A0 2F 00 01 82 1D
+RX  FF 03 02 03 20 90 B8
+
+# Charge Current By PV Set, one register starting at 41008; SmartValue currently 80 A
+TX  FF 03 A0 30 00 01 B3 DB
 RX  FF 03 02 03 20 90 B8
 
 # candidate grid-input measurements: 30024..30030
