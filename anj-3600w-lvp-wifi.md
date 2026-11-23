@@ -25,6 +25,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41003 | 0xA02B | `Line Range Set` | 0 (`0x0000`) | **UPS**; other app options APL and GEN, encodings unknown | Confirmed by SmartValue setting |
 | 41004 | 0xA02C | `Para Mode Set` | 2 (`0x0002`) | **2P0**; available modes: Single, Parallel, 2P0, 2P1, 2P2, 3P1, 3P2, 3P3; all other encodings unverified | Confirmed by SmartValue setting |
 | 41005 | 0xA02D | `Eco Enable` | Read: 1 (`0x0001`); write: 0 (`0x0000`) | **1 = Enabled; 0 = Disabled** | Read confirmed; function-06 disable write acknowledged; persistence not yet checked |
+| 41006 | 0xA02E | `Charge Priority` | 2 (`0x0002`) | **SNU**; app options OSO, OUO, SNU, NUC; other encodings unverified (likely 0,1,3 by display order) | Confirmed read and field association |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -66,6 +67,10 @@ RX  FF 03 02 00 01 50 50
 # Eco Enable, disable using Write Single Register (function 0x06)
 TX  FF 06 A0 2D 00 00 2E 1D
 RX  FF 06 A0 2D 00 00 2E 1D
+
+# Charge Priority, one register starting at 41006; SmartValue currently SNU
+TX  FF 03 A0 2E 00 01 D3 DD
+RX  FF 03 02 00 02 10 51
 
 # candidate grid-input measurements: 30024..30030
 TX  FF 03 75 48 00 07 8B CC
