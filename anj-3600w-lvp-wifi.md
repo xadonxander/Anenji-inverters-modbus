@@ -56,6 +56,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41121 | 0xA0A1 | `Line Charge Start Time1(HH-mm)` | 4643 (`0x1223`) | **18:35**, confirmed against SmartValue; packed high byte=hour (18), low byte=minute (35), 24-hour clock | Read confirmed; write unverified; scheduled grid charging |
 | 41122 | 0xA0A2 | `Line Charge End Time 1(HH-mm)` | 0 (`0x0000`) | **00:00**, confirmed against SmartValue; packed high byte=hour (0), low byte=minute (0), consistent with register 41121 encoding; midnight handling unverified | Read confirmed; write unverified; scheduled grid charging |
 | 41123 | 0xA0A3 | `Line Charge Start Time2(HH-mm)` | 0 (`0x0000`) | **00:00**, confirmed against SmartValue; packed high byte=hour (0), low byte=minute (0), consistent with register 41121 encoding | Read confirmed; write unverified; scheduled grid charging |
+| 41124 | 0xA0A4 | `Line Charge End Time 2(HH-mm)` | 0 (`0x0000`) | **00:00**, confirmed against SmartValue; packed high byte=hour (0), low byte=minute (0), consistent with register 41121 encoding; equal start/end behavior unverified | Read confirmed; write unverified; scheduled grid charging |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -245,6 +246,11 @@ RX  FF 03 02 00 00 91 90
 TX  FF 03 A0 A3 00 01 43 F6
 RX  FF 03 02 00 00 91 90
 # 0x0000: hour=0x00=0, minute=0x00=0; packed HH:mm
+
+# Line Charge End Time 2(HH-mm), one register at 41124; SmartValue currently 00:00
+TX  FF 03 A0 A4 00 01 F2 37
+RX  FF 03 02 00 00 91 90
+# 0x0000: hour=0x00=0, minute=0x00=0; packed HH:mm; equal start/end behavior unverified
 # Raw 6 = L16 verified. Proposed zero-based enumeration 0..13 follows menu order; other 13 encodings are inferred, not captured.
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
