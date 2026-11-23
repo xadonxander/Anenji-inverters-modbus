@@ -52,7 +52,7 @@ void AnenjiManager::send_read_(uint8_t address, uint16_t reg, uint16_t count, Ph
 }
 
 void AnenjiManager::complete_request_(bool success) {
-  if (!success && phase_ == Phase::WAIT_SERIAL)
+  if (!success && (phase_ == Phase::WAIT_SERIAL || phase_ == Phase::WAIT_PROBE))
     ESP_LOGW(TAG, "Serial discovery failed at address %u (received %u bytes)", active_address_, unsigned(rx_.size()));
   phase_ = Phase::IDLE;
   rx_.clear();
@@ -74,7 +74,14 @@ void AnenjiManager::process_frame_() {
     complete_request_(false);
     return;
   }
-  if (phase_ == Phase::WAIT_SERIAL && rx_[2] == SERIAL_COUNT * 2) {
+  if (phase_ == Phase::WAIT_PROBE && rx_[2] == 2) {
+    const float volts = float((uint16_t(rx_[3]) << 8) | rx_[4]) / 10.0f;
+    ESP_LOGI(TAG, "Address %u responds: battery=%.1f V; requesting serial", active_address_, volts);
+    const uint8_t address = active_address_;
+    complete_request_(true);
+    send_read_(address, SERIAL_REG, SERIAL_COUNT, Phase::WAIT_SERIAL);
+    return;
+  } else if (phase_ == Phase::WAIT_SERIAL && rx_[2] == SERIAL_COUNT * 2) {
     std::string serial;
     for (size_t i = 3; i < 3 + SERIAL_COUNT * 2; i++) {
       char c = char(rx_[i]);
@@ -110,38 +117,37 @@ void AnenjiManager::process_frame_() {
 }
 
 void AnenjiManager::start_next_() {
+  const uint32_t now = millis();
+  // A rescan must preempt normal polling, even when devices are already known.
+  if (!discovering_ &&
+      now - last_discovery_ >= (devices_.size() < max_inverters_ ? 30000UL : 300000UL)) {
+    discovering_ = true;
+    next_scan_ = scan_start_;
+    ESP_LOGI(TAG, "Starting periodic ANENJI address scan %u-%u", scan_start_, scan_end_);
+  }
   if (discovering_) {
     if (next_scan_ <= scan_end_) {
-      ESP_LOGI(TAG, "Scanning ANENJI Modbus address %u", next_scan_);
-      send_read_(next_scan_++, SERIAL_REG, SERIAL_COUNT, Phase::WAIT_SERIAL);
+      const uint8_t address = next_scan_++;
+      ESP_LOGI(TAG, "PROBE address=%u register=%u", address, VOLTAGE_REG);
+      send_read_(address, VOLTAGE_REG, 1, Phase::WAIT_PROBE);
       return;
     }
     discovering_ = false;
-    last_discovery_ = millis();
+    last_discovery_ = now;
+    poll_index_ = 0;
     ESP_LOGI(TAG, "Discovery complete: %u serial-identified inverters", unsigned(devices_.size()));
-    for (const auto &d : devices_) ESP_LOGI(TAG, "  Address %u serial %s", d.address, d.serial.c_str());
+    for (const auto &d : devices_)
+      ESP_LOGI(TAG, "  address=%u serial=%s", d.address, d.serial.c_str());
+  }
+  if (devices_.empty()) return;
+  // Start a new polling cycle only when the configured interval has elapsed.
+  if (poll_index_ >= devices_.size()) {
+    if (now - last_cycle_ < poll_ms_) return;
     poll_index_ = 0;
+    last_cycle_ = now;
   }
-  if (devices_.empty()) {
-    if (millis() - last_discovery_ >= 30000) {
-      next_scan_ = scan_start_;
-      discovering_ = true;
-    }
-    return;
-  }
-  if (poll_index_ < devices_.size()) {
-    auto &device = devices_[poll_index_++];
-    send_read_(device.address, VOLTAGE_REG, 1, Phase::WAIT_VOLTAGE);
-    return;
-  }
-  if (millis() - last_cycle_ >= poll_ms_) {
-    poll_index_ = 0;
-    last_cycle_ = millis();
-  }
-  if (millis() - last_discovery_ >= (devices_.size() < max_inverters_ ? 30000UL : 300000UL)) {
-    next_scan_ = scan_start_;
-    discovering_ = true;
-  }
+  const auto &device = devices_[poll_index_++];
+  send_read_(device.address, VOLTAGE_REG, 1, Phase::WAIT_VOLTAGE);
 }
 
 void AnenjiManager::loop() {
