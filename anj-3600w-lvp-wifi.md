@@ -449,6 +449,47 @@ Response data (13 successive 16-bit words):
 
 Many values resemble battery-voltage settings, but **their names, scales, and writeability remain unverified**. In particular, **41100 = 6**, not 57.6.
 
+## Full SmartValue poll snapshot — 2026-11-22 22:54:24–22:54:43
+
+Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire addresses. This is a **snapshot**, not proof of individual field meanings.
+
+| Address | Hex | Raw register(s) | Interpretation |
+|---|---|---|---|
+| 30000–30005 | 0x7530 | 508, 115, 20, 0, 0, 0 | 30000 possibly battery voltage 50.8 V (÷10), **unverified** |
+| 30011–30016 | 0x753B | 0, 0, 0, 0, 0, 0 | Unknown |
+| 30024–30030 | 0x7548 | 1225, 0, 5997, 41, 0, 0, 57 | 30024 candidate grid voltage 122.5 V; 30026 candidate grid frequency 59.97 Hz |
+| 30046–30049 | 0x755E | 0, 0, 57, 474 | Unknown |
+| 30058–30065 | 0x756A | 1227, 65497, 5998, 0, 0, 0, 65058, 38706 | 30058 candidate AC output voltage 122.7 V; 30060 candidate AC output frequency 59.98 Hz; other fields unknown |
+| 30071–30075 | 0x7577 | 2785, 0, 196, 237, 261 | Unknown; scaling unverified |
+| 30085–30087 | 0x7595 | 1, 0, 2 | Status/flags candidates; unknown |
+| 30101–30104 | 0x75A5 | 0, 0, 0, 0 | Unknown |
+| 30032–30033 | 0x7550 | 0, 1 | Unknown |
+| 30035–30037 | 0x7553 | 0, 0, 0 | Unknown |
+| 30039–30040 | 0x7557 | 0, 0 | Unknown |
+| 30042–30044 | 0x755A | 0, 0, 0 | Unknown |
+| 30050–30051 | 0x7562 | 0, 0 | Unknown |
+| 30061–30064 | 0x756D | 0, 0, 0, 0 | Overlaps 30058 block |
+| 30068–30070 | 0x7574 | 65073, 0, 0 | Unknown |
+| 30084–30086 | 0x7584 | 98, 0, 0 | Unknown |
+| 30109–30114 | 0x759D | 34862, 2064, 15828, 4398, 0, 0 | Unknown |
+| 30121–30122 | 0x75A9 | 0, 0 | Unknown |
+| 41000–41014 | 0xA028 | 3,1200,6000,0,2,1,2,800,800,0,1,1,2,30,0 | Configuration; compare individually mapped settings |
+| 41018–41026 | 0xA03A | 6667,5654,13837,0,1,3600,0,1,100 | Includes packed RTC; remainder partly mapped |
+| 41100–41112 | 0xA08C | 6,576,576,600,120,536,488,576,492,452,448,30,512 | Battery settings |
+| 41115–41124 | 0xA09B | 15,5,100,10,20,0,4643,0,0,0 | SOC thresholds and charging schedule |
+| 41127–41135 | 0xA0A7 | 1,5410,5179,0,0,0,0,0,0 | Battery discharge schedule and connection mode |
+| 51000–51001 | 0xC738 | 2,0 | Unknown |
+| 51014–51038 | 0xC746 | UTF-16BE-like ASCII `ZL-2601100518-00067` followed by zeros | Device/manufacturing identifier candidate; distinct from app identifier `dev19d9c768c13665b` |
+| 51044–51045 | 0xC764 | 510,111 | Unknown |
+| 52044–52059 | 0xCB4C | 7,0,9,0,0,0,1548,0,2327,0,4182,0,83,0,0,0 | Unknown; some 32-bit pairs possible |
+| 52071–52072 | 0xCB67 | 3776,0 | Unknown |
+| 41113 | 0xA099 | 1 | Enable 485-BMS |
+| 41027 | 0xA043 | 0 | Grid standard N/A |
+| 41065 | 0xA069 | 1 | Island Enable |
+| 41031 | 0xA047 | 1 | External CT Host Enable |
+
+**Capture note:** The 30024 request and response were concatenated on one UART line (`FF 03 75 48 00 07 8B CC` followed by `FF 03 0E ... EE 44`). Frame boundaries are determined by function and byte count, not UART log lines. Raw request/response bytes are preserved in the conversation capture. For telemetry, identify units and semantics by comparing simultaneous SmartValue dashboard readings under changing load/PV conditions.
+
 ## Safe next steps
 
 1. Capture readbacks while changing **one harmless setting at a time** in SmartValue; record old and new values and corresponding LCD setting.
