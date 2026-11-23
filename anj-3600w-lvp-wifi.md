@@ -492,6 +492,10 @@ SmartValue readings supplied after the 22:54 capture were **not simultaneous** w
 
 The register at 30072 was zero in the snapshot; its meaning is unknown. Sensor placement and sign conventions remain unverified.
 
+## L1 phase output load rate — candidate registers
+
+SmartValue reports **57%**. In the 22:54 snapshot both **30030 (0x754E)** and **30048 (0x7560)** have raw value **57**. Each is a candidate for `L1 phase output load rate` with likely 1:1 percentage scaling; **neither is confirmed**. Compare a new capture after changing AC load to distinguish them. The reading may not be simultaneous with the snapshot.
+
 ## Full SmartValue poll snapshot — 2026-11-22 22:54:24–22:54:43
 
 Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire addresses. This is a **snapshot**, not proof of individual field meanings.
