@@ -7,7 +7,7 @@
 
 - Observed RTU traffic: **9600 baud, 8 data bits, no parity, 1 stop bit (8N1)**.
 - Observed slave address byte: **0xFF** (255). This is what the factory Wi-Fi module transmits; whether it is a conventional configurable device ID is unverified.
-- Read function: **0x03** (holding registers). **Write function 0x06** (Write Single Register) is now captured and acknowledged for **Eco Enable at 41005**. Other registers' writeability is unverified.
+- Read function: **0x03** (holding registers). **Write function 0x06** (Write Single Register) is captured and acknowledged for **Eco Enable at 41005**. **Write function 0x10** (Write Multiple Registers) is captured and acknowledged for **Local Time Set at 41018–41020**. Other registers' writeability is unverified.
 - The factory SmartValue/Eybond Wi-Fi module is the active polling device. Captures were made using an ESP32-S3 in receive-only mode.
 - On the tested RJ45 RS485-1 connector, the user verified **pin 1=A, pin 2=B, pin 7=+5 V, pin 8=GND**. Other hardware revisions may differ; verify before wiring.
 - Do **not** drive the bus or enable an additional termination resistor without checking the physical network. An automatic-direction RS485 adapter is not necessarily passive just because TXD is disconnected.
@@ -33,7 +33,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41012 | 0xA034 | `On Grid Set` | 2 (`0x0002`) | **Anti-backflow (with CT added)**; options: Disable, On-Grid, Anti-backflow (CT), Anti-backflow (smart meter); other enum encodings unverified | Read and CT mode confirmed; write unverified |
 | 41013 | 0xA035 | `Charge Full Current Set` | 30 (`0x001E`) | **3 A** (raw ÷10); SmartValue options 2–15 A in 1 A steps; other values calculated, not observed | Read and scale corroborated by SmartValue; write unverified |
 | 41014 | 0xA036 | `NG Function Enabled` | 0 (`0x0000`) | **Disabled**; 1 = Enabled is plausible but unverified; function semantics unknown | Read and disabled-state mapping confirmed; write unverified |
-| 41018–41020 | 0xA03A–0xA03C | `Local Time Set` (year/month/day/hour/minute/second) | `0x180B`, `0x1E0B`, `0x0726` | Six packed bytes = **2024-11-30 11:07:38** (year 2000+byte) | **Read decoding confirmed against SmartValue display**; write unverified |
+| 41018–41020 | 0xA03A–0xA03C | `Local Time Set` (year/month/day/hour/minute/second) | Read: `0x180B`, `0x1E0B`, `0x0726`; write: `0x1A0B`, `0x1614`, `0x1F26` | Six packed bytes in Y/M/D/h/m/s order, year 2000+byte. Read **2024-11-30 11:07:38**; write **2026-11-22 20:31:38** | Read decoding confirmed against SmartValue; function-`0x10` write acknowledged; post-write readback pending |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -111,6 +111,11 @@ RX  FF 03 02 00 00 91 90
 # Local Time Set, 3 registers starting at 41018; six bytes in Y/M/D/h/m/s order (inferred)
 TX  FF 03 A0 3A 00 03 12 18
 RX  FF 03 06 18 0B 1E 0B 07 26 3B 08
+
+# Local Time Set, Write Multiple Registers (function 0x10), 3 registers at 41018
+# Packed Y/M/D/h/m/s = 26/11/22/20/31/38 => 2026-11-22 20:31:38
+TX  FF 10 A0 3A 00 03 06 1A 0B 16 14 1F 26 F8 7F
+RX  FF 10 A0 3A 00 03 97 DB
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
 # 41020: 0x0726 = minute 7, second 38
