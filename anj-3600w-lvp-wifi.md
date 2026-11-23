@@ -449,13 +449,20 @@ Response data (13 successive 16-bit words):
 
 Many values resemble battery-voltage settings, but **their names, scales, and writeability remain unverified**. In particular, **41100 = 6**, not 57.6.
 
+## Confirmed live battery telemetry
+
+| Raw address | Hex | Name | Captured raw | SmartValue reading | Scaling | Confidence |
+|---|---|---|---|---|---|---|
+| 30000 | 0x7530 | Battery voltage | 508 (`0x01FC`) | **50.8 V** | ÷10 | Confirmed against simultaneous SmartValue reading |
+| 30001 | 0x7531 | Battery current | 115 (`0x0073`) | **11.5 A** | ÷10 | Magnitude confirmed; sign and charge/discharge direction not yet established |
+
 ## Full SmartValue poll snapshot — 2026-11-22 22:54:24–22:54:43
 
 Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire addresses. This is a **snapshot**, not proof of individual field meanings.
 
 | Address | Hex | Raw register(s) | Interpretation |
 |---|---|---|---|
-| 30000–30005 | 0x7530 | 508, 115, 20, 0, 0, 0 | 30000 possibly battery voltage 50.8 V (÷10), **unverified** |
+| 30000–30005 | 0x7530 | 508, 115, 20, 0, 0, 0 | **30000 battery voltage 50.8 V (÷10), confirmed; 30001 battery current 11.5 A (÷10), confirmed**; 30002=20 unknown; current sign/direction unverified |
 | 30011–30016 | 0x753B | 0, 0, 0, 0, 0, 0 | Unknown |
 | 30024–30030 | 0x7548 | 1225, 0, 5997, 41, 0, 0, 57 | 30024 candidate grid voltage 122.5 V; 30026 candidate grid frequency 59.97 Hz |
 | 30046–30049 | 0x755E | 0, 0, 57, 474 | Unknown |
