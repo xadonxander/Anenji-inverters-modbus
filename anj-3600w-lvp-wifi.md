@@ -21,6 +21,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 40000 | 0x9C40 | `on_off` | 1 | Current ON/OFF control readback is 1; OFF encoding and write behavior not tested | Confirmed read and field association |
 | 41000 | 0xA028 | `OutPriority` | 3 | **Hybrid** | Confirmed by SmartValue setting |
 | 41001 | 0xA029 | `Output Volt Set` | 1200 (`0x04B0`) | Likely **120.0 V** (÷10); scale inferred | Confirmed read and field association; scale unverified |
+| 41002 | 0xA02A | `Output Frequency Set` | 6000 (`0x1770`) | Likely **60.00 Hz** (÷100); scale inferred | Confirmed read and field association; scale unverified |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -42,6 +43,10 @@ RX  FF 03 02 00 03 D1 91
 # Output Volt Set, one register starting at 41001
 TX  FF 03 A0 29 00 01 62 1C
 RX  FF 03 02 04 B0 92 E4
+
+# Output Frequency Set, one register starting at 41002
+TX  FF 03 A0 2A 00 01 92 1C
+RX  FF 03 02 17 70 9F 84
 
 # candidate grid-input measurements: 30024..30030
 TX  FF 03 75 48 00 07 8B CC
