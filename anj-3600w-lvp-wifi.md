@@ -30,6 +30,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41008 | 0xA030 | `Charge Current By PV Set` | 800 (`0x0320`) | **80 A** (raw ÷10) | Read and scale corroborated by SmartValue setting; write unverified |
 | 41009 | 0xA031 | `Charge Current By Line Set (A)` | 0 (`0x0000`) | **0 A**; scaling unverified because zero cannot distinguish scales (likely ÷10) | Read and field association confirmed; write unverified |
 | 41011 | 0xA033 | `Mute Enable` | 1 (`0x0001`) | **1 = Enabled** (confirmed by SmartValue); 0 = Disabled unverified | Read and enabled-state mapping confirmed; write unverified |
+| 41012 | 0xA034 | `On Grid Set` | 2 (`0x0002`) | **Anti-backflow (with CT added)**; options: Disable, On-Grid, Anti-backflow (CT), Anti-backflow (smart meter); other enum encodings unverified | Read and CT mode confirmed; write unverified |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -91,6 +92,10 @@ RX  FF 03 02 00 00 91 90
 # Mute Enable, one register starting at 41011; SmartValue shows enabled, returned value 1
 TX  FF 03 A0 33 00 01 43 DB
 RX  FF 03 02 00 01 50 50
+
+# On Grid Set, one register starting at 41012; SmartValue currently Anti-backflow (with CT added)
+TX  FF 03 A0 34 00 01 F2 1A
+RX  FF 03 02 00 02 10 51
 
 # candidate grid-input measurements: 30024..30030
 TX  FF 03 75 48 00 07 8B CC
