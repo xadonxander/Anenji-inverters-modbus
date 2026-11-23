@@ -504,6 +504,23 @@ Confirmed frequency-value decoding from repeated Modbus RTU polls at 23:08:47–
 
 Repeated request `FF 03 75 4A 00 01 AA 0E` and response `FF 03 02 17 70 9F 84` show register **30026 = 0x1770 = 6000 = 60.00 Hz** (÷100) consistently. One UART log line concatenates request and response. The user also supplied `84` without a field label; **do not interpret the trailing CRC byte `84` as a telemetry measurement**. Field meaning of the standalone `84` is unresolved.
 
+## SmartValue Inv1Ph1 screenshot — 2026-11-22 23:09:10
+
+Screenshot readings (not simultaneous with the 22:54 raw capture):
+
+| SmartValue field | Display | Register attribution |
+|---|---:|---|
+| `GeneratedACPowerToday` | 0.7 kWh | Unconfirmed; raw 7 at 52044 is a candidate if ÷10 |
+| `GeneratedACPowerTotal` | 377.6 kWh | Unknown; no direct 3776 match in prior energy block |
+| `LineVolt_L1` | 122.3 V | 30058 confirmed earlier, ÷10 |
+| `LineCurr_L1` | -2.4 A | 30059 confirmed earlier, signed int16 ÷10 |
+| `LineFreq` | 60 Hz | 30060 probable, raw 5998 in earlier snapshot = 59.98 Hz (÷100); 30026 is separately measured frequency |
+| `LinePowerW_L1` | -304 W | Unknown |
+| L1-phase active power generation | 279 W | Unknown |
+| L1-phase grid power (external sampling) | 102 W | Unknown |
+
+Do not conflate L1 grid input power, generated AC output power, and externally sampled grid power. The voltage-current product 122.3 × -2.4 = -293.5 VA is similar in magnitude to -304 W but does not confirm a power register.
+
 ## Full SmartValue poll snapshot — 2026-11-22 22:54:24–22:54:43
 
 Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire addresses. This is a **snapshot**, not proof of individual field meanings.
