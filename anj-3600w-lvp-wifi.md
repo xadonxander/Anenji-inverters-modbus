@@ -60,6 +60,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41127 | 0xA0A7 | `On time battery discharge enable` | 1 (`0x0001`) | **Enabled**, confirmed against SmartValue; 1=Enabled verified, 0=Disabled inferred; scheduled battery-discharge behavior unverified | Read confirmed; write unverified |
 | 41128 | 0xA0A8 | `Battery Discharge Start Time 1(HH-mm)` | 5410 (`0x1522`) | **21:34**, confirmed against SmartValue; packed high byte=hour (21), low byte=minute (34), 24-hour clock | Read confirmed; write unverified; scheduled battery discharge |
 | 41129 | 0xA0A9 | `Battery Discharge End Time 1(HH-mm)` | 5179 (`0x143B`) | **20:59** decoded; packed high byte=hour (20), low byte=minute (59); SmartValue display not separately confirmed; earlier than 21:34 start, possible overnight window unverified | Read confirmed; write unverified; scheduled battery discharge |
+| 41130 | 0xA0AA | `Battery Discharge Start Time 2(HH-mm)` | 0 (`0x0000`) | **00:00** decoded; packed high byte=hour (0), low byte=minute (0), consistent with confirmed HH:mm encoding; SmartValue display not separately confirmed | Read confirmed; write unverified; scheduled battery discharge |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -269,6 +270,11 @@ RX  FF 03 02 15 22 1F 19
 TX  FF 03 A0 A9 00 01 63 F4
 RX  FF 03 02 14 3B DF 43
 # 0x143B: hour=0x14=20, minute=0x3B=59; packed HH:mm; overnight handling unverified
+
+# Battery Discharge Start Time 2(HH-mm), one register at 41130; decoded 00:00
+TX  FF 03 A0 AA 00 01 93 F4
+RX  FF 03 02 00 00 91 90
+# 0x0000: hour=0x00=0, minute=0x00=0; packed HH:mm
 # Raw 6 = L16 verified. Proposed zero-based enumeration 0..13 follows menu order; other 13 encodings are inferred, not captured.
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
