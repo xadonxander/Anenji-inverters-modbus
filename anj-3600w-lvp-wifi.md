@@ -529,6 +529,62 @@ Screenshot readings (not simultaneous with the 22:54 raw capture):
 
 Do not conflate L1 grid input power, generated AC output power, and externally sampled grid power. The voltage-current product 122.3 × -2.4 = -293.5 VA is similar in magnitude to -304 W but does not confirm a power register.
 
+## Full SmartValue poll snapshot — 2026-11-22 23:19:02–23:19:22
+
+Passive receive-only capture, slave 0xFF, function 0x03. All raw values below are 16-bit register words; addresses are zero-based raw wire addresses. **Unmapped** means the register was observed but its field meaning has not been established. Zero readings are retained rather than silently omitted. Some read ranges overlap. Concatenated UART request/response frames were split at Modbus frame boundaries.
+
+| Register(s) | Raw decimal values | Interpretation / mapping status |
+|---|---|---|
+| 30000–30005 | 509,58,19,0,0,0 | 30000 battery voltage **50.9 V** (÷10); 30001 battery current **5.8 A** (÷10, direction unknown); **30002–30005 Unmapped** |
+| 30011–30016 | 0,0,0,0,0,0 | **Unmapped** |
+| 30024–30030 | 1205,0,5999,17,0,0,57 | 30024 output L1 voltage **120.5 V**; 30026 AC frequency **59.99 Hz** (output attribution probable); 30030 load-rate candidate **57%**; **30025,30027–30029 Unmapped** |
+| 30046–30049 | 0,0,57,202 | 30048 load-rate candidate **57%**; **30046,30047,30049 Unmapped** |
+| 30058–30065 | 1208,65519,6000,0,0,0,0,0 | 30058 grid L1 voltage **120.8 V**; 30059 signed -17 → **-1.7 A**; 30060 grid frequency candidate **60.00 Hz**; **30061–30065 Unmapped** |
+| 30071–30075 | 2800,0,194,226,256 | 30071 positive bus candidate **280.0 V**; 30073/74/75 temperature candidates **19.4/22.6/25.6 °C**; **30072 Unmapped** |
+| 30101–30103 | 1,0,2 | **Unmapped** status candidates |
+| 30117–30120 | 0,0,0,0 | **Unmapped** |
+| 41000–41014 | 3,1200,6000,0,2,1,2,800,800,0,1,1,2,30,0 | Configuration; mapped settings listed above; **41010 Unmapped** |
+| 41018–41026 | 6667,5655,4660,0,1,3600,0,1,100 | RTC 41018–41020: packed 2026-11-22 23:18:52; **41021,41024,41026 Unmapped** |
+| 41100–41112 | 6,576,576,600,120,536,488,576,492,452,448,30,512 | Battery configuration; **41103,41110,41111 Unmapped** |
+| 41115–41124 | 15,5,100,10,20,0,4643,0,0,0 | SOC and grid-charge schedule (identified configuration fields) |
+| 41127–41135 | 1,5410,5179,0,0,0,0,0,0 | Battery discharge schedule and connection configuration; **41132–41134 Unmapped** |
+| 51000–51001 | 2,0 | **Unmapped** |
+| 51014–51038 | 90,76,45,50,54,48,49,49,48,48,53,49,56,45,48,48,48,54,55,0,0,0,0,0,0 | Device identifier `ZL-2601100518-00067`; trailing zero words unmapped |
+| 51044–51045 | 510,111 | **Unmapped** |
+| 52044–52059 | 8,0,10,0,0,0,1548,0,2328,0,4182,0,83,0,0,0 | 52044 daily AC energy **0.8 kWh** (strong candidate); 52054 PV total **418.2 kWh** (identified); **52045–52053,52055–52059 Unmapped** |
+| 52071–52072 | 3777,0 | 52071 total AC generation **377.7 kWh** (strong candidate); **52072 Unmapped**, possible upper word unverified |
+| 30032–30033 | 0,1 | **Unmapped** |
+| 30035–30037 | 0,0,0 | **Unmapped** |
+| 30039–30040 | 0,0 | **Unmapped** |
+| 30042–30044 | 0,0,0 | **Unmapped** |
+| 30050–30051 | 0,0 | **Unmapped** |
+| 30061–30064 (overlap) | 0,0,0,0 | **Unmapped** |
+| 30068–30070 | 65334,0,0 | **Unmapped**; 65334 is signed int16 -202 if interpreted as signed, but meaning unknown |
+| 30084–30086 | 98,0,0 | **Unmapped** |
+| 30109–30114 | 34862,2064,15828,4398,0,0 | **Unmapped** |
+| 30121–30122 | 0,0 | **Unmapped** |
+| 41113 | 1 | BMS setup, RS485 |
+| 41027 | 0 | Grid standard N/A |
+| 41065 | 1 | Island enable |
+| 41031 | 1 | External CT host enable |
+
+**Observed changes since 22:54:** 52044 **7→8** and 52071 **3776→3777** (both +0.1 kWh at ÷10); 52046 **9→10** and 52052 **2327→2328** also increased, but their energy-counter meanings remain **Unmapped**. 52054 PV total remained 4182. Do not infer names from synchronized increments alone. The previously hypothesized 30030 and 30048 load-rate registers both remain at raw 57, so this capture does not disambiguate them.
+
+### Raw RTU evidence excerpts
+
+```text
+TX FF 03 75 30 00 06 CA 15
+RX FF 03 0C 01 FD 00 3A 00 13 00 00 00 00 00 00 20 3C
+TX FF 03 75 48 00 07 8B CC
+RX FF 03 0E 04 B5 00 00 17 6F 00 11 00 00 00 00 00 39 E0 1B
+TX FF 03 75 6A 00 08 6B C2
+RX FF 03 10 04 B8 FF EF 17 70 00 00 00 00 00 00 00 00 FF 33 4D 95
+TX FF 03 CB 4C 00 10 AE 2B
+RX FF 03 20 00 08 00 00 00 0A 00 00 00 00 00 00 06 0C 00 00 09 18 00 00 10 56 00 00 00 53 00 00 00 00 00 00 DC 6F
+TX FF 03 CB 67 00 02 5E 2E
+RX FF 03 04 0E C1 00 00 B6 E8
+```
+
 ## Full SmartValue poll snapshot — 2026-11-22 22:54:24–22:54:43
 
 Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire addresses. This is a **snapshot**, not proof of individual field meanings.
