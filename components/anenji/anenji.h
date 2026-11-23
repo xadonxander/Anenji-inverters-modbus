@@ -47,6 +47,8 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
   std::string pending_serial_;
   uint8_t scan_retries_{0};
   uint32_t serial_ready_at_{0};
+  uint32_t last_bus_activity_{0};
+  uint8_t expected_bytes_{0};
 
   static uint16_t crc16_(const uint8_t *data, size_t size);
   void send_read_(uint8_t address, uint16_t reg, uint16_t count, Phase next);
