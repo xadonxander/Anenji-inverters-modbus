@@ -51,6 +51,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41116 | 0xA09C | `Battery Stop State Of Charge (%)` | 5 (`0x0005`) | **5%**, raw units are percent (1:1), confirmed against SmartValue; precise stop behavior and applicability by battery type unverified | Read confirmed; write unverified; battery protection safety-sensitive |
 | 41117 | 0xA09D | `Battery Full State Of Charge (%)` | 100 (`0x0064`) | **100%**, raw units are percent (1:1), confirmed against SmartValue; full-SOC threshold behavior unverified | Read confirmed; write unverified; battery charging configuration |
 | 41118 | 0xA09E | `Inverter 2 Line State of charge (%)` | 10 (`0x000A`) | **10%**, raw units are percent (1:1), confirmed against SmartValue; likely inverter-to-line SOC transfer threshold, exact behavior unverified | Read confirmed; write unverified; battery/transfer setting |
+| 41119 | 0xA09F | `Line Back 2 inverter State of Charge (%)` | 20 (`0x0014`) | **20%**, raw units are percent (1:1), confirmed against SmartValue; likely line-to-inverter SOC transfer threshold, exact behavior unverified | Read confirmed; write unverified; battery/transfer setting |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -215,6 +216,11 @@ RX  FF 03 02 00 64 90 7B
 TX  FF 03 A0 9E 00 01 D2 3A
 RX  FF 03 02 00 0A 11 97
 # 0x000A = 10%, no scaling
+
+# Line Back 2 inverter State of Charge (%), one register at 41119; SmartValue currently 20%
+TX  FF 03 A0 9F 00 01 83 FA
+RX  FF 03 02 00 14 91 9F
+# 0x0014 = 20%, no scaling; 10-point SOC hysteresis relative to 41118
 # Raw 6 = L16 verified. Proposed zero-based enumeration 0..13 follows menu order; other 13 encodings are inferred, not captured.
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
