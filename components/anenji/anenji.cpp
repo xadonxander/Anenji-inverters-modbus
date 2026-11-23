@@ -21,6 +21,7 @@ uint16_t AnenjiManager::crc16_(const uint8_t *data, size_t size) {
 void AnenjiManager::setup() {
   if (direction_ != nullptr) direction_->turn_off();
   next_scan_ = scan_start_;
+  last_bus_activity_ = millis();
   discovering_ = true;
   last_cycle_ = millis() - poll_ms_;
   ESP_LOGI(TAG, "Starting ANENJI serial discovery on addresses %u-%u", scan_start_, scan_end_);
@@ -47,6 +48,7 @@ void AnenjiManager::send_read_(uint8_t address, uint16_t reg, uint16_t count, Ph
   delayMicroseconds(175);
   if (direction_ != nullptr) direction_->turn_off();
   active_address_ = address;
+  expected_bytes_ = uint8_t(count * 2);
   phase_ = next;
   request_started_ = millis();
 }
@@ -55,24 +57,25 @@ void AnenjiManager::complete_request_(bool success) {
   if (!success && (phase_ == Phase::WAIT_SERIAL || phase_ == Phase::WAIT_PROBE))
     ESP_LOGW(TAG, "Serial discovery failed at address %u (received %u bytes)", active_address_, unsigned(rx_.size()));
   phase_ = Phase::IDLE;
+  last_bus_activity_ = millis();
   rx_.clear();
 }
 
 void AnenjiManager::process_frame_() {
-  if (rx_.size() < 5) return;
-  if (rx_[0] != active_address_ || rx_[1] != 0x03) {
-    ESP_LOGW(TAG, "Unexpected response: requested=%u received=%u function=0x%02X", active_address_, rx_[0], rx_[1]);
-    complete_request_(false);
-    return;
+  const size_t expected = size_t(expected_bytes_) + 5;
+  // Search for the complete CRC-valid response; do not abort on stray bytes.
+  size_t offset = 0;
+  bool matched = false;
+  for (; offset + expected <= rx_.size(); ++offset) {
+    const auto *p = rx_.data() + offset;
+    if (p[0] != active_address_ || p[1] != 0x03 || p[2] != expected_bytes_) continue;
+    const uint16_t crc = uint16_t(p[expected-2]) | (uint16_t(p[expected-1]) << 8);
+    if (crc16_(p, expected-2) == crc) { matched = true; break; }
   }
-  size_t expected = size_t(rx_[2]) + 5;
-  if (expected > 128) { complete_request_(false); return; }
-  if (rx_.size() < expected) return;
-  uint16_t received_crc = uint16_t(rx_[expected - 2]) | (uint16_t(rx_[expected - 1]) << 8);
-  if (crc16_(rx_.data(), expected - 2) != received_crc) {
-    ESP_LOGW(TAG, "CRC error from address %u", active_address_);
-    complete_request_(false);
-    return;
+  if (!matched) return;
+  if (offset) {
+    ESP_LOGW(TAG, "Discarding %u unrelated RX bytes before valid response", unsigned(offset));
+    rx_.erase(rx_.begin(), rx_.begin() + offset);
   }
   if (phase_ == Phase::WAIT_PROBE && rx_[2] == 2) {
     const float volts = float((uint16_t(rx_[3]) << 8) | rx_[4]) / 10.0f;
@@ -81,7 +84,7 @@ void AnenjiManager::process_frame_() {
     complete_request_(true);
     // Allow the inverter to finish its previous transaction before the long serial read.
     active_address_ = address;
-    serial_ready_at_ = millis() + 150;
+    serial_ready_at_ = millis() + 25;
     phase_ = Phase::SERIAL_GAP;
     return;
   } else if (phase_ == Phase::WAIT_SERIAL && rx_[2] == SERIAL_COUNT * 2) {
@@ -137,7 +140,9 @@ void AnenjiManager::start_next_() {
     }
     discovering_ = false;
     last_discovery_ = now;
-    poll_index_ = 0;
+    // Avoid a duplicate immediate polling cycle after discovery.
+    last_cycle_ = now;
+    poll_index_ = devices_.size();
     ESP_LOGI(TAG, "Discovery complete: %u serial-identified inverters", unsigned(devices_.size()));
     for (const auto &d : devices_)
       ESP_LOGI(TAG, "  address=%u serial=%s", d.address, d.serial.c_str());
@@ -154,8 +159,12 @@ void AnenjiManager::start_next_() {
 }
 
 void AnenjiManager::loop() {
+  if (phase_ == Phase::IDLE || phase_ == Phase::SERIAL_GAP) {
+    uint8_t discarded;
+    while (available() && read_byte(&discarded)) last_bus_activity_ = millis();
+  }
   if (phase_ == Phase::SERIAL_GAP) {
-    if (int32_t(millis() - serial_ready_at_) >= 0) {
+    if (int32_t(millis() - serial_ready_at_) >= 0 && millis() - last_bus_activity_ >= 25) {
       ESP_LOGI(TAG, "Reading serial at address %u after turnaround gap", active_address_);
       send_read_(active_address_, SERIAL_REG, SERIAL_COUNT, Phase::WAIT_SERIAL);
     }
@@ -165,7 +174,7 @@ void AnenjiManager::loop() {
     while (available()) {
       uint8_t byte;
       if (read_byte(&byte)) rx_.push_back(byte);
-      if (rx_.size() > 128) { complete_request_(false); break; }
+      if (rx_.size() > 256) rx_.erase(rx_.begin(), rx_.begin() + 128);
     }
     if (phase_ != Phase::IDLE) {
       process_frame_();
@@ -175,7 +184,8 @@ void AnenjiManager::loop() {
       }
     }
   }
-  if (phase_ == Phase::IDLE) start_next_();
+  // Enforce the original scanner's approximately 70–80ms address spacing.
+  if (phase_ == Phase::IDLE && millis() - last_bus_activity_ >= 80) start_next_();
 }
 
 void AnenjiManager::update() {
