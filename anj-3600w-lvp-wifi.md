@@ -32,6 +32,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41011 | 0xA033 | `Mute Enable` | 1 (`0x0001`) | **1 = Enabled** (confirmed by SmartValue); 0 = Disabled unverified | Read and enabled-state mapping confirmed; write unverified |
 | 41012 | 0xA034 | `On Grid Set` | 2 (`0x0002`) | **Anti-backflow (with CT added)**; options: Disable, On-Grid, Anti-backflow (CT), Anti-backflow (smart meter); other enum encodings unverified | Read and CT mode confirmed; write unverified |
 | 41013 | 0xA035 | `Charge Full Current Set` | 30 (`0x001E`) | **3 A** (raw ÷10); SmartValue options 2–15 A in 1 A steps; other values calculated, not observed | Read and scale corroborated by SmartValue; write unverified |
+| 41014 | 0xA036 | `NG Function Enabled` | 0 (`0x0000`) | **Disabled**; 1 = Enabled is plausible but unverified; function semantics unknown | Read and disabled-state mapping confirmed; write unverified |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -101,6 +102,10 @@ RX  FF 03 02 00 02 10 51
 # Charge Full Current Set, one register starting at 41013; SmartValue currently 3 A
 TX  FF 03 A0 35 00 01 A3 DA
 RX  FF 03 02 00 1E 11 98
+
+# NG Function Enabled, one register starting at 41014; SmartValue currently disabled
+TX  FF 03 A0 36 00 01 53 DA
+RX  FF 03 02 00 00 91 90
 
 # candidate grid-input measurements: 30024..30030
 TX  FF 03 75 48 00 07 8B CC
