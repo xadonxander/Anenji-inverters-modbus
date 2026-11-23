@@ -29,6 +29,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41007 | 0xA02F | `Max Charge Current Set (A)` | 800 (`0x0320`) | **80 A** (raw ÷10) | Read and scale corroborated by SmartValue setting; write unverified |
 | 41008 | 0xA030 | `Charge Current By PV Set` | 800 (`0x0320`) | **80 A** (raw ÷10) | Read and scale corroborated by SmartValue setting; write unverified |
 | 41009 | 0xA031 | `Charge Current By Line Set (A)` | 0 (`0x0000`) | **0 A**; scaling unverified because zero cannot distinguish scales (likely ÷10) | Read and field association confirmed; write unverified |
+| 41011 | 0xA033 | `Mute Enable` | 1 (`0x0001`) | Likely mute enabled; polarity not independently verified | Read and field association confirmed; write unverified |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -86,6 +87,10 @@ RX  FF 03 02 03 20 90 B8
 # Charge Current By Line Set (A), one register starting at 41009; SmartValue currently 0 A
 TX  FF 03 A0 31 00 01 E2 1B
 RX  FF 03 02 00 00 91 90
+
+# Mute Enable, one register starting at 41011; returned value 1
+TX  FF 03 A0 33 00 01 43 DB
+RX  FF 03 02 00 01 50 50
 
 # candidate grid-input measurements: 30024..30030
 TX  FF 03 75 48 00 07 8B CC
