@@ -563,6 +563,22 @@ Battery power screenshot **295 W** is derived consistently from 50.9 V × 5.8 A 
 
 **Correction to earlier hypotheses:** 30027 raw 17 does **not** represent the screenshot's 0 W L1 output active power. 30049 raw 202 aligns with L1 active power generation 202 W. 30068 is a signed -202 W grid power reading, and 30084 is 98 W externally sampled grid power. Preserve 30030 vs 30048 load-rate ambiguity.
 
+## SmartValue synchronized chart screenshots — 2026-11-22 23:33:45 (screenshots at 23:36–23:37)
+
+Chart timestamp 23:33:45 is close to, but not identical to, the Modbus poll at 23:28:50–23:29:09. Readings correspond closely and provide strong identification for previously unmapped energy counters:
+
+| Register decimal | Hex | Captured raw at 23:29 | SmartValue chart label and value | Confidence |
+|---|---|---:|---|---|
+| **52046** | **0xCB4E** | **11** | **BatDischgEnergyToday 1.1 kWh** | Strong correlation; scale ÷10 |
+| **52056** | **0xCB58** | **83** | **UsedEnergyTotal 8.3 kWh** | Strong correlation; scale ÷10 |
+| 52044 | 0xCB4C | 8 | GeneratedACPowerToday 0.8 kWh | Confirmed; ÷10 |
+| 52071 | 0xCB67 | 3777 | GeneratedACPowerTotal 377.7 kWh | Confirmed; ÷10 |
+| **52052** | **0xCB54** | **2329** | **Unmapped** | Do not infer field |
+
+Additional chart corroboration at 23:33:45: battery voltage 50.9 V, current 5.6 A, SOC 18%, calculated total battery power 285 W; output 123.5 V, frequency 59.98 Hz, current 0 A, L1 output load rate 57%, output active/apparent power 0 W/VA; grid 122.4 V, -1.6 A, 59.98 Hz, -197 W, L1 active generation 199 W, external CT power 98 W. The 57% output load-rate field is still **ambiguous** between raw registers 30030 and 30048 (both 57 at 23:29). `UsedEnergyToday` 0 kWh; `BatChgEnergyToday` 0 kWh. Chart confirms the battery discharge energy counter rather than PV energy for 52046.
+
+**Correction to historical section below:** The earlier statement that `52046` is unmapped is superseded by this later, closely timed chart. Likewise `52056` is now a strong match rather than merely a candidate. No other unmapped registers should be renamed without corresponding evidence.
+
 ## Historical SmartValue screenshots — 2026-11-22, selected historical record (11:30–11:31 PM screenshots)
 
 **Important:** These screenshots are from the SmartValue *Historical Data* view, not synchronized with the 23:29 Modbus capture. Some historical values differ substantially from the live capture. Historical screenshot values must **not** be used to assign a register merely because the values resemble the live raw values.
