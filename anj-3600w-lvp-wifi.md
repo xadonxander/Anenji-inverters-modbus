@@ -24,6 +24,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41002 | 0xA02A | `Output Frequency Set` | 6000 (`0x1770`) | Likely **60.00 Hz** (÷100); scale inferred | Confirmed read and field association; scale unverified |
 | 41003 | 0xA02B | `Line Range Set` | 0 (`0x0000`) | **UPS**; other app options APL and GEN, encodings unknown | Confirmed by SmartValue setting |
 | 41004 | 0xA02C | `Para Mode Set` | 2 (`0x0002`) | **2P0**; available modes: Single, Parallel, 2P0, 2P1, 2P2, 3P1, 3P2, 3P3; all other encodings unverified | Confirmed by SmartValue setting |
+| 41005 | 0xA02D | `Eco Enable` | 1 (`0x0001`) | **Enabled**; disabled encoding likely 0 but unverified | Confirmed by SmartValue setting |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -57,6 +58,10 @@ RX  FF 03 02 00 00 91 90
 # Para Mode Set, one register starting at 41004; SmartValue currently 2P0
 TX  FF 03 A0 2C 00 01 72 1D
 RX  FF 03 02 00 02 10 51
+
+# Eco Enable, one register starting at 41005; SmartValue currently enabled
+TX  FF 03 A0 2D 00 01 23 DD
+RX  FF 03 02 00 01 50 50
 
 # candidate grid-input measurements: 30024..30030
 TX  FF 03 75 48 00 07 8B CC
