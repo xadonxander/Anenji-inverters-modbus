@@ -74,6 +74,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41130 | 0xA0AA | `Battery Discharge Start Time 2(HH-mm)` | 0 (`0x0000`) | **00:00** decoded; packed high byte=hour (0), low byte=minute (0), consistent with confirmed HH:mm encoding; SmartValue display not separately confirmed | Read confirmed; write unverified; scheduled battery discharge |
 | 41131 | 0xA0AB | `Battery Discharge End Time 2(HH-mm)` | 0 (`0x0000`) | **00:00**, confirmed against SmartValue; packed high byte=hour (0), low byte=minute (0); equal start/end behavior unverified | Read confirmed; write unverified; scheduled battery discharge |
 | 41135 | 0xA0AF | `Battery Connection Way` | 0 (`0x0000`) | **Battery Parallel Input**, confirmed against SmartValue; enum `0`=Battery Parallel Input confirmed, `1`=Battery Independent Input inferred from two available choices; physical behavior unverified | Read confirmed; write unverified; safety-sensitive battery topology configuration |
+| 41138 | 0xA0B2 | `Battery hybrid current (A)` (SmartValue Default tab, 8/9) | 500 (`0x01F4`) | **50.0 A**, raw divided by 10; confirmed against SmartValue; charging/discharging direction and hybrid control behavior unverified | Read confirmed; write unverified; battery current configuration |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -358,6 +359,11 @@ TX  FF 03 A0 AF 00 01 83 F5
 RX  FF 03 02 00 00 91 90
 # Enum: 0=Battery Parallel Input (confirmed); 1=Battery Independent Input (inferred, unverified)
 # SmartValue choices: Battery Parallel Input, Battery Independent Input; write unverified
+
+# SmartValue Default tab (setting 8 of 9): Battery hybrid current (A), register 41138; currently 50 A
+TX  FF 03 A0 B2 00 01 13 F3
+RX  FF 03 02 01 F4 91 87
+# 0x01F4 = 500, divide by 10 for 50.0 A. Direction/behavior and writeability unverified
 # Raw 6 = L16 verified. Proposed zero-based enumeration 0..13 follows menu order; other 13 encodings are inferred, not captured.
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
