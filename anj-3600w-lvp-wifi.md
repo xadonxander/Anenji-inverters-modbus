@@ -563,6 +563,62 @@ Battery power screenshot **295 W** is derived consistently from 50.9 V × 5.8 A 
 
 **Correction to earlier hypotheses:** 30027 raw 17 does **not** represent the screenshot's 0 W L1 output active power. 30049 raw 202 aligns with L1 active power generation 202 W. 30068 is a signed -202 W grid power reading, and 30084 is 98 W externally sampled grid power. Preserve 30030 vs 30048 load-rate ambiguity.
 
+## Full SmartValue poll snapshot — 2026-11-22 23:28:50–23:29:09
+
+Receive-only Modbus RTU capture, slave 255 (0xFF), function 03. Some UART lines concatenate complete request/response frames. Addresses below are raw wire register addresses. **Unmapped** explicitly marks unassigned field meanings, including zero-valued readings.
+
+| Register range | Raw decimal values | Mapping / interpretation |
+|---|---|---|
+| 30000–30005 | 509,56,18,0,0,0 | Battery voltage 50.9 V (30000), current 5.6 A (30001; direction unverified), SOC 18% (30002); **30003–30005 Unmapped** |
+| 30011–30016 | 0,0,0,0,0,0 | **Unmapped** |
+| 30024–30030 | 1218,0,5999,17,0,0,57 | Output L1 121.8 V (30024), output frequency 59.99 Hz (30026); 30030 load rate candidate 57%; **30025,30027–30029 Unmapped** |
+| 30046–30049 | 0,0,57,204 | 30049 L1 active power generation 204 W; 30048 load rate candidate 57%; **30046–30047 Unmapped** |
+| 30058–30065 | 1220,65519,5999,0,0,0,0,0 | Grid L1 122.0 V (30058), current -1.7 A (30059 signed ÷10), grid frequency 59.99 Hz (30060); **30061–30065 Unmapped** |
+| 30071–30075 | 2798,0,194,228,257 | Positive bus 279.8 V (30071), temps 19.4/22.8/25.7 °C (30073–30075); **30072 Unmapped** |
+| 30101–30103 | 1,0,2 | **Unmapped** status enums |
+| 30117–30120 | 0,0,0,0 | **Unmapped** |
+| 41000–41014 | 3,1200,6000,0,2,1,2,800,800,0,1,1,2,30,0 | Configuration as mapped; **41010 Unmapped** |
+| 41018–41026 | 6667,5655,7207,0,1,3600,0,1,100 | RTC packed 2026-11-22 23:28:39; **41021 Unmapped**; 41024 reactive power set 0 Var, 41026 PF set 1.00 |
+| 41100–41112 | 6,576,576,600,120,536,488,576,492,452,448,30,512 | Battery configuration mapped except **41103 Unmapped** |
+| 41115–41124 | 15,5,100,10,20,0,4643,0,0,0 | SOC settings and line charge schedule |
+| 41127–41135 | 1,5410,5179,0,0,0,0,0,0 | Discharge schedule and battery topology; **41132–41134 Unmapped** |
+| 51000–51001 | 2,0 | **Unmapped** (product type candidate 2 not verified) |
+| 51014–51038 | ASCII-code words for ZL-2601100518-00067, trailing zeros | Device serial identified; padding **Unmapped** |
+| 51044–51045 | 510,111 | **Unmapped** |
+| 52044–52059 | 8,0,11,0,0,0,1548,0,2329,0,4182,0,83,0,0,0 | 52044 daily AC 0.8 kWh; 52054 PV total 418.2 kWh; **52046=11 and 52052=2329 increased together, still Unmapped**; all other positions except identified ones **Unmapped** |
+| 52071–52072 | 3777,0 | 52071 lifetime AC 377.7 kWh; **52072 Unmapped** |
+| 30032–30033 | 0,1 | **Unmapped** |
+| 30035–30037 | 0,0,0 | **Unmapped** |
+| 30039–30040 | 0,0 | **Unmapped** |
+| 30042–30044 | 0,0,0 | **Unmapped** |
+| 30050–30051 | 0,0 | **Unmapped** |
+| 30061–30064 (overlap) | 0,0,0,0 | **Unmapped** |
+| 30068–30070 | 65339,0,0 | 30068 signed int16 = **-197 W** `LinePowerW_L1`; **30069–30070 Unmapped** |
+| 30084–30086 | 98,0,0 | 30084 external CT grid power 98 W; **30085–30086 Unmapped** |
+| 30109–30114 | 34862,2064,15828,4398,0,0 | **Unmapped** |
+| 30121–30122 | 0,0 | **Unmapped** |
+| 41113 | 1 | RS485 BMS |
+| 41027 | 0 | Grid standard N/A |
+| 41065 | 1 | Island enabled |
+| 41031 | 1 | External CT host enabled |
+
+**Energy progression:** 22:54 → 23:19 → 23:29: 52044 **7→8→8**, 52046 **9→10→11**, 52052 **2327→2328→2329**, 52054 **4182→4182→4182**, 52071 **3776→3777→3777**. The synchronized increments of 52046 and 52052 suggest a related energy-flow measurement but **do not establish field names or scaling**. Raw 30027 stays 17 while earlier SmartValue output active power was 0 W, so **30027 remains Unmapped**. Both 30030 and 30048 remain 57, so load-rate attribution is still ambiguous.
+
+### Raw evidence excerpts
+
+```text
+TX FF 03 75 30 00 06 CA 15
+RX FF 03 0C 01 FD 00 38 00 12 00 00 00 00 00 00 29 9C
+TX FF 03 75 5E 00 04 2A 09
+RX FF 03 08 00 00 00 00 00 39 00 CC 72 64
+TX FF 03 75 74 00 03 4A 03
+RX FF 03 06 FF 3B 00 00 00 00 98 DB
+TX FF 03 CB 4C 00 10 AE 2B
+RX FF 03 20 00 08 00 00 00 0B 00 00 00 00 00 00 06 0C 00 00 09 19 00 00 10 56 00 00 00 53 00 00 00 00 00 00 E3 ED
+TX FF 03 CB 67 00 02 5E 2E
+RX FF 03 04 0E C1 00 00 B6 E8
+```
+
 ## Full SmartValue poll snapshot — 2026-11-22 23:19:02–23:19:22
 
 Passive receive-only capture, slave 0xFF, function 0x03. All raw values below are 16-bit register words; addresses are zero-based raw wire addresses. **Unmapped** means the register was observed but its field meaning has not been established. Zero readings are retained rather than silently omitted. Some read ranges overlap. Concatenated UART request/response frames were split at Modbus frame boundaries.
