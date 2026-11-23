@@ -479,6 +479,19 @@ Many values resemble battery-voltage settings, but **their names, scales, and wr
 
 The value is the 11th 16-bit register (zero-based offset 10) in the 52044–52059 block. Adjacent values may be parts of other counters; do not infer their semantics from this match alone.
 
+## Candidate DC bus and temperature telemetry (cross-time comparison)
+
+SmartValue readings supplied after the 22:54 capture were **not simultaneous** with the original register values. Treat these as probable mappings until a synchronized capture confirms them.
+
+| Raw address | Hex | SmartValue field | Raw at 22:54 | Decoded at ÷10 | Later SmartValue reading | Status |
+|---|---|---|---|---|---|---|
+| 30071 | 0x7577 | `bussvoltp` | 2785 | 278.5 V | 280.7 V | Candidate, 2.2 V difference |
+| 30073 | 0x7579 | `temp1` | 196 | 19.6 °C | 19.5 °C | Candidate, 0.1 °C difference |
+| 30074 | 0x757A | `temp2` | 237 | 23.7 °C | 22.7 °C | Candidate, 1.0 °C difference |
+| 30075 | 0x757B | `temp3` | 261 | 26.1 °C | 25.8 °C | Candidate, 0.3 °C difference |
+
+The register at 30072 was zero in the snapshot; its meaning is unknown. Sensor placement and sign conventions remain unverified.
+
 ## Full SmartValue poll snapshot — 2026-11-22 22:54:24–22:54:43
 
 Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire addresses. This is a **snapshot**, not proof of individual field meanings.
@@ -490,7 +503,7 @@ Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire ad
 | 30024–30030 | 0x7548 | 1225, 0, 5997, 41, 0, 0, 57 | 30024 **output L1 voltage 122.5 V (confirmed against SmartValue)**; 30026 candidate AC frequency 59.97 Hz |
 | 30046–30049 | 0x755E | 0, 0, 57, 474 | Unknown |
 | 30058–30065 | 0x756A | 1227, 65497, 5998, 0, 0, 0, 65058, 38706 | 30058 **lineVolt_l1 122.7 V** and 30059 **LineCurr_l1 −3.9 A** (signed int16 ÷10), both confirmed against SmartValue; 30060 candidate AC frequency 59.98 Hz; other fields unknown |
-| 30071–30075 | 0x7577 | 2785, 0, 196, 237, 261 | Unknown; scaling unverified |
+| 30071–30075 | 0x7577 | 2785, 0, 196, 237, 261 | Candidate 30071 positive bus 278.5 V; 30073/74/75 temperatures 19.6/23.7/26.1 °C (÷10); later SmartValue readings close but not simultaneous |
 | 30085–30087 | 0x7595 | 1, 0, 2 | Status/flags candidates; unknown |
 | 30101–30104 | 0x75A5 | 0, 0, 0, 0 | Unknown |
 | 30032–30033 | 0x7550 | 0, 1 | Unknown |
