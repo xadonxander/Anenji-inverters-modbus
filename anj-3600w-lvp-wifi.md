@@ -19,6 +19,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | Address (decimal) | Hex | Name | Observed raw value | Interpretation | Confidence |
 |---|---|---|---|---|---|
 | 40000 | 0x9C40 | `on_off` | 1 | Current ON/OFF control readback is 1; OFF encoding and write behavior not tested | Confirmed read and field association |
+| 40001 | 0x9C41 | `Machine Restart Control` (SmartValue Default tab, 9/9) | 0 (`0x0000`) | **Do not restart**, confirmed; reboot control register per SmartValue/user; 1=restart is inferred, not tested; command may interrupt output | Read confirmed; write unverified; safety-sensitive momentary reboot control |
 | 41000 | 0xA028 | `OutPriority` | 3 | **Hybrid** | Confirmed by SmartValue setting |
 | 41001 | 0xA029 | `Output Volt Set` | 1200 (`0x04B0`) | Likely **120.0 V** (÷10); scale inferred | Confirmed read and field association; scale unverified |
 | 41002 | 0xA02A | `Output Frequency Set` | 6000 (`0x1770`) | Likely **60.00 Hz** (÷100); scale inferred | Confirmed read and field association; scale unverified |
@@ -88,6 +89,11 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 # on_off, one register starting at 40000
 TX  FF 03 9C 40 00 01 BE 50
 RX  FF 03 02 00 01 50 50
+
+# SmartValue Default tab (setting 9 of 9): Machine Restart Control, register 40001; currently Do not restart
+TX  FF 03 9C 41 00 01 EF 90
+RX  FF 03 02 00 00 91 90
+# 0=Do not restart (confirmed); 1=restart inferred, NOT tested. Writing may interrupt inverter output
 
 # OutPriority, one register starting at 41000
 TX  FF 03 A0 28 00 01 33 DC
