@@ -34,6 +34,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41013 | 0xA035 | `Charge Full Current Set` | 30 (`0x001E`) | **3 A** (raw ÷10); SmartValue options 2–15 A in 1 A steps; other values calculated, not observed | Read and scale corroborated by SmartValue; write unverified |
 | 41014 | 0xA036 | `NG Function Enabled` | 0 (`0x0000`) | **Disabled**; 1 = Enabled is plausible but unverified; function semantics unknown | Read and disabled-state mapping confirmed; write unverified |
 | 41018–41020 | 0xA03A–0xA03C | `Local Time Set` (year/month/day/hour/minute/second) | Read: `0x180B`, `0x1E0B`, `0x0726`; write: `0x1A0B`, `0x1614`, `0x1F26` | Six packed bytes in Y/M/D/h/m/s order, year 2000+byte. Read **2024-11-30 11:07:38**; write **2026-11-22 20:31:38** | Read decoding confirmed against SmartValue; function-`0x10` write acknowledged; post-write readback pending |
+| 41022 | 0xA03E | `Battery Active Enable` | 1 (`0x0001`) | Likely **Enabled**; UI state and 0=Disabled mapping not yet confirmed; precise function unknown | Read confirmed; write unverified |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -116,6 +117,10 @@ RX  FF 03 06 18 0B 1E 0B 07 26 3B 08
 # Packed Y/M/D/h/m/s = 26/11/22/20/31/38 => 2026-11-22 20:31:38
 TX  FF 10 A0 3A 00 03 06 1A 0B 16 14 1F 26 F8 7F
 RX  FF 10 A0 3A 00 03 97 DB
+
+# Battery Active Enable, one register at 41022; raw value 1, likely enabled
+TX  FF 03 A0 3E 00 01 D2 18
+RX  FF 03 02 00 01 50 50
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
 # 41020: 0x0726 = minute 7, second 38
