@@ -47,6 +47,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41108 | 0xA094 | `Battery Low Voltage (v)` | 492 (`0x01EC`) | **49.2 V**, raw ÷10, confirmed against SmartValue; low-battery threshold, exact alarm/transfer/shutdown behavior unverified | Read confirmed; write unverified; battery protection safety-sensitive |
 | 41109 | 0xA095 | `Battery Delay Off Voltage (v)` | 452 (`0x01C4`) | **45.2 V**, raw ÷10, confirmed against SmartValue; likely delayed low-voltage shutdown threshold, delay behavior unverified | Read confirmed; write unverified; battery protection safety-sensitive |
 | 41112 | 0xA098 | `Battery End Of Discharge Volts (V)` | 512 (`0x0200`) | **51.2 V**, raw ÷10, confirmed against SmartValue; discharge termination threshold semantics relative to other low-voltage settings unverified | Read confirmed; write unverified; battery protection safety-sensitive |
+| 41113 | 0xA099 | `BMS-Setup` | 1 (`0x0001`) | **Enable 485-BMS**, confirmed against SmartValue; enum 0=Disable BMS (inferred), 1=Enable 485-BMS (confirmed), 2=Enable CAN-BMS (inferred) | Read confirmed; write unverified; BMS interface selection; protocol compatibility unverified |
 | 41115 | 0xA09B | `Battery State Of Charge Alarm (%)` | 15 (`0x000F`) | **15%**, raw units are percent (1:1), confirmed against SmartValue; alarm behavior and applicability by battery type unverified | Read confirmed; write unverified; battery protection setting |
 | 41116 | 0xA09C | `Battery Stop State Of Charge (%)` | 5 (`0x0005`) | **5%**, raw units are percent (1:1), confirmed against SmartValue; precise stop behavior and applicability by battery type unverified | Read confirmed; write unverified; battery protection safety-sensitive |
 | 41117 | 0xA09D | `Battery Full State Of Charge (%)` | 100 (`0x0064`) | **100%**, raw units are percent (1:1), confirmed against SmartValue; full-SOC threshold behavior unverified | Read confirmed; write unverified; battery charging configuration |
@@ -207,6 +208,12 @@ RX  FF 03 02 01 C4 91 93
 TX  FF 03 A0 98 00 01 32 3B
 RX  FF 03 02 02 00 90 F0
 # 0x0200 = 512; divide by 10 for 51.2 V
+
+# BMS-Setup, one register at 41113; SmartValue currently Enable 485-BMS
+TX  FF 03 A0 99 00 01 63 FB
+RX  FF 03 02 00 01 50 50
+# Enum 0=Disable BMS (inferred), 1=Enable 485-BMS (confirmed), 2=Enable CAN-BMS (inferred)
+# Interface selection does not establish actual BMS protocol compatibility
 
 # Battery State Of Charge Alarm (%), one register at 41115; SmartValue currently 15%
 TX  FF 03 A0 9B 00 01 C2 3B
