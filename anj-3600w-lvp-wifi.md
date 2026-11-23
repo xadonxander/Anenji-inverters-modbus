@@ -37,6 +37,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41022 | 0xA03E | `Battery Active Enable` | 1 (`0x0001`) | Likely **Enabled**; UI state and 0=Disabled mapping not yet confirmed; precise function unknown | Read confirmed; write unverified |
 | 41023 | 0xA03F | `On Grid Active Power Set (W)` | 3600 (`0x0E10`) | **3600 W**, raw value in watts (1:1), confirmed against SmartValue; meaning as grid power limit/export target not yet verified | Read confirmed; write unverified; grid-sensitive control |
 | 41025 | 0xA041 | `Hybrid Priority Enable` | 1 (`0x0001`) | **Enabled**, confirmed against SmartValue display; 0=Disabled not yet verified; separate from `OutPriority` at 41000 | Read and enabled-state mapping confirmed; write and exact behavior unverified |
+| 41100 | 0xA08C | `Battery Type` | 6 (`0x0006`) | **L16**, confirmed against SmartValue; available: User Defined, Sealed Lead Acid, Flooded Lead Acid, Gel Cell, L14, L15, L16, L7, L8, L9, N7, N8, N13, N14; other enum values unverified | Read confirmed; write unverified; battery charging safety-sensitive |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -131,6 +132,11 @@ RX  FF 03 02 0E 10 94 3C
 # Hybrid Priority Enable, one register at 41025; raw value 1 = Enabled confirmed against SmartValue
 TX  FF 03 A0 41 00 01 E3 C0
 RX  FF 03 02 00 01 50 50
+
+# Battery Type, one register at 41100; SmartValue currently L16
+TX  FF 03 A0 8C 00 01 72 3F
+RX  FF 03 02 00 06 11 92
+# Raw 6 = L16 verified; other 13 menu option encodings not yet captured
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
 # 41020: 0x0726 = minute 7, second 38
