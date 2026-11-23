@@ -563,6 +563,35 @@ Battery power screenshot **295 W** is derived consistently from 50.9 V × 5.8 A 
 
 **Correction to earlier hypotheses:** 30027 raw 17 does **not** represent the screenshot's 0 W L1 output active power. 30049 raw 202 aligns with L1 active power generation 202 W. 30068 is a signed -202 W grid power reading, and 30084 is 98 W externally sampled grid power. Preserve 30030 vs 30048 load-rate ambiguity.
 
+## Historical SmartValue screenshots — 2026-11-22, selected historical record (11:30–11:31 PM screenshots)
+
+**Important:** These screenshots are from the SmartValue *Historical Data* view, not synchronized with the 23:29 Modbus capture. Some historical values differ substantially from the live capture. Historical screenshot values must **not** be used to assign a register merely because the values resemble the live raw values.
+
+### Newly identified fields
+
+| Register | Raw 23:29 | SmartValue historical field | Status |
+|---|---:|---|---|
+| **51000** | **2** | **MachCode 2** | Strong exact match |
+| **51044** | **510** | **HwVer_M1 510** | Strong exact match |
+| **51045** | **111** | **HwVer_M2 111** | Strong exact match |
+| **52056** | **83** | **UsedEnergyTotal 8.3 kWh** | Plausible ÷10 match; historical rather than synchronized, **candidate** |
+| 52046 | 11 | **Unmapped** | Historical `PvGeneratEnergyToday` 0.1 kWh does not match 11 under simple ÷10; do not assign |
+| 52052 | 2329 | **Unmapped** | No convincing corresponding screenshot value; do not assign |
+
+### Historical fields captured (not necessarily from same poll)
+
+- `PvGeneratEnergyTotal` **415.2 kWh**, versus live 23:29 value **418.2 kWh** (52054 = 4182).
+- `GeneratedACPowerTotal` **374.1 kWh**, versus live **377.7 kWh** (52071 = 3777).
+- `UsedEnergyTotal` **8.3 kWh**, matching 52056 raw 83 at ÷10, but synchronization unverified.
+- `PvGeneratEnergyToday` **0.1 kWh**; `GeneratedACPowerToday`, `BatChgEnergyToday`, `BatDischgEnergyToday`, `UsedEnergyToday`, `LineChgEnergyToday`, `LoadConsumLineToday` each shown **0.0 kWh**.
+- Historical PV1 **158.2 V, 2.1 A, 332 W**; PV2 **0.0 V, 0.0 A, 0 W**; total PV **332 W**. These readings **cannot** be matched to the nighttime 23:29 zero-PV register block. Capture Modbus during PV production to resolve PV1/PV2 register addresses.
+- Historical battery **51.7 V, 0.4 A, 12% SOC**; total battery power **20 W** (51.7 × 0.4 ≈ 20.7 W). Historical output **120.4 V, 59.98 Hz, 7% load rate**, grid **120.3 V, -1.9 A, 59.98 Hz, -251 W**, L1 generation **250 W**, external grid sampling **182 W**; positive DC bus **314.0 V**, temperatures **39.8/41.9/46.0 °C**. These values describe a different historical operating state.
+- `State_0` **135302191**, `State_1` **288243156**, `State_2` **0**; likely status words but register correspondence/word order remains **Unmapped**.
+- `ProductType` One Phase Mode-0; `SourceSN` ZL-2601100518-00067; `MachCode` 2; `HwVer_M1` 510; `HwVer_M2` 111.
+- Config screenshot reconfirms battery and charging parameters, `BattEodVolt` displayed twice (44.8 V and 51.2 V), and scheduling fields already documented. One historical screenshot displays `LocalTimeSet` **2024-11-30 00:36:11**, different from the 2026-11-22 clock in live capture, so do not treat the history screen as one simultaneous current register snapshot.
+
+**Unmapped register status remains:** 52046 and 52052 are unidentified despite repeated increments. 52056 UsedEnergyTotal is a **candidate** pending synchronized live check.
+
 ## Full SmartValue poll snapshot — 2026-11-22 23:28:50–23:29:09
 
 Receive-only Modbus RTU capture, slave 255 (0xFF), function 03. Some UART lines concatenate complete request/response frames. Addresses below are raw wire register addresses. **Unmapped** explicitly marks unassigned field meanings, including zero-valued readings.
