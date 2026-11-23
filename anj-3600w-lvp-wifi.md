@@ -529,6 +529,40 @@ Screenshot readings (not simultaneous with the 22:54 raw capture):
 
 Do not conflate L1 grid input power, generated AC output power, and externally sampled grid power. The voltage-current product 122.3 × -2.4 = -293.5 VA is similar in magnitude to -304 W but does not confirm a power register.
 
+## SmartValue screenshots cross-checked with 23:19 capture (2026-11-22)
+
+Screenshots show exact or close-in-time measurements matching the 23:19 RTU snapshot. **Exact value matches provide strong field associations, but some coincidentally equal values (especially zero and 57) remain ambiguous.**
+
+| Register | Raw 23:19 | SmartValue field and screenshot value | Interpretation | Status |
+|---|---:|---|---|---|
+| 30000 | 509 | BattVolt 50.9 V | ÷10 V | Confirmed |
+| 30001 | 58 | BattCurr 5.8 A | ÷10 A; sign direction unknown | Confirmed magnitude |
+| **30002** | **19** | **BattSoc 19%** | 1:1 percent | **Strong match; newly mapped** |
+| 30024 | 1205 | OutVolt_L1 120.5 V | ÷10 V | Confirmed |
+| 30025 | 0 | OutCurr_L1 0.0 A | Candidate, ÷10 A plausible; zero alone ambiguous | **Unmapped / candidate** |
+| 30026 | 5999 | OutFreq 59.99 Hz | ÷100 Hz | **Output attribution confirmed by screenshot** |
+| 30027 | 17 | L1 output active power 0 W | **Does not match**; raw 17 meaning unknown | **Unmapped** |
+| 30028–30029 | 0,0 | Output active/apparent power 0 W/VA | Zero readings ambiguous | **Unmapped** |
+| 30030 | 57 | L1 output load rate 57% | 1:1 % candidate | **Ambiguous with 30048** |
+| 30048 | 57 | L1 output load rate 57% | 1:1 % candidate | **Ambiguous with 30030** |
+| **30049** | **202** | **L1-phase active power generation 202 W** | 1:1 W | **Strong match; newly mapped** |
+| 30058 | 1208 | LineVolt_L1 120.8 V | ÷10 V | Confirmed |
+| 30059 | 65519 (signed -17) | LineCurr_L1 -1.7 A | signed ÷10 A | Confirmed |
+| **30060** | **6000** | **LineFreq 60.00 Hz** | ÷100 Hz | **Strong match; grid attribution confirmed** |
+| **30068** | **65334 (signed -202)** | **LinePowerW_L1 -202 W** | signed int16, 1:1 W | **Strong match; newly mapped** |
+| **30071** | **2800** | **BusVoltP 280.0 V** | ÷10 V | **Strong match; newly mapped** |
+| **30073–30075** | **194,226,256** | **Temper1 19.4°C; Temper2 22.6°C; Temper3 25.6°C** | ÷10 °C | **Strong match; newly mapped** |
+| **30084** | **98** | **L1-phase grid power (external sampling) 98 W** | 1:1 W | **Strong match; newly mapped** |
+| 30101–30103 | 1,0,2 | Status fields: Chg Off, Line Out, 2P0 | Enumeration attribution still ambiguous | **Unmapped** |
+| **41024** | **0** | **OnGridReactivePowerSet 0 Var** | likely 1:1 Var; zero scale unverified | **Field association from ordered config block, newly mapped** |
+| **41026** | **100** | **OnGridPfSet 1.00** | ÷100 | **Strong match; newly mapped** |
+| **41110** | **448** | **BattEodVolt 44.8 V** | ÷10 V; distinct from 41112 BattEodVolt 51.2 V | **Strong match; newly mapped** |
+| **41111** | **30** | **BattDelayOffTime 30 s** | 1:1 seconds | **Strong match; newly mapped** |
+
+Battery power screenshot **295 W** is derived consistently from 50.9 V × 5.8 A = 295.22 W; no separate battery-power register identified. PV fields and charging currents all display zero, so they cannot yet be uniquely mapped. SmartValue also shows `PvGeneratEnergyToday` 0.0 kWh, `PvGeneratEnergyTotal` 418.2 kWh, `LineChgEnergyToday` 0.0 kWh, and `LoadConsumLineToday` 0.0 kWh; zero-valued counter registers remain **Unmapped**.
+
+**Correction to earlier hypotheses:** 30027 raw 17 does **not** represent the screenshot's 0 W L1 output active power. 30049 raw 202 aligns with L1 active power generation 202 W. 30068 is a signed -202 W grid power reading, and 30084 is 98 W externally sampled grid power. Preserve 30030 vs 30048 load-rate ambiguity.
+
 ## Full SmartValue poll snapshot — 2026-11-22 23:19:02–23:19:22
 
 Passive receive-only capture, slave 0xFF, function 0x03. All raw values below are 16-bit register words; addresses are zero-based raw wire addresses. **Unmapped** means the register was observed but its field meaning has not been established. Zero readings are retained rather than silently omitted. Some read ranges overlap. Concatenated UART request/response frames were split at Modbus frame boundaries.
