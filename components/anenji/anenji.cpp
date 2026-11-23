@@ -79,7 +79,10 @@ void AnenjiManager::process_frame_() {
     ESP_LOGI(TAG, "Address %u responds: battery=%.1f V; requesting serial", active_address_, volts);
     const uint8_t address = active_address_;
     complete_request_(true);
-    send_read_(address, SERIAL_REG, SERIAL_COUNT, Phase::WAIT_SERIAL);
+    // Allow the inverter to finish its previous transaction before the long serial read.
+    active_address_ = address;
+    serial_ready_at_ = millis() + 150;
+    phase_ = Phase::SERIAL_GAP;
     return;
   } else if (phase_ == Phase::WAIT_SERIAL && rx_[2] == SERIAL_COUNT * 2) {
     std::string serial;
@@ -151,6 +154,13 @@ void AnenjiManager::start_next_() {
 }
 
 void AnenjiManager::loop() {
+  if (phase_ == Phase::SERIAL_GAP) {
+    if (int32_t(millis() - serial_ready_at_) >= 0) {
+      ESP_LOGI(TAG, "Reading serial at address %u after turnaround gap", active_address_);
+      send_read_(active_address_, SERIAL_REG, SERIAL_COUNT, Phase::WAIT_SERIAL);
+    }
+    return;
+  }
   if (phase_ != Phase::IDLE) {
     while (available()) {
       uint8_t byte;
