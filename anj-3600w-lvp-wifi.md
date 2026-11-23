@@ -46,6 +46,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41107 | 0xA093 | `Line Back 2 Inverter Volt (v)` | 576 (`0x0240`) | **57.6 V**, raw ÷10, confirmed against SmartValue; likely line-to-inverter battery recovery transfer threshold, exact behavior unverified | Read confirmed; write unverified; battery/transfer safety-sensitive |
 | 41108 | 0xA094 | `Battery Low Voltage (v)` | 492 (`0x01EC`) | **49.2 V**, raw ÷10, confirmed against SmartValue; low-battery threshold, exact alarm/transfer/shutdown behavior unverified | Read confirmed; write unverified; battery protection safety-sensitive |
 | 41109 | 0xA095 | `Battery Delay Off Voltage (v)` | 452 (`0x01C4`) | **45.2 V**, raw ÷10, confirmed against SmartValue; likely delayed low-voltage shutdown threshold, delay behavior unverified | Read confirmed; write unverified; battery protection safety-sensitive |
+| 41112 | 0xA098 | `Battery End Of Discharge Volts (V)` | 512 (`0x0200`) | **51.2 V**, raw ÷10, confirmed against SmartValue; discharge termination threshold semantics relative to other low-voltage settings unverified | Read confirmed; write unverified; battery protection safety-sensitive |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -185,6 +186,11 @@ RX  FF 03 02 01 EC 91 8D
 TX  FF 03 A0 95 00 01 A3 F8
 RX  FF 03 02 01 C4 91 93
 # 0x01C4 = 452; divide by 10 for 45.2 V
+
+# Battery End Of Discharge Volts (V), one register at 41112; SmartValue currently 51.2 V
+TX  FF 03 A0 98 00 01 32 3B
+RX  FF 03 02 02 00 90 F0
+# 0x0200 = 512; divide by 10 for 51.2 V
 # Raw 6 = L16 verified. Proposed zero-based enumeration 0..13 follows menu order; other 13 encodings are inferred, not captured.
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
