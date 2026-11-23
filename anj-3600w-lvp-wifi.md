@@ -33,6 +33,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41012 | 0xA034 | `On Grid Set` | 2 (`0x0002`) | **Anti-backflow (with CT added)**; options: Disable, On-Grid, Anti-backflow (CT), Anti-backflow (smart meter); other enum encodings unverified | Read and CT mode confirmed; write unverified |
 | 41013 | 0xA035 | `Charge Full Current Set` | 30 (`0x001E`) | **3 A** (raw ÷10); SmartValue options 2–15 A in 1 A steps; other values calculated, not observed | Read and scale corroborated by SmartValue; write unverified |
 | 41014 | 0xA036 | `NG Function Enabled` | 0 (`0x0000`) | **Disabled**; 1 = Enabled is plausible but unverified; function semantics unknown | Read and disabled-state mapping confirmed; write unverified |
+| 41018–41020 | 0xA03A–0xA03C | `Local Time Set` (year/month/day/hour/minute/second) | `0x180B`, `0x1E0B`, `0x0726` | Six packed bytes decode to **2024-11-30 11:07:38** assuming year offset 2000 and listed field order | Raw read confirmed; timestamp encoding inferred; write unverified |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -106,6 +107,14 @@ RX  FF 03 02 00 1E 11 98
 # NG Function Enabled, one register starting at 41014; SmartValue currently disabled
 TX  FF 03 A0 36 00 01 53 DA
 RX  FF 03 02 00 00 91 90
+
+# Local Time Set, 3 registers starting at 41018; six bytes in Y/M/D/h/m/s order (inferred)
+TX  FF 03 A0 3A 00 03 12 18
+RX  FF 03 06 18 0B 1E 0B 07 26 3B 08
+# 41018: 0x180B = year 24, month 11
+# 41019: 0x1E0B = day 30, hour 11
+# 41020: 0x0726 = minute 7, second 38
+# Inferred date/time: 2024-11-30 11:07:38; inverter clock may be incorrect
 
 # candidate grid-input measurements: 30024..30030
 TX  FF 03 75 48 00 07 8B CC
