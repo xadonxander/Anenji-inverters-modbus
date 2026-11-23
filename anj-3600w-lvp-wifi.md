@@ -500,6 +500,10 @@ SmartValue reports **57%**. In the 22:54 snapshot both **30030 (0x754E)** and **
 
 Confirmed frequency-value decoding from repeated Modbus RTU polls at 23:08:47–23:08:56. Slave `0xFF`, function `0x03`, request `FF 03 75 4A 00 01 AA 0E` (one holding register). Responses `FF 03 02 17 6E 1F 8C` and `FF 03 02 17 6F DE 4C` give raw 5998 and 5999, or **59.98 Hz and 59.99 Hz** with ÷100 scaling. Earlier 22:54 snapshot raw 5997 = 59.97 Hz. **Frequency decoding confirmed; output-vs-grid attribution remains probable, not independently confirmed** (register is adjacent to output L1 voltage 30024). Candidate grid frequency 30060 remains unconfirmed.
 
+### Follow-up frequency poll (23:11:50–23:12:00)
+
+Repeated request `FF 03 75 4A 00 01 AA 0E` and response `FF 03 02 17 70 9F 84` show register **30026 = 0x1770 = 6000 = 60.00 Hz** (÷100) consistently. One UART log line concatenates request and response. The user also supplied `84` without a field label; **do not interpret the trailing CRC byte `84` as a telemetry measurement**. Field meaning of the standalone `84` is unresolved.
+
 ## Full SmartValue poll snapshot — 2026-11-22 22:54:24–22:54:43
 
 Passive Modbus RTU capture, slave 0xFF, function 0x03. Addresses are raw wire addresses. This is a **snapshot**, not proof of individual field meanings.
