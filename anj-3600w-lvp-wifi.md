@@ -43,6 +43,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41104 | 0xA090 | `Cv Charge Time Set (min)` | 120 (`0x0078`) | **120 minutes (2 hours)**, raw units are minutes, confirmed against SmartValue; exact timer behavior unverified | Read confirmed; write unverified; charging safety-sensitive |
 | 41105 | 0xA091 | `Cv Charge Back Volt (volts)` | 536 (`0x0218`) | **53.6 V**, raw ÷10, confirmed against SmartValue; likely CV charge re-entry threshold, behavior unverified | Read confirmed; write unverified; charging safety-sensitive |
 | 41106 | 0xA092 | `Inverter 2 Line Volt (v)` | 488 (`0x01E8`) | **48.8 V**, raw ÷10, confirmed against SmartValue; likely inverter-to-line battery voltage transfer threshold, exact behavior unverified | Read confirmed; write unverified; battery/transfer safety-sensitive |
+| 41107 | 0xA093 | `Line Back 2 Inverter Volt (v)` | 576 (`0x0240`) | **57.6 V**, raw ÷10, confirmed against SmartValue; likely line-to-inverter battery recovery transfer threshold, exact behavior unverified | Read confirmed; write unverified; battery/transfer safety-sensitive |
 | 30024 | 0x7548 | AC input voltage candidate | 1213 | Possibly 121.3 V (÷10), consistent with app | Hypothesis |
 | 30026 | 0x754A | AC input frequency candidate | 5997 | Possibly 59.97 Hz (÷100) | Hypothesis |
 | 30058 | 0x756A | AC output voltage candidate | 1214 | Possibly 121.4 V (÷10) | Hypothesis |
@@ -167,6 +168,11 @@ RX  FF 03 02 02 18 90 FA
 TX  FF 03 A0 92 00 01 12 39
 RX  FF 03 02 01 E8 90 4E
 # 0x01E8 = 488; divide by 10 for 48.8 V
+
+# Line Back 2 Inverter Volt (v), one register at 41107; SmartValue currently 57.6 V
+TX  FF 03 A0 93 00 01 43 F9
+RX  FF 03 02 02 40 91 00
+# 0x0240 = 576; divide by 10 for 57.6 V
 # Raw 6 = L16 verified. Proposed zero-based enumeration 0..13 follows menu order; other 13 encodings are inferred, not captured.
 # 41018: 0x180B = year 24, month 11
 # 41019: 0x1E0B = day 30, hour 11
