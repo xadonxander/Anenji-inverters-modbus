@@ -37,6 +37,7 @@ Addresses below are **raw decimal addresses transmitted on the wire**, not 4xxxx
 | 41022 | 0xA03E | `Battery Active Enable` | 1 (`0x0001`) | Likely **Enabled**; UI state and 0=Disabled mapping not yet confirmed; precise function unknown | Read confirmed; write unverified |
 | 41023 | 0xA03F | `On Grid Active Power Set (W)` | 3600 (`0x0E10`) | **3600 W**, raw value in watts (1:1), confirmed against SmartValue; meaning as grid power limit/export target not yet verified | Read confirmed; write unverified; grid-sensitive control |
 | 41025 | 0xA041 | `Hybrid Priority Enable` | 1 (`0x0001`) | **Enabled**, confirmed against SmartValue display; 0=Disabled not yet verified; separate from `OutPriority` at 41000 | Read and enabled-state mapping confirmed; write and exact behavior unverified |
+| 41027 | 0xA043 | `On Grid Standard Set` | 0 (`0x0000`) | **N/A**, confirmed against SmartValue; enum 0=N/A confirmed, 1=VDE4105, 2=IEEE1547, 3=CEI0-21 inferred from menu order | Read confirmed; write unverified; safety-sensitive grid-interconnection profile |
 | 41100 | 0xA08C | `Battery Type` | 6 (`0x0006`) | **L16** confirmed; proposed zero-based menu enum: 0 User Defined, 1 Sealed Lead Acid, 2 Flooded Lead Acid, 3 Gel Cell, 4 L14, 5 L15, **6 L16**, 7 L7, 8 L8, 9 L9, 10 N7, 11 N8, 12 N13, 13 N14. **All except 6 inferred, not tested.** | Read confirmed; write unverified; battery charging safety-sensitive |
 | 41101 | 0xA08D | `Cv Volt` | 576 (`0x0240`) | **57.6 V**, raw ÷10, confirmed against SmartValue; constant-voltage charging setpoint | Read confirmed; write unverified; charging safety-sensitive |
 | 41102 | 0xA08E | `Float Volt` | 576 (`0x0240`) | **57.6 V**, raw ÷10, confirmed against SmartValue; float charging voltage setpoint | Read confirmed; write unverified; charging safety-sensitive |
@@ -158,6 +159,12 @@ RX  FF 03 02 0E 10 94 3C
 # Hybrid Priority Enable, one register at 41025; raw value 1 = Enabled confirmed against SmartValue
 TX  FF 03 A0 41 00 01 E3 C0
 RX  FF 03 02 00 01 50 50
+
+# On Grid Standard Set, one register at 41027; SmartValue currently N/A
+TX  FF 03 A0 43 00 01 42 00
+RX  FF 03 02 00 00 91 90
+# Enum 0=N/A (confirmed); 1=VDE4105, 2=IEEE1547, 3=CEI0-21 (inferred from UI order)
+# Grid-compliance setting: no write or behavior verification
 
 # Battery Type, one register at 41100; SmartValue currently L16
 TX  FF 03 A0 8C 00 01 72 3F
