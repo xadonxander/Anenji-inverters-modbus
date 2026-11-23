@@ -563,6 +563,23 @@ Battery power screenshot **295 W** is derived consistently from 50.9 V × 5.8 A 
 
 **Correction to earlier hypotheses:** 30027 raw 17 does **not** represent the screenshot's 0 W L1 output active power. 30049 raw 202 aligns with L1 active power generation 202 W. 30068 is a signed -202 W grid power reading, and 30084 is 98 W externally sampled grid power. Preserve 30030 vs 30048 load-rate ambiguity.
 
+## SmartValue chart readings — 2026-11-22 23:38:41 (screenshots taken 23:41–23:42)
+
+These are **SmartValue chart readings, not a new Modbus frame capture**. They validate scaling/meaning of existing mapped registers but must not be represented as directly observed raw register values at 23:38.
+
+| Mapped register | SmartValue label | Chart value | Status |
+|---|---|---|---|
+| **52044 (0xCB4C)** | GeneratedACPowerToday | **0.9 kWh** | Existing mapping corroborated; ÷10, *expected* raw 9 |
+| **52071 (0xCB67)** | GeneratedACPowerTotal | **377.8 kWh** | Existing mapping corroborated; ÷10, *expected* raw 3778 |
+| **52046 (0xCB4E)** | BatDischgEnergyToday | **1.1 kWh** | Existing mapping corroborated; ÷10, *expected* raw 11 |
+| **52054 (0xCB56)** | PvGeneratEnergyTotal | **418.2 kWh** | Existing mapping corroborated; ÷10, *expected* raw 4182 |
+| **52056 (0xCB58)** | UsedEnergyTotal | **8.3 kWh** | Strong mapping corroborated; ÷10, *expected* raw 83 |
+| **52052 (0xCB54)** | **Unmapped** | No matching screenshot field | Keep unmapped |
+
+Other SmartValue readings at 23:38:41: `BattVolt` 50.8 V, `BattCurr` 6.1 A, `BattSoc` 18%, total battery power 309 W (voltage×current ≈309.9 W), `Chg Status` Chg Off, `BatChgEnergyToday` 0 kWh; `UsedEnergyToday` 0 kWh, `OutSumW` 0 W, `OutVolt_L1` 122.1 V, `OutCurr_L1` 0 A, `OutFreq` 59.98 Hz, output active/apparent power 0 W/0 VA; PV1 and PV2 volts/currents/power all 0, total PV power 0 W, `PvGeneratEnergyToday` 0 kWh; `LineVolt_L1` 122.4 V, `LineCurr_L1` -1.8 A, `LineFreq` 59.98 Hz, `LinePowerW_L1` -210 W, L1 active power generation 218 W, external grid CT sampling 106 W. These values corroborate previously identified telemetry but are **not** raw register evidence for the time shown.
+
+**Still unmapped:** `UsedEnergyToday`, `PvGeneratEnergyToday`, and the remaining zero-valued energy counters cannot be uniquely identified from zero readings. `52052` remains unknown.
+
 ## SmartValue synchronized chart screenshots — 2026-11-22 23:33:45 (screenshots at 23:36–23:37)
 
 Chart timestamp 23:33:45 is close to, but not identical to, the Modbus poll at 23:28:50–23:29:09. Readings correspond closely and provide strong identification for previously unmapped energy counters:
