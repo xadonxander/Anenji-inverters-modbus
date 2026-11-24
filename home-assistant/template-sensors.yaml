@@ -1,0 +1,83 @@
+template:
+  - sensor:
+      - name: "ANENJI Solar Power"
+        unique_id: anenji_solar_power
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        availability: >-
+          {% set ns = namespace(total=0, count=0, ok=true) %}
+          {% for i in range(1,7) %}
+            {% set prefix = 'sensor.garage_anenji_inverter_manager_inverter_' ~ i ~ '_' %}
+            {% if states(prefix ~ 'serial') not in ['unknown','unavailable',''] %}
+              {% set ns.count = ns.count + 1 %}
+              {% set a = states(prefix ~ 'pv_power') %}
+              {% if is_number(a) %}{% set ns.total = ns.total + a|float %}{% else %}{% set ns.ok = false %}{% endif %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.ok and ns.count > 0 }}
+        state: >-
+          {% set ns = namespace(total=0, count=0, ok=true) %}
+          {% for i in range(1,7) %}
+            {% set prefix = 'sensor.garage_anenji_inverter_manager_inverter_' ~ i ~ '_' %}
+            {% if states(prefix ~ 'serial') not in ['unknown','unavailable',''] %}
+              {% set ns.count = ns.count + 1 %}
+              {% set a = states(prefix ~ 'pv_power') %}
+              {% if is_number(a) %}{% set ns.total = ns.total + a|float %}{% else %}{% set ns.ok = false %}{% endif %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.total | round(1) }}
+      - name: "ANENJI AC Output Power"
+        unique_id: anenji_ac_output_power
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        availability: >-
+          {% set ns = namespace(total=0, count=0, ok=true) %}
+          {% for i in range(1,7) %}
+            {% set prefix = 'sensor.garage_anenji_inverter_manager_inverter_' ~ i ~ '_' %}
+            {% if states(prefix ~ 'serial') not in ['unknown','unavailable',''] %}
+              {% set ns.count = ns.count + 1 %}
+              {% set a = states(prefix ~ 'ac_output_power') %}
+              {% if is_number(a) %}{% set ns.total = ns.total + a|float %}{% else %}{% set ns.ok = false %}{% endif %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.ok and ns.count > 0 }}
+        state: >-
+          {% set ns = namespace(total=0, count=0, ok=true) %}
+          {% for i in range(1,7) %}
+            {% set prefix = 'sensor.garage_anenji_inverter_manager_inverter_' ~ i ~ '_' %}
+            {% if states(prefix ~ 'serial') not in ['unknown','unavailable',''] %}
+              {% set ns.count = ns.count + 1 %}
+              {% set a = states(prefix ~ 'ac_output_power') %}
+              {% if is_number(a) %}{% set ns.total = ns.total + a|float %}{% else %}{% set ns.ok = false %}{% endif %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.total | round(1) }}
+      - name: "ANENJI Battery Net Power"
+        unique_id: anenji_battery_net_power
+        unit_of_measurement: W
+        device_class: power
+        state_class: measurement
+        availability: >-
+          {% set ns = namespace(total=0, count=0, ok=true) %}
+          {% for i in range(1,7) %}
+            {% set prefix = 'sensor.garage_anenji_inverter_manager_inverter_' ~ i ~ '_' %}
+            {% if states(prefix ~ 'serial') not in ['unknown','unavailable',''] %}
+              {% set ns.count = ns.count + 1 %}
+              {% set a = states(prefix ~ 'battery_current') %}{% set b = states(prefix ~ 'battery_voltage') %}
+              {% if is_number(a) and is_number(b) %}{% set ns.total = ns.total + (a|float * b|float) %}{% else %}{% set ns.ok = false %}{% endif %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.ok and ns.count > 0 }}
+        state: >-
+          {% set ns = namespace(total=0, count=0, ok=true) %}
+          {% for i in range(1,7) %}
+            {% set prefix = 'sensor.garage_anenji_inverter_manager_inverter_' ~ i ~ '_' %}
+            {% if states(prefix ~ 'serial') not in ['unknown','unavailable',''] %}
+              {% set ns.count = ns.count + 1 %}
+              {% set a = states(prefix ~ 'battery_current') %}{% set b = states(prefix ~ 'battery_voltage') %}
+              {% if is_number(a) and is_number(b) %}{% set ns.total = ns.total + (a|float * b|float) %}{% else %}{% set ns.ok = false %}{% endif %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.total | round(1) }}
