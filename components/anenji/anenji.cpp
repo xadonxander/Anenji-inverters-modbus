@@ -79,7 +79,7 @@ void AnenjiManager::setup() {
 }
 
 void AnenjiManager::dump_config() {
-  ESP_LOGCONFIG(TAG, "ANENJI RS485 manager (read-only)");
+  ESP_LOGCONFIG(TAG, "ANENJI RS485 manager (verified Eco control)");
   ESP_LOGCONFIG(TAG, "  Discovery: %u-%u, maximum %u", scan_start_, scan_end_, max_inverters_);
   ESP_LOGCONFIG(TAG, "  Poll interval: %u ms", poll_ms_);
   LOG_UPDATE_INTERVAL(this);
@@ -104,7 +104,28 @@ void AnenjiManager::send_read_(uint8_t address, uint16_t reg, uint16_t count, Ph
   request_started_ = millis();
 }
 
+void EcoSwitch::write_state(bool state) { if (manager_) manager_->request_eco(slot_, state); }
+void AnenjiManager::request_eco(uint8_t slot, bool state) {
+  if (slot >= max_inverters_ || eco_slot_ != 255 || discovering_ ||
+      std::none_of(devices_.begin(), devices_.end(), [slot](const Inverter &d){return d.slot==slot;})) {
+    ESP_LOGW(TAG, "Eco write rejected: busy or inverter unavailable"); return;
+  }
+  eco_slot_=slot; eco_value_=state; eco_stage_=0;
+}
+void AnenjiManager::send_eco_write_() {
+  uint8_t request[8]={active_address_,6,0xA0,0x2D,0,uint8_t(eco_value_),0,0};
+  auto crc=crc16_(request,6); request[6]=uint8_t(crc); request[7]=uint8_t(crc>>8);
+  while (available()) read();
+  rx_.clear();
+  if (direction_) direction_->turn_on();
+  delayMicroseconds(2000); write_array(request,8); flush(); delayMicroseconds(175);
+  if (direction_) direction_->turn_off();
+  phase_=Phase::ECO_WRITE; request_started_=millis();
+}
 void AnenjiManager::complete_request_(bool success) {
+  if (phase_==Phase::ECO_ID || phase_==Phase::ECO_WRITE || phase_==Phase::ECO_VERIFY) {
+    if (!success || phase_==Phase::ECO_VERIFY) { eco_slot_=255; eco_stage_=0; }
+  }
   if (!success && (phase_ == Phase::WAIT_SERIAL || phase_ == Phase::WAIT_PROBE))
     ESP_LOGW(TAG, "Serial discovery failed at address %u (received %u bytes)", active_address_, unsigned(rx_.size()));
   if (!success && phase_ == Phase::WAIT_VOLTAGE) invalidate_(active_slot_, block_ == 0 ? BLOCK_COUNT-1 : block_-1);
@@ -115,6 +136,15 @@ void AnenjiManager::complete_request_(bool success) {
 }
 
 void AnenjiManager::process_frame_() {
+  if (phase_==Phase::ECO_WRITE) {
+    for (size_t i=0;i+8<=rx_.size();i++) {
+      const auto *p=rx_.data()+i;
+      if (p[0]==active_address_ && p[1]==6 && p[2]==0xA0 && p[3]==0x2D && p[4]==0 && p[5]==uint8_t(eco_value_) && crc16_(p,6)==(uint16_t(p[6])|(uint16_t(p[7])<<8))) {
+        eco_stage_=2; complete_request_(true); return;
+      }
+    }
+    return;
+  }
   const size_t expected = size_t(expected_bytes_) + 5;
   // Search for the complete CRC-valid response; do not abort on stray bytes.
   size_t offset = 0;
@@ -139,6 +169,20 @@ void AnenjiManager::process_frame_() {
   if (offset) {
     ESP_LOGW(TAG, "Discarding %u unrelated RX bytes before valid response", unsigned(offset));
     rx_.erase(rx_.begin(), rx_.begin() + offset);
+  }
+  if (phase_==Phase::ECO_ID) {
+    std::string serial;
+    for (size_t i=3;i<3+SERIAL_COUNT*2;i++) if (rx_[i]>=32 && rx_[i]<=126) serial.push_back(char(rx_[i]));
+    while (!serial.empty() && serial.back()==' ') serial.pop_back();
+    bool ok=eco_slot_<6 && serial==bindings_[eco_slot_].serial;
+    if (ok) eco_stage_=1;
+    complete_request_(ok); return;
+  }
+  if (phase_==Phase::ECO_VERIFY) {
+    uint16_t raw=(uint16_t(rx_[3])<<8)|rx_[4];
+    if (eco_slot_<6 && raw<=1 && eco_[eco_slot_]) eco_[eco_slot_]->publish_state(raw==1);
+    ESP_LOGI(TAG,"Eco readback %u requested %u",raw,unsigned(eco_value_));
+    complete_request_(raw==uint16_t(eco_value_)); return;
   }
   if (phase_ == Phase::WAIT_PROBE && rx_[2] == 2) {
     const float volts = float((uint16_t(rx_[3]) << 8) | rx_[4]) / 10.0f;
@@ -183,6 +227,7 @@ void AnenjiManager::process_frame_() {
       const uint32_t wide = m.words == 2 ? uint32_t(raw) | (uint32_t((uint16_t(rx_[pos+2])<<8)|rx_[pos+3])<<16) : raw;
       const float value=m.divisor<0 ? float(int16_t(raw)) / -m.divisor : float(wide)/m.divisor;
       metrics_[active_slot_][i]->publish_state(value);
+      if (BLOCKS[m.block].reg+m.offset==41005 && raw<=1 && eco_[active_slot_]) eco_[active_slot_]->publish_state(raw==1);
     }
     float voltage = float((uint16_t(rx_[3]) << 8) | rx_[4]) / 10.0f;
     for (auto &d : devices_) {
@@ -201,6 +246,14 @@ void AnenjiManager::process_frame_() {
 
 void AnenjiManager::start_next_() {
   const uint32_t now = millis();
+  if (!discovering_ && eco_slot_!=255) {
+    auto it=std::find_if(devices_.begin(),devices_.end(),[this](const Inverter &d){return d.slot==eco_slot_;});
+    if (it==devices_.end()) { eco_slot_=255; return; }
+    if (eco_stage_==0) send_read_(it->address,SERIAL_REG,SERIAL_COUNT,Phase::ECO_ID);
+    else if (eco_stage_==1) send_eco_write_();
+    else send_read_(it->address,41005,1,Phase::ECO_VERIFY);
+    return;
+  }
   // A rescan must preempt normal polling, even when devices are already known.
   if (!discovering_ && block_ == 0 && poll_index_ >= devices_.size() &&
       now - last_discovery_ >= (devices_.size() < max_inverters_ ? 30000UL : 300000UL)) {
