@@ -946,30 +946,22 @@ views:
               name: "Eco Enable (41005)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41006
               name: "Charge Priority (41006)"
-            - entity: number.garage_anenji_inverter_manager_inverter_1_maximum_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_1_maximum_charging_current
               name: Maximum Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_1_solar_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_1_solar_charging_current
               name: Solar Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_1_grid_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_1_grid_charging_current
               name: Grid Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41011
               name: "Mute Enable (41011)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41012
               name: "On Grid Set (41012)"
-            - entity: number.garage_anenji_inverter_manager_inverter_1_charge_full_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_1_charge_full_current
               name: Charge Full Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41014
               name: "NG Function Enabled (41014)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41018
@@ -1022,31 +1014,21 @@ views:
               name: "BMS-Setup (41113)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41114
               name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - entity: number.garage_anenji_inverter_manager_inverter_1_soc_alarm
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_1_soc_alarm
               name: SOC Alarm
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_1_soc_discharge_stop
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_1_soc_discharge_stop
               name: SOC Discharge Stop
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_1_soc_full
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_1_soc_full
               name: SOC Full
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_1_inverter_to_grid_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_1_inverter_to_grid_soc
               name: Inverter to Grid SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_1_grid_to_inverter_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_1_grid_to_inverter_soc
               name: Grid to Inverter SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41120
               name: "On Time Line Charge Enable (41120)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41121
@@ -1112,30 +1094,22 @@ views:
               name: "Eco Enable (41005)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41006
               name: "Charge Priority (41006)"
-            - entity: number.garage_anenji_inverter_manager_inverter_2_maximum_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_2_maximum_charging_current
               name: Maximum Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_2_solar_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_2_solar_charging_current
               name: Solar Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_2_grid_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_2_grid_charging_current
               name: Grid Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41011
               name: "Mute Enable (41011)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41012
               name: "On Grid Set (41012)"
-            - entity: number.garage_anenji_inverter_manager_inverter_2_charge_full_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_2_charge_full_current
               name: Charge Full Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41014
               name: "NG Function Enabled (41014)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41018
@@ -1188,31 +1162,21 @@ views:
               name: "BMS-Setup (41113)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41114
               name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - entity: number.garage_anenji_inverter_manager_inverter_2_soc_alarm
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_2_soc_alarm
               name: SOC Alarm
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_2_soc_discharge_stop
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_2_soc_discharge_stop
               name: SOC Discharge Stop
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_2_soc_full
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_2_soc_full
               name: SOC Full
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_2_inverter_to_grid_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_2_inverter_to_grid_soc
               name: Inverter to Grid SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_2_grid_to_inverter_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_2_grid_to_inverter_soc
               name: Grid to Inverter SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41120
               name: "On Time Line Charge Enable (41120)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41121
@@ -1278,30 +1242,22 @@ views:
               name: "Eco Enable (41005)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41006
               name: "Charge Priority (41006)"
-            - entity: number.garage_anenji_inverter_manager_inverter_3_maximum_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_3_maximum_charging_current
               name: Maximum Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_3_solar_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_3_solar_charging_current
               name: Solar Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_3_grid_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_3_grid_charging_current
               name: Grid Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41011
               name: "Mute Enable (41011)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41012
               name: "On Grid Set (41012)"
-            - entity: number.garage_anenji_inverter_manager_inverter_3_charge_full_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_3_charge_full_current
               name: Charge Full Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41014
               name: "NG Function Enabled (41014)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41018
@@ -1354,31 +1310,21 @@ views:
               name: "BMS-Setup (41113)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41114
               name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - entity: number.garage_anenji_inverter_manager_inverter_3_soc_alarm
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_3_soc_alarm
               name: SOC Alarm
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_3_soc_discharge_stop
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_3_soc_discharge_stop
               name: SOC Discharge Stop
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_3_soc_full
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_3_soc_full
               name: SOC Full
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_3_inverter_to_grid_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_3_inverter_to_grid_soc
               name: Inverter to Grid SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_3_grid_to_inverter_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_3_grid_to_inverter_soc
               name: Grid to Inverter SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41120
               name: "On Time Line Charge Enable (41120)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41121
@@ -1444,30 +1390,22 @@ views:
               name: "Eco Enable (41005)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41006
               name: "Charge Priority (41006)"
-            - entity: number.garage_anenji_inverter_manager_inverter_4_maximum_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_4_maximum_charging_current
               name: Maximum Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_4_solar_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_4_solar_charging_current
               name: Solar Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_4_grid_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_4_grid_charging_current
               name: Grid Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41011
               name: "Mute Enable (41011)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41012
               name: "On Grid Set (41012)"
-            - entity: number.garage_anenji_inverter_manager_inverter_4_charge_full_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_4_charge_full_current
               name: Charge Full Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41014
               name: "NG Function Enabled (41014)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41018
@@ -1520,31 +1458,21 @@ views:
               name: "BMS-Setup (41113)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41114
               name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - entity: number.garage_anenji_inverter_manager_inverter_4_soc_alarm
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_4_soc_alarm
               name: SOC Alarm
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_4_soc_discharge_stop
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_4_soc_discharge_stop
               name: SOC Discharge Stop
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_4_soc_full
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_4_soc_full
               name: SOC Full
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_4_inverter_to_grid_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_4_inverter_to_grid_soc
               name: Inverter to Grid SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_4_grid_to_inverter_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_4_grid_to_inverter_soc
               name: Grid to Inverter SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41120
               name: "On Time Line Charge Enable (41120)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41121
@@ -1610,30 +1538,22 @@ views:
               name: "Eco Enable (41005)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41006
               name: "Charge Priority (41006)"
-            - entity: number.garage_anenji_inverter_manager_inverter_5_maximum_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_5_maximum_charging_current
               name: Maximum Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_5_solar_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_5_solar_charging_current
               name: Solar Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_5_grid_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_5_grid_charging_current
               name: Grid Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41011
               name: "Mute Enable (41011)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41012
               name: "On Grid Set (41012)"
-            - entity: number.garage_anenji_inverter_manager_inverter_5_charge_full_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_5_charge_full_current
               name: Charge Full Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41014
               name: "NG Function Enabled (41014)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41018
@@ -1686,31 +1606,21 @@ views:
               name: "BMS-Setup (41113)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41114
               name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - entity: number.garage_anenji_inverter_manager_inverter_5_soc_alarm
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_5_soc_alarm
               name: SOC Alarm
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_5_soc_discharge_stop
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_5_soc_discharge_stop
               name: SOC Discharge Stop
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_5_soc_full
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_5_soc_full
               name: SOC Full
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_5_inverter_to_grid_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_5_inverter_to_grid_soc
               name: Inverter to Grid SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_5_grid_to_inverter_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_5_grid_to_inverter_soc
               name: Grid to Inverter SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41120
               name: "On Time Line Charge Enable (41120)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41121
@@ -1776,30 +1686,22 @@ views:
               name: "Eco Enable (41005)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41006
               name: "Charge Priority (41006)"
-            - entity: number.garage_anenji_inverter_manager_inverter_6_maximum_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_6_maximum_charging_current
               name: Maximum Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_6_solar_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_6_solar_charging_current
               name: Solar Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_6_grid_charging_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_6_grid_charging_current
               name: Grid Charging Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41011
               name: "Mute Enable (41011)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41012
               name: "On Grid Set (41012)"
-            - entity: number.garage_anenji_inverter_manager_inverter_6_charge_full_current
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_6_charge_full_current
               name: Charge Full Current
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41014
               name: "NG Function Enabled (41014)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41018
@@ -1852,31 +1754,21 @@ views:
               name: "BMS-Setup (41113)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41114
               name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - entity: number.garage_anenji_inverter_manager_inverter_6_soc_alarm
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_6_soc_alarm
               name: SOC Alarm
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_6_soc_discharge_stop
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_6_soc_discharge_stop
               name: SOC Discharge Stop
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_6_soc_full
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_6_soc_full
               name: SOC Full
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_6_inverter_to_grid_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_6_inverter_to_grid_soc
               name: Inverter to Grid SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
-            - entity: number.garage_anenji_inverter_manager_inverter_6_grid_to_inverter_soc
+            - type: custom:anenji-setting-row
+              entity: number.garage_anenji_inverter_manager_inverter_6_grid_to_inverter_soc
               name: Grid to Inverter SOC
-              type: simple-entity
-              tap_action:
-                action: more-info
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41120
               name: "On Time Line Charge Enable (41120)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41121
