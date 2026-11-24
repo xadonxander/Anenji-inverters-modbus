@@ -1,6 +1,9 @@
 #pragma once
 
 #include <array>
+#include "esphome/components/sensor/sensor.h"
+#include "esphome/components/text_sensor/text_sensor.h"
+#include "esphome/core/preferences.h"
 #include <string>
 #include <vector>
 #include "esphome/core/component.h"
@@ -18,6 +21,9 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
   void set_scan_end(uint8_t value) { scan_end_ = value; }
   void set_max_inverters(uint8_t value) { max_inverters_ = value; }
   void set_poll_ms(uint32_t value) { poll_ms_ = value; }
+  void set_metric(uint8_t slot, uint8_t metric, sensor::Sensor *s) { metrics_[slot][metric] = s; }
+  void set_serial_sensor(uint8_t slot, text_sensor::TextSensor *s) { serial_sensors_[slot] = s; }
+  void set_address_sensor(uint8_t slot, sensor::Sensor *s) { address_sensors_[slot] = s; }
   void setup() override;
   void loop() override;
   void update() override;
@@ -29,8 +35,18 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
     uint8_t address{0};
     float battery_voltage{NAN};
     uint32_t last_seen{0};
+    uint8_t slot{255};
   };
   enum class Phase : uint8_t { IDLE, WAIT_PROBE, SERIAL_GAP, WAIT_SERIAL, WAIT_VOLTAGE };
+  struct Binding { char serial[51]; };
+  std::array<Binding, 6> bindings_{};
+  std::array<ESPPreferenceObject, 6> prefs_{};
+  sensor::Sensor *metrics_[6][17]{};
+  text_sensor::TextSensor *serial_sensors_[6]{};
+  sensor::Sensor *address_sensors_[6]{};
+  uint8_t block_{0}, active_slot_{255};
+  uint8_t bind_(const std::string &serial);
+  void invalidate_(uint8_t slot, uint8_t block);
   static constexpr uint16_t SERIAL_REG = 51014;
   static constexpr uint8_t SERIAL_COUNT = 25;
   static constexpr uint16_t VOLTAGE_REG = 30000;
