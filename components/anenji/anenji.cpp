@@ -20,12 +20,13 @@ void AnenjiManager::publish_setting_(uint8_t slot,uint16_t reg,uint16_t raw) {
     if (WRITABLE[i].reg==reg && numbers_[slot][i]) numbers_[slot][i]->publish_state(float(raw)/WRITABLE[i].scale);
 }
 void AnenjiManager::request_number(uint8_t slot,uint8_t index,float value) {
-  if (index>=sizeof(WRITABLE)/sizeof(WRITABLE[0]) || slot>=max_inverters_ || eco_slot_!=255 || discovering_ ||
-      std::none_of(devices_.begin(),devices_.end(),[slot](const Inverter &d){return d.slot==slot;})) return;
+  if (index>=sizeof(WRITABLE)/sizeof(WRITABLE[0]) || slot>=max_inverters_ || eco_slot_!=255 ||
+      std::none_of(devices_.begin(),devices_.end(),[slot](const Inverter &d){return d.slot==slot;})) { ESP_LOGW(TAG,"Number write rejected slot=%u index=%u: busy or unavailable",slot,index); return; }
   const auto &w=WRITABLE[index];
-  if (!std::isfinite(value) || value<w.min || value>w.max || std::fabs(value-std::round(value))>0.001f) return;
-  if (!numbers_[slot][index] || !std::isfinite(numbers_[slot][index]->state)) return;
+  if (!std::isfinite(value) || value<w.min || value>w.max || std::fabs(value-std::round(value))>0.001f) { ESP_LOGW(TAG,"Invalid setting %u value %.2f",w.reg,value); return; }
+  if (!numbers_[slot][index] || !std::isfinite(numbers_[slot][index]->state)) { ESP_LOGW(TAG,"Setting %u has no valid readback",w.reg); return; }
   write_reg_=w.reg; write_value_=uint16_t(std::lround(value*w.scale)); eco_slot_=slot; eco_stage_=0;
+  ESP_LOGI(TAG,"Queued setting slot=%u reg=%u raw=%u",slot,write_reg_,write_value_);
 }
 
 
@@ -133,6 +134,7 @@ void AnenjiManager::request_eco(uint8_t slot, bool state) {
   eco_slot_=slot; write_reg_=41005; write_value_=state; eco_stage_=0;
 }
 void AnenjiManager::send_eco_write_() {
+  ESP_LOGI(TAG,"TX FC06 address=%u register=%u raw=%u",active_address_,write_reg_,write_value_);
   uint8_t request[8]={active_address_,6,uint8_t(write_reg_>>8),uint8_t(write_reg_),uint8_t(write_value_>>8),uint8_t(write_value_),0,0};
   auto crc=crc16_(request,6); request[6]=uint8_t(crc); request[7]=uint8_t(crc>>8);
   while (available()) read();
@@ -144,6 +146,7 @@ void AnenjiManager::send_eco_write_() {
 }
 void AnenjiManager::complete_request_(bool success) {
   if (phase_==Phase::ECO_ID || phase_==Phase::ECO_WRITE || phase_==Phase::ECO_VERIFY) {
+    if (!success) ESP_LOGW(TAG,"Setting transaction failed register=%u phase=%u",write_reg_,unsigned(phase_));
     if (!success || phase_==Phase::ECO_VERIFY) { eco_slot_=255; eco_stage_=0; }
   }
   if (!success && (phase_ == Phase::WAIT_SERIAL || phase_ == Phase::WAIT_PROBE))
@@ -157,10 +160,17 @@ void AnenjiManager::complete_request_(bool success) {
 
 void AnenjiManager::process_frame_() {
   if (phase_==Phase::ECO_WRITE) {
+    for (size_t i=0;i+5<=rx_.size();i++) {
+      const auto *p=rx_.data()+i;
+      if (p[0]==active_address_ && p[1]==0x86 && crc16_(p,3)==(uint16_t(p[3])|(uint16_t(p[4])<<8))) {
+        ESP_LOGW(TAG,"FC06 rejected address=%u register=%u exception=0x%02X",active_address_,write_reg_,p[2]);
+        complete_request_(false); return;
+      }
+    }
     for (size_t i=0;i+8<=rx_.size();i++) {
       const auto *p=rx_.data()+i;
       if (p[0]==active_address_ && p[1]==6 && p[2]==uint8_t(write_reg_>>8) && p[3]==uint8_t(write_reg_) && p[4]==uint8_t(write_value_>>8) && p[5]==uint8_t(write_value_) && crc16_(p,6)==(uint16_t(p[6])|(uint16_t(p[7])<<8))) {
-        eco_stage_=2; complete_request_(true); return;
+        ESP_LOGI(TAG,"FC06 acknowledged register=%u",write_reg_); eco_stage_=2; complete_request_(true); return;
       }
     }
     return;
@@ -195,6 +205,7 @@ void AnenjiManager::process_frame_() {
     for (size_t i=3;i<3+SERIAL_COUNT*2;i++) if (rx_[i]>=32 && rx_[i]<=126) serial.push_back(char(rx_[i]));
     while (!serial.empty() && serial.back()==' ') serial.pop_back();
     bool ok=eco_slot_<6 && serial==bindings_[eco_slot_].serial;
+    ESP_LOGI(TAG,"Write identity check address=%u serial=%s match=%u",active_address_,serial.c_str(),unsigned(ok));
     if (ok) eco_stage_=1;
     complete_request_(ok); return;
   }
