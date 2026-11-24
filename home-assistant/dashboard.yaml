@@ -1029,22 +1029,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_1_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Grid to Inverter SOC
+                                      deck: anenji-editors
                     - name: Inverter 2
                       visibility:
                         - condition: state
@@ -1063,22 +1149,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_2_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Grid to Inverter SOC
+                                      deck: anenji-editors
                     - name: Inverter 3
                       visibility:
                         - condition: state
@@ -1097,22 +1269,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_3_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Grid to Inverter SOC
+                                      deck: anenji-editors
                     - name: Inverter 4
                       visibility:
                         - condition: state
@@ -1131,22 +1389,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_4_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Grid to Inverter SOC
+                                      deck: anenji-editors
                     - name: Inverter 5
                       visibility:
                         - condition: state
@@ -1165,22 +1509,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_5_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Grid to Inverter SOC
+                                      deck: anenji-editors
                     - name: Inverter 6
                       visibility:
                         - condition: state
@@ -1199,22 +1629,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_6_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Grid to Inverter SOC
+                                      deck: anenji-editors
               - type: custom:tabdeck-card
                 event_id: anenji-compare-2
                 default_tab: Select inverter
@@ -1242,22 +1758,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_1_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_1_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I1 Grid to Inverter SOC
+                                      deck: anenji-editors
                     - name: Inverter 2
                       visibility:
                         - condition: state
@@ -1276,22 +1878,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_2_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_2_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I2 Grid to Inverter SOC
+                                      deck: anenji-editors
                     - name: Inverter 3
                       visibility:
                         - condition: state
@@ -1310,22 +1998,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_3_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_3_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I3 Grid to Inverter SOC
+                                      deck: anenji-editors
                     - name: Inverter 4
                       visibility:
                         - condition: state
@@ -1344,22 +2118,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_4_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_4_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I4 Grid to Inverter SOC
+                                      deck: anenji-editors
                     - name: Inverter 5
                       visibility:
                         - condition: state
@@ -1378,22 +2238,108 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_5_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_5_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I5 Grid to Inverter SOC
+                                      deck: anenji-editors
                     - name: Inverter 6
                       visibility:
                         - condition: state
@@ -1412,22 +2358,492 @@ views:
                               name: Eco Mode
                             - entity: number.garage_anenji_inverter_manager_inverter_6_maximum_charging_current
                               name: Maximum Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_solar_charging_current
                               name: Solar Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_grid_charging_current
                               name: Grid Charging Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_charge_full_current
                               name: Charge Full Current
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_soc_alarm
                               name: SOC Alarm
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_soc_discharge_stop
                               name: SOC Discharge Stop
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_soc_full
                               name: SOC Full
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_inverter_to_grid_soc
                               name: Inverter to Grid SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
                             - entity: number.garage_anenji_inverter_manager_inverter_6_grid_to_inverter_soc
                               name: Grid to Inverter SOC
+                              type: simple-entity
+                              tap_action:
+                                action: none
+                        - type: custom:tabdeck-card
+                          tabs:
+                            - name: Edit setting
+                              children_display: menu
+                              children:
+                                - name: Maximum Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Maximum Charging Current
+                                      deck: anenji-editors
+                                - name: Solar Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Solar Charging Current
+                                      deck: anenji-editors
+                                - name: Grid Charging Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Grid Charging Current
+                                      deck: anenji-editors
+                                - name: Charge Full Current
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Charge Full Current
+                                      deck: anenji-editors
+                                - name: SOC Alarm
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 SOC Alarm
+                                      deck: anenji-editors
+                                - name: SOC Discharge Stop
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 SOC Discharge Stop
+                                      deck: anenji-editors
+                                - name: SOC Full
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 SOC Full
+                                      deck: anenji-editors
+                                - name: Inverter to Grid SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Inverter to Grid SOC
+                                      deck: anenji-editors
+                                - name: Grid to Inverter SOC
+                                  tap_action:
+                                    action: fire-dom-event
+                                    tabdeck_popup:
+                                      tab: I6 Grid to Inverter SOC
+                                      deck: anenji-editors
+          - type: custom:tabdeck-card
+            event_id: anenji-editors
+            popup: hidden
+            styles:
+              --tabdeck-popup-width: 400px
+            tabs:
+              - name: I1 Maximum Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_1_maximum_charging_current
+                      name: Maximum Charging Current
+              - name: I1 Solar Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_1_solar_charging_current
+                      name: Solar Charging Current
+              - name: I1 Grid Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_1_grid_charging_current
+                      name: Grid Charging Current
+              - name: I1 Charge Full Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_1_charge_full_current
+                      name: Charge Full Current
+              - name: I1 SOC Alarm
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_1_soc_alarm
+                      name: SOC Alarm
+              - name: I1 SOC Discharge Stop
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_1_soc_discharge_stop
+                      name: SOC Discharge Stop
+              - name: I1 SOC Full
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_1_soc_full
+                      name: SOC Full
+              - name: I1 Inverter to Grid SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_1_inverter_to_grid_soc
+                      name: Inverter to Grid SOC
+              - name: I1 Grid to Inverter SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_1_grid_to_inverter_soc
+                      name: Grid to Inverter SOC
+              - name: I2 Maximum Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_2_maximum_charging_current
+                      name: Maximum Charging Current
+              - name: I2 Solar Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_2_solar_charging_current
+                      name: Solar Charging Current
+              - name: I2 Grid Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_2_grid_charging_current
+                      name: Grid Charging Current
+              - name: I2 Charge Full Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_2_charge_full_current
+                      name: Charge Full Current
+              - name: I2 SOC Alarm
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_2_soc_alarm
+                      name: SOC Alarm
+              - name: I2 SOC Discharge Stop
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_2_soc_discharge_stop
+                      name: SOC Discharge Stop
+              - name: I2 SOC Full
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_2_soc_full
+                      name: SOC Full
+              - name: I2 Inverter to Grid SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_2_inverter_to_grid_soc
+                      name: Inverter to Grid SOC
+              - name: I2 Grid to Inverter SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_2_grid_to_inverter_soc
+                      name: Grid to Inverter SOC
+              - name: I3 Maximum Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_3_maximum_charging_current
+                      name: Maximum Charging Current
+              - name: I3 Solar Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_3_solar_charging_current
+                      name: Solar Charging Current
+              - name: I3 Grid Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_3_grid_charging_current
+                      name: Grid Charging Current
+              - name: I3 Charge Full Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_3_charge_full_current
+                      name: Charge Full Current
+              - name: I3 SOC Alarm
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_3_soc_alarm
+                      name: SOC Alarm
+              - name: I3 SOC Discharge Stop
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_3_soc_discharge_stop
+                      name: SOC Discharge Stop
+              - name: I3 SOC Full
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_3_soc_full
+                      name: SOC Full
+              - name: I3 Inverter to Grid SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_3_inverter_to_grid_soc
+                      name: Inverter to Grid SOC
+              - name: I3 Grid to Inverter SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_3_grid_to_inverter_soc
+                      name: Grid to Inverter SOC
+              - name: I4 Maximum Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_4_maximum_charging_current
+                      name: Maximum Charging Current
+              - name: I4 Solar Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_4_solar_charging_current
+                      name: Solar Charging Current
+              - name: I4 Grid Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_4_grid_charging_current
+                      name: Grid Charging Current
+              - name: I4 Charge Full Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_4_charge_full_current
+                      name: Charge Full Current
+              - name: I4 SOC Alarm
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_4_soc_alarm
+                      name: SOC Alarm
+              - name: I4 SOC Discharge Stop
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_4_soc_discharge_stop
+                      name: SOC Discharge Stop
+              - name: I4 SOC Full
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_4_soc_full
+                      name: SOC Full
+              - name: I4 Inverter to Grid SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_4_inverter_to_grid_soc
+                      name: Inverter to Grid SOC
+              - name: I4 Grid to Inverter SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_4_grid_to_inverter_soc
+                      name: Grid to Inverter SOC
+              - name: I5 Maximum Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_5_maximum_charging_current
+                      name: Maximum Charging Current
+              - name: I5 Solar Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_5_solar_charging_current
+                      name: Solar Charging Current
+              - name: I5 Grid Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_5_grid_charging_current
+                      name: Grid Charging Current
+              - name: I5 Charge Full Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_5_charge_full_current
+                      name: Charge Full Current
+              - name: I5 SOC Alarm
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_5_soc_alarm
+                      name: SOC Alarm
+              - name: I5 SOC Discharge Stop
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_5_soc_discharge_stop
+                      name: SOC Discharge Stop
+              - name: I5 SOC Full
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_5_soc_full
+                      name: SOC Full
+              - name: I5 Inverter to Grid SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_5_inverter_to_grid_soc
+                      name: Inverter to Grid SOC
+              - name: I5 Grid to Inverter SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_5_grid_to_inverter_soc
+                      name: Grid to Inverter SOC
+              - name: I6 Maximum Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_6_maximum_charging_current
+                      name: Maximum Charging Current
+              - name: I6 Solar Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_6_solar_charging_current
+                      name: Solar Charging Current
+              - name: I6 Grid Charging Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_6_grid_charging_current
+                      name: Grid Charging Current
+              - name: I6 Charge Full Current
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_6_charge_full_current
+                      name: Charge Full Current
+              - name: I6 SOC Alarm
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_6_soc_alarm
+                      name: SOC Alarm
+              - name: I6 SOC Discharge Stop
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_6_soc_discharge_stop
+                      name: SOC Discharge Stop
+              - name: I6 SOC Full
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_6_soc_full
+                      name: SOC Full
+              - name: I6 Inverter to Grid SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_6_inverter_to_grid_soc
+                      name: Inverter to Grid SOC
+              - name: I6 Grid to Inverter SOC
+                card:
+                  type: entities
+                  show_header_toggle: false
+                  entities:
+                    - entity: number.garage_anenji_inverter_manager_inverter_6_grid_to_inverter_soc
+                      name: Grid to Inverter SOC
   - title: Diagnostics
     path: diagnostics
     icon: mdi:stethoscope
