@@ -350,13 +350,27 @@ views:
                   name: "temperature 2"
                 - entity: sensor.garage_anenji_inverter_manager_inverter_1_temperature_3
                   name: "temperature 3"
-            - type: history-graph
-              title: Inverter 1 power (24 hours)
-              hours_to_show: 24
-              entities:
-                - sensor.garage_anenji_inverter_manager_inverter_1_pv_power
-                - sensor.garage_anenji_inverter_manager_inverter_1_ac_output_power
-                - sensor.garage_anenji_inverter_manager_inverter_1_grid_power
+            - type: custom:apexcharts-card
+              graph_span: 24h
+              header:
+                show: true
+                title: Inverter 1 power
+              series:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_pv_power
+                  name: Solar
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_output_power
+                  name: Load
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_grid_power
+                  name: Grid
+                  group_by:
+                    func: avg
+                    duration: 5min
       - type: conditional
         conditions:
           - condition: state
@@ -460,13 +474,27 @@ views:
                   name: "temperature 2"
                 - entity: sensor.garage_anenji_inverter_manager_inverter_2_temperature_3
                   name: "temperature 3"
-            - type: history-graph
-              title: Inverter 2 power (24 hours)
-              hours_to_show: 24
-              entities:
-                - sensor.garage_anenji_inverter_manager_inverter_2_pv_power
-                - sensor.garage_anenji_inverter_manager_inverter_2_ac_output_power
-                - sensor.garage_anenji_inverter_manager_inverter_2_grid_power
+            - type: custom:apexcharts-card
+              graph_span: 24h
+              header:
+                show: true
+                title: Inverter 2 power
+              series:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_pv_power
+                  name: Solar
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_output_power
+                  name: Load
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_grid_power
+                  name: Grid
+                  group_by:
+                    func: avg
+                    duration: 5min
       - type: conditional
         conditions:
           - condition: state
@@ -570,13 +598,27 @@ views:
                   name: "temperature 2"
                 - entity: sensor.garage_anenji_inverter_manager_inverter_3_temperature_3
                   name: "temperature 3"
-            - type: history-graph
-              title: Inverter 3 power (24 hours)
-              hours_to_show: 24
-              entities:
-                - sensor.garage_anenji_inverter_manager_inverter_3_pv_power
-                - sensor.garage_anenji_inverter_manager_inverter_3_ac_output_power
-                - sensor.garage_anenji_inverter_manager_inverter_3_grid_power
+            - type: custom:apexcharts-card
+              graph_span: 24h
+              header:
+                show: true
+                title: Inverter 3 power
+              series:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_pv_power
+                  name: Solar
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_output_power
+                  name: Load
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_grid_power
+                  name: Grid
+                  group_by:
+                    func: avg
+                    duration: 5min
       - type: conditional
         conditions:
           - condition: state
@@ -680,13 +722,27 @@ views:
                   name: "temperature 2"
                 - entity: sensor.garage_anenji_inverter_manager_inverter_4_temperature_3
                   name: "temperature 3"
-            - type: history-graph
-              title: Inverter 4 power (24 hours)
-              hours_to_show: 24
-              entities:
-                - sensor.garage_anenji_inverter_manager_inverter_4_pv_power
-                - sensor.garage_anenji_inverter_manager_inverter_4_ac_output_power
-                - sensor.garage_anenji_inverter_manager_inverter_4_grid_power
+            - type: custom:apexcharts-card
+              graph_span: 24h
+              header:
+                show: true
+                title: Inverter 4 power
+              series:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_pv_power
+                  name: Solar
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_output_power
+                  name: Load
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_grid_power
+                  name: Grid
+                  group_by:
+                    func: avg
+                    duration: 5min
       - type: conditional
         conditions:
           - condition: state
@@ -790,13 +846,27 @@ views:
                   name: "temperature 2"
                 - entity: sensor.garage_anenji_inverter_manager_inverter_5_temperature_3
                   name: "temperature 3"
-            - type: history-graph
-              title: Inverter 5 power (24 hours)
-              hours_to_show: 24
-              entities:
-                - sensor.garage_anenji_inverter_manager_inverter_5_pv_power
-                - sensor.garage_anenji_inverter_manager_inverter_5_ac_output_power
-                - sensor.garage_anenji_inverter_manager_inverter_5_grid_power
+            - type: custom:apexcharts-card
+              graph_span: 24h
+              header:
+                show: true
+                title: Inverter 5 power
+              series:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_pv_power
+                  name: Solar
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_output_power
+                  name: Load
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_grid_power
+                  name: Grid
+                  group_by:
+                    func: avg
+                    duration: 5min
       - type: conditional
         conditions:
           - condition: state
@@ -900,905 +970,1028 @@ views:
                   name: "temperature 2"
                 - entity: sensor.garage_anenji_inverter_manager_inverter_6_temperature_3
                   name: "temperature 3"
-            - type: history-graph
-              title: Inverter 6 power (24 hours)
-              hours_to_show: 24
-              entities:
-                - sensor.garage_anenji_inverter_manager_inverter_6_pv_power
-                - sensor.garage_anenji_inverter_manager_inverter_6_ac_output_power
-                - sensor.garage_anenji_inverter_manager_inverter_6_grid_power
+            - type: custom:apexcharts-card
+              graph_span: 24h
+              header:
+                show: true
+                title: Inverter 6 power
+              series:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_pv_power
+                  name: Solar
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_output_power
+                  name: Load
+                  group_by:
+                    func: avg
+                    duration: 5min
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_grid_power
+                  name: Grid
+                  group_by:
+                    func: avg
+                    duration: 5min
   - title: Configuration / Setup
     path: setup
     icon: mdi:cog
     cards:
-      - type: conditional
-        conditions:
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
-            state_not: unknown
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
-            state_not: unavailable
-        card:
-          type: entities
-          title: Inverter 1 configuration
-          entities:
-            - sensor.garage_anenji_inverter_manager_inverter_1_serial
-            - entity: input_text.anenji_inverter_1_friendly_name
-              name: Friendly Name
-            - entity: switch.garage_anenji_inverter_manager_inverter_1_eco_mode
-              name: Eco Mode
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_40000
-              name: "on_off (40000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_40001
-              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41000
-              name: "OutPriority (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41001
-              name: "Output Volt Set (41001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41002
-              name: "Output Frequency Set (41002)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41003
-              name: "Line Range Set (41003)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41004
-              name: "Para Mode Set (41004)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41005
-              name: "Eco Enable (41005)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41006
-              name: "Charge Priority (41006)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_1_maximum_charging_current
-              name: Maximum Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_1_solar_charging_current
-              name: Solar Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_1_grid_charging_current
-              name: Grid Charging Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41011
-              name: "Mute Enable (41011)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41012
-              name: "On Grid Set (41012)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_1_charge_full_current
-              name: Charge Full Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41014
-              name: "NG Function Enabled (41014)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41018
-              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41022
-              name: "Battery Active Enable (41022)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41023
-              name: "On Grid Active Power Set (W) (41023)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41025
-              name: "Hybrid Priority Enable (41025)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41027
-              name: "On Grid Standard Set (41027)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41031
-              name: "External CT Host Enable (41031)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41032
-              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41065
-              name: "Island Enable (41065)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41078
-              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41079
-              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41080
-              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41081
-              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41091
-              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41100
-              name: "Battery Type (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41101
-              name: "Cv Volt (41101)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41102
-              name: "Float Volt (41102)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41104
-              name: "Cv Charge Time Set (min) (41104)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41105
-              name: "Cv Charge Back Volt (volts) (41105)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41106
-              name: "Inverter 2 Line Volt (v) (41106)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41107
-              name: "Line Back 2 Inverter Volt (v) (41107)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41108
-              name: "Battery Low Voltage (v) (41108)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41109
-              name: "Battery Delay Off Voltage (v) (41109)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41112
-              name: "Battery End Of Discharge Volts (V) (41112)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41113
-              name: "BMS-Setup (41113)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41114
-              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_1_soc_alarm
-              name: SOC Alarm
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_1_soc_discharge_stop
-              name: SOC Discharge Stop
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_1_soc_full
-              name: SOC Full
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_1_inverter_to_grid_soc
-              name: Inverter to Grid SOC
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_1_grid_to_inverter_soc
-              name: Grid to Inverter SOC
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41120
-              name: "On Time Line Charge Enable (41120)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41121
-              name: "Line Charge Start Time1(HH-mm) (41121)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41122
-              name: "Line Charge End Time 1(HH-mm) (41122)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41123
-              name: "Line Charge Start Time2(HH-mm) (41123)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41124
-              name: "Line Charge End Time 2(HH-mm) (41124)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41127
-              name: "On time battery discharge enable (41127)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41128
-              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41129
-              name: "Battery Discharge End Time 1(HH-mm) (41129)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41130
-              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41131
-              name: "Battery Discharge End Time 2(HH-mm) (41131)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41135
-              name: "Battery Connection Way (41135)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41138
-              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41103
-              name: "600 (41103)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41110
-              name: "448 (41110)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41111
-              name: "30 (41111)"
-      - type: conditional
-        conditions:
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
-            state_not: unknown
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
-            state_not: unavailable
-        card:
-          type: entities
-          title: Inverter 2 configuration
-          entities:
-            - sensor.garage_anenji_inverter_manager_inverter_2_serial
-            - entity: input_text.anenji_inverter_2_friendly_name
-              name: Friendly Name
-            - entity: switch.garage_anenji_inverter_manager_inverter_2_eco_mode
-              name: Eco Mode
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_40000
-              name: "on_off (40000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_40001
-              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41000
-              name: "OutPriority (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41001
-              name: "Output Volt Set (41001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41002
-              name: "Output Frequency Set (41002)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41003
-              name: "Line Range Set (41003)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41004
-              name: "Para Mode Set (41004)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41005
-              name: "Eco Enable (41005)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41006
-              name: "Charge Priority (41006)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_2_maximum_charging_current
-              name: Maximum Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_2_solar_charging_current
-              name: Solar Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_2_grid_charging_current
-              name: Grid Charging Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41011
-              name: "Mute Enable (41011)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41012
-              name: "On Grid Set (41012)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_2_charge_full_current
-              name: Charge Full Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41014
-              name: "NG Function Enabled (41014)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41018
-              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41022
-              name: "Battery Active Enable (41022)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41023
-              name: "On Grid Active Power Set (W) (41023)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41025
-              name: "Hybrid Priority Enable (41025)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41027
-              name: "On Grid Standard Set (41027)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41031
-              name: "External CT Host Enable (41031)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41032
-              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41065
-              name: "Island Enable (41065)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41078
-              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41079
-              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41080
-              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41081
-              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41091
-              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41100
-              name: "Battery Type (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41101
-              name: "Cv Volt (41101)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41102
-              name: "Float Volt (41102)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41104
-              name: "Cv Charge Time Set (min) (41104)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41105
-              name: "Cv Charge Back Volt (volts) (41105)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41106
-              name: "Inverter 2 Line Volt (v) (41106)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41107
-              name: "Line Back 2 Inverter Volt (v) (41107)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41108
-              name: "Battery Low Voltage (v) (41108)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41109
-              name: "Battery Delay Off Voltage (v) (41109)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41112
-              name: "Battery End Of Discharge Volts (V) (41112)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41113
-              name: "BMS-Setup (41113)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41114
-              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_2_soc_alarm
-              name: SOC Alarm
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_2_soc_discharge_stop
-              name: SOC Discharge Stop
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_2_soc_full
-              name: SOC Full
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_2_inverter_to_grid_soc
-              name: Inverter to Grid SOC
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_2_grid_to_inverter_soc
-              name: Grid to Inverter SOC
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41120
-              name: "On Time Line Charge Enable (41120)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41121
-              name: "Line Charge Start Time1(HH-mm) (41121)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41122
-              name: "Line Charge End Time 1(HH-mm) (41122)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41123
-              name: "Line Charge Start Time2(HH-mm) (41123)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41124
-              name: "Line Charge End Time 2(HH-mm) (41124)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41127
-              name: "On time battery discharge enable (41127)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41128
-              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41129
-              name: "Battery Discharge End Time 1(HH-mm) (41129)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41130
-              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41131
-              name: "Battery Discharge End Time 2(HH-mm) (41131)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41135
-              name: "Battery Connection Way (41135)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41138
-              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41103
-              name: "600 (41103)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41110
-              name: "448 (41110)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41111
-              name: "30 (41111)"
-      - type: conditional
-        conditions:
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
-            state_not: unknown
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
-            state_not: unavailable
-        card:
-          type: entities
-          title: Inverter 3 configuration
-          entities:
-            - sensor.garage_anenji_inverter_manager_inverter_3_serial
-            - entity: input_text.anenji_inverter_3_friendly_name
-              name: Friendly Name
-            - entity: switch.garage_anenji_inverter_manager_inverter_3_eco_mode
-              name: Eco Mode
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_40000
-              name: "on_off (40000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_40001
-              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41000
-              name: "OutPriority (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41001
-              name: "Output Volt Set (41001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41002
-              name: "Output Frequency Set (41002)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41003
-              name: "Line Range Set (41003)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41004
-              name: "Para Mode Set (41004)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41005
-              name: "Eco Enable (41005)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41006
-              name: "Charge Priority (41006)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_3_maximum_charging_current
-              name: Maximum Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_3_solar_charging_current
-              name: Solar Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_3_grid_charging_current
-              name: Grid Charging Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41011
-              name: "Mute Enable (41011)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41012
-              name: "On Grid Set (41012)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_3_charge_full_current
-              name: Charge Full Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41014
-              name: "NG Function Enabled (41014)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41018
-              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41022
-              name: "Battery Active Enable (41022)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41023
-              name: "On Grid Active Power Set (W) (41023)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41025
-              name: "Hybrid Priority Enable (41025)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41027
-              name: "On Grid Standard Set (41027)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41031
-              name: "External CT Host Enable (41031)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41032
-              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41065
-              name: "Island Enable (41065)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41078
-              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41079
-              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41080
-              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41081
-              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41091
-              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41100
-              name: "Battery Type (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41101
-              name: "Cv Volt (41101)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41102
-              name: "Float Volt (41102)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41104
-              name: "Cv Charge Time Set (min) (41104)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41105
-              name: "Cv Charge Back Volt (volts) (41105)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41106
-              name: "Inverter 2 Line Volt (v) (41106)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41107
-              name: "Line Back 2 Inverter Volt (v) (41107)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41108
-              name: "Battery Low Voltage (v) (41108)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41109
-              name: "Battery Delay Off Voltage (v) (41109)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41112
-              name: "Battery End Of Discharge Volts (V) (41112)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41113
-              name: "BMS-Setup (41113)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41114
-              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_3_soc_alarm
-              name: SOC Alarm
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_3_soc_discharge_stop
-              name: SOC Discharge Stop
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_3_soc_full
-              name: SOC Full
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_3_inverter_to_grid_soc
-              name: Inverter to Grid SOC
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_3_grid_to_inverter_soc
-              name: Grid to Inverter SOC
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41120
-              name: "On Time Line Charge Enable (41120)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41121
-              name: "Line Charge Start Time1(HH-mm) (41121)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41122
-              name: "Line Charge End Time 1(HH-mm) (41122)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41123
-              name: "Line Charge Start Time2(HH-mm) (41123)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41124
-              name: "Line Charge End Time 2(HH-mm) (41124)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41127
-              name: "On time battery discharge enable (41127)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41128
-              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41129
-              name: "Battery Discharge End Time 1(HH-mm) (41129)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41130
-              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41131
-              name: "Battery Discharge End Time 2(HH-mm) (41131)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41135
-              name: "Battery Connection Way (41135)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41138
-              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41103
-              name: "600 (41103)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41110
-              name: "448 (41110)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41111
-              name: "30 (41111)"
-      - type: conditional
-        conditions:
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
-            state_not: unknown
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
-            state_not: unavailable
-        card:
-          type: entities
-          title: Inverter 4 configuration
-          entities:
-            - sensor.garage_anenji_inverter_manager_inverter_4_serial
-            - entity: input_text.anenji_inverter_4_friendly_name
-              name: Friendly Name
-            - entity: switch.garage_anenji_inverter_manager_inverter_4_eco_mode
-              name: Eco Mode
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_40000
-              name: "on_off (40000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_40001
-              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41000
-              name: "OutPriority (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41001
-              name: "Output Volt Set (41001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41002
-              name: "Output Frequency Set (41002)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41003
-              name: "Line Range Set (41003)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41004
-              name: "Para Mode Set (41004)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41005
-              name: "Eco Enable (41005)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41006
-              name: "Charge Priority (41006)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_4_maximum_charging_current
-              name: Maximum Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_4_solar_charging_current
-              name: Solar Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_4_grid_charging_current
-              name: Grid Charging Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41011
-              name: "Mute Enable (41011)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41012
-              name: "On Grid Set (41012)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_4_charge_full_current
-              name: Charge Full Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41014
-              name: "NG Function Enabled (41014)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41018
-              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41022
-              name: "Battery Active Enable (41022)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41023
-              name: "On Grid Active Power Set (W) (41023)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41025
-              name: "Hybrid Priority Enable (41025)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41027
-              name: "On Grid Standard Set (41027)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41031
-              name: "External CT Host Enable (41031)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41032
-              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41065
-              name: "Island Enable (41065)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41078
-              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41079
-              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41080
-              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41081
-              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41091
-              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41100
-              name: "Battery Type (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41101
-              name: "Cv Volt (41101)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41102
-              name: "Float Volt (41102)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41104
-              name: "Cv Charge Time Set (min) (41104)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41105
-              name: "Cv Charge Back Volt (volts) (41105)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41106
-              name: "Inverter 2 Line Volt (v) (41106)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41107
-              name: "Line Back 2 Inverter Volt (v) (41107)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41108
-              name: "Battery Low Voltage (v) (41108)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41109
-              name: "Battery Delay Off Voltage (v) (41109)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41112
-              name: "Battery End Of Discharge Volts (V) (41112)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41113
-              name: "BMS-Setup (41113)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41114
-              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_4_soc_alarm
-              name: SOC Alarm
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_4_soc_discharge_stop
-              name: SOC Discharge Stop
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_4_soc_full
-              name: SOC Full
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_4_inverter_to_grid_soc
-              name: Inverter to Grid SOC
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_4_grid_to_inverter_soc
-              name: Grid to Inverter SOC
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41120
-              name: "On Time Line Charge Enable (41120)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41121
-              name: "Line Charge Start Time1(HH-mm) (41121)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41122
-              name: "Line Charge End Time 1(HH-mm) (41122)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41123
-              name: "Line Charge Start Time2(HH-mm) (41123)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41124
-              name: "Line Charge End Time 2(HH-mm) (41124)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41127
-              name: "On time battery discharge enable (41127)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41128
-              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41129
-              name: "Battery Discharge End Time 1(HH-mm) (41129)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41130
-              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41131
-              name: "Battery Discharge End Time 2(HH-mm) (41131)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41135
-              name: "Battery Connection Way (41135)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41138
-              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41103
-              name: "600 (41103)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41110
-              name: "448 (41110)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41111
-              name: "30 (41111)"
-      - type: conditional
-        conditions:
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
-            state_not: unknown
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
-            state_not: unavailable
-        card:
-          type: entities
-          title: Inverter 5 configuration
-          entities:
-            - sensor.garage_anenji_inverter_manager_inverter_5_serial
-            - entity: input_text.anenji_inverter_5_friendly_name
-              name: Friendly Name
-            - entity: switch.garage_anenji_inverter_manager_inverter_5_eco_mode
-              name: Eco Mode
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_40000
-              name: "on_off (40000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_40001
-              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41000
-              name: "OutPriority (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41001
-              name: "Output Volt Set (41001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41002
-              name: "Output Frequency Set (41002)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41003
-              name: "Line Range Set (41003)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41004
-              name: "Para Mode Set (41004)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41005
-              name: "Eco Enable (41005)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41006
-              name: "Charge Priority (41006)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_5_maximum_charging_current
-              name: Maximum Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_5_solar_charging_current
-              name: Solar Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_5_grid_charging_current
-              name: Grid Charging Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41011
-              name: "Mute Enable (41011)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41012
-              name: "On Grid Set (41012)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_5_charge_full_current
-              name: Charge Full Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41014
-              name: "NG Function Enabled (41014)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41018
-              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41022
-              name: "Battery Active Enable (41022)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41023
-              name: "On Grid Active Power Set (W) (41023)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41025
-              name: "Hybrid Priority Enable (41025)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41027
-              name: "On Grid Standard Set (41027)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41031
-              name: "External CT Host Enable (41031)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41032
-              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41065
-              name: "Island Enable (41065)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41078
-              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41079
-              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41080
-              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41081
-              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41091
-              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41100
-              name: "Battery Type (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41101
-              name: "Cv Volt (41101)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41102
-              name: "Float Volt (41102)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41104
-              name: "Cv Charge Time Set (min) (41104)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41105
-              name: "Cv Charge Back Volt (volts) (41105)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41106
-              name: "Inverter 2 Line Volt (v) (41106)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41107
-              name: "Line Back 2 Inverter Volt (v) (41107)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41108
-              name: "Battery Low Voltage (v) (41108)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41109
-              name: "Battery Delay Off Voltage (v) (41109)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41112
-              name: "Battery End Of Discharge Volts (V) (41112)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41113
-              name: "BMS-Setup (41113)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41114
-              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_5_soc_alarm
-              name: SOC Alarm
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_5_soc_discharge_stop
-              name: SOC Discharge Stop
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_5_soc_full
-              name: SOC Full
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_5_inverter_to_grid_soc
-              name: Inverter to Grid SOC
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_5_grid_to_inverter_soc
-              name: Grid to Inverter SOC
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41120
-              name: "On Time Line Charge Enable (41120)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41121
-              name: "Line Charge Start Time1(HH-mm) (41121)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41122
-              name: "Line Charge End Time 1(HH-mm) (41122)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41123
-              name: "Line Charge Start Time2(HH-mm) (41123)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41124
-              name: "Line Charge End Time 2(HH-mm) (41124)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41127
-              name: "On time battery discharge enable (41127)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41128
-              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41129
-              name: "Battery Discharge End Time 1(HH-mm) (41129)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41130
-              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41131
-              name: "Battery Discharge End Time 2(HH-mm) (41131)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41135
-              name: "Battery Connection Way (41135)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41138
-              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41103
-              name: "600 (41103)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41110
-              name: "448 (41110)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41111
-              name: "30 (41111)"
-      - type: conditional
-        conditions:
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
-            state_not: unknown
-          - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
-            state_not: unavailable
-        card:
-          type: entities
-          title: Inverter 6 configuration
-          entities:
-            - sensor.garage_anenji_inverter_manager_inverter_6_serial
-            - entity: input_text.anenji_inverter_6_friendly_name
-              name: Friendly Name
-            - entity: switch.garage_anenji_inverter_manager_inverter_6_eco_mode
-              name: Eco Mode
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_40000
-              name: "on_off (40000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_40001
-              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41000
-              name: "OutPriority (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41001
-              name: "Output Volt Set (41001)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41002
-              name: "Output Frequency Set (41002)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41003
-              name: "Line Range Set (41003)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41004
-              name: "Para Mode Set (41004)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41005
-              name: "Eco Enable (41005)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41006
-              name: "Charge Priority (41006)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_6_maximum_charging_current
-              name: Maximum Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_6_solar_charging_current
-              name: Solar Charging Current
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_6_grid_charging_current
-              name: Grid Charging Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41011
-              name: "Mute Enable (41011)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41012
-              name: "On Grid Set (41012)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_6_charge_full_current
-              name: Charge Full Current
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41014
-              name: "NG Function Enabled (41014)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41018
-              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41022
-              name: "Battery Active Enable (41022)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41023
-              name: "On Grid Active Power Set (W) (41023)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41025
-              name: "Hybrid Priority Enable (41025)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41027
-              name: "On Grid Standard Set (41027)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41031
-              name: "External CT Host Enable (41031)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41032
-              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41065
-              name: "Island Enable (41065)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41078
-              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41079
-              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41080
-              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41081
-              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41091
-              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41100
-              name: "Battery Type (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41101
-              name: "Cv Volt (41101)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41102
-              name: "Float Volt (41102)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41104
-              name: "Cv Charge Time Set (min) (41104)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41105
-              name: "Cv Charge Back Volt (volts) (41105)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41106
-              name: "Inverter 2 Line Volt (v) (41106)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41107
-              name: "Line Back 2 Inverter Volt (v) (41107)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41108
-              name: "Battery Low Voltage (v) (41108)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41109
-              name: "Battery Delay Off Voltage (v) (41109)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41112
-              name: "Battery End Of Discharge Volts (V) (41112)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41113
-              name: "BMS-Setup (41113)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41114
-              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_6_soc_alarm
-              name: SOC Alarm
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_6_soc_discharge_stop
-              name: SOC Discharge Stop
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_6_soc_full
-              name: SOC Full
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_6_inverter_to_grid_soc
-              name: Inverter to Grid SOC
-            - type: custom:anenji-setting-row
-              entity: number.garage_anenji_inverter_manager_inverter_6_grid_to_inverter_soc
-              name: Grid to Inverter SOC
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41120
-              name: "On Time Line Charge Enable (41120)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41121
-              name: "Line Charge Start Time1(HH-mm) (41121)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41122
-              name: "Line Charge End Time 1(HH-mm) (41122)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41123
-              name: "Line Charge Start Time2(HH-mm) (41123)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41124
-              name: "Line Charge End Time 2(HH-mm) (41124)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41127
-              name: "On time battery discharge enable (41127)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41128
-              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41129
-              name: "Battery Discharge End Time 1(HH-mm) (41129)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41130
-              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41131
-              name: "Battery Discharge End Time 2(HH-mm) (41131)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41135
-              name: "Battery Connection Way (41135)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41138
-              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41103
-              name: "600 (41103)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41110
-              name: "448 (41110)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41111
-              name: "30 (41111)"
+      - type: custom:tabdeck-card
+        event_id: anenji-settings
+        tabs:
+        - name: Inverter 1
+          icon: mdi:solar-power
+          visibility:
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
+              state_not: unknown
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
+              state_not: unavailable
+          card:
+            type: entities
+            title: Inverter 1 settings
+            show_header_toggle: false
+            card_mod:
+              style: |
+                ha-card { border-radius: 14px; }
+            entities:
+              - entity: input_text.anenji_inverter_1_friendly_name
+                name: Friendly Name
+              - entity: switch.garage_anenji_inverter_manager_inverter_1_eco_mode
+                name: Eco Mode
+              - entity: number.garage_anenji_inverter_manager_inverter_1_maximum_charging_current
+                name: Maximum Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I1 Maximum Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_1_solar_charging_current
+                name: Solar Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I1 Solar Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_1_grid_charging_current
+                name: Grid Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I1 Grid Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_1_charge_full_current
+                name: Charge Full Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I1 Charge Full Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_1_soc_alarm
+                name: SOC Alarm
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I1 SOC Alarm
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_1_soc_discharge_stop
+                name: SOC Discharge Stop
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I1 SOC Discharge Stop
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_1_soc_full
+                name: SOC Full
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I1 SOC Full
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_1_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I1 Inverter to Grid SOC
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_1_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I1 Grid to Inverter SOC
+                    deck: anenji-editors
+        - name: Inverter 2
+          icon: mdi:solar-power
+          visibility:
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
+              state_not: unknown
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
+              state_not: unavailable
+          card:
+            type: entities
+            title: Inverter 2 settings
+            show_header_toggle: false
+            card_mod:
+              style: |
+                ha-card { border-radius: 14px; }
+            entities:
+              - entity: input_text.anenji_inverter_2_friendly_name
+                name: Friendly Name
+              - entity: switch.garage_anenji_inverter_manager_inverter_2_eco_mode
+                name: Eco Mode
+              - entity: number.garage_anenji_inverter_manager_inverter_2_maximum_charging_current
+                name: Maximum Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I2 Maximum Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_2_solar_charging_current
+                name: Solar Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I2 Solar Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_2_grid_charging_current
+                name: Grid Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I2 Grid Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_2_charge_full_current
+                name: Charge Full Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I2 Charge Full Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_2_soc_alarm
+                name: SOC Alarm
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I2 SOC Alarm
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_2_soc_discharge_stop
+                name: SOC Discharge Stop
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I2 SOC Discharge Stop
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_2_soc_full
+                name: SOC Full
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I2 SOC Full
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_2_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I2 Inverter to Grid SOC
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_2_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I2 Grid to Inverter SOC
+                    deck: anenji-editors
+        - name: Inverter 3
+          icon: mdi:solar-power
+          visibility:
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
+              state_not: unknown
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
+              state_not: unavailable
+          card:
+            type: entities
+            title: Inverter 3 settings
+            show_header_toggle: false
+            card_mod:
+              style: |
+                ha-card { border-radius: 14px; }
+            entities:
+              - entity: input_text.anenji_inverter_3_friendly_name
+                name: Friendly Name
+              - entity: switch.garage_anenji_inverter_manager_inverter_3_eco_mode
+                name: Eco Mode
+              - entity: number.garage_anenji_inverter_manager_inverter_3_maximum_charging_current
+                name: Maximum Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I3 Maximum Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_3_solar_charging_current
+                name: Solar Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I3 Solar Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_3_grid_charging_current
+                name: Grid Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I3 Grid Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_3_charge_full_current
+                name: Charge Full Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I3 Charge Full Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_3_soc_alarm
+                name: SOC Alarm
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I3 SOC Alarm
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_3_soc_discharge_stop
+                name: SOC Discharge Stop
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I3 SOC Discharge Stop
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_3_soc_full
+                name: SOC Full
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I3 SOC Full
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_3_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I3 Inverter to Grid SOC
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_3_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I3 Grid to Inverter SOC
+                    deck: anenji-editors
+        - name: Inverter 4
+          icon: mdi:solar-power
+          visibility:
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
+              state_not: unknown
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
+              state_not: unavailable
+          card:
+            type: entities
+            title: Inverter 4 settings
+            show_header_toggle: false
+            card_mod:
+              style: |
+                ha-card { border-radius: 14px; }
+            entities:
+              - entity: input_text.anenji_inverter_4_friendly_name
+                name: Friendly Name
+              - entity: switch.garage_anenji_inverter_manager_inverter_4_eco_mode
+                name: Eco Mode
+              - entity: number.garage_anenji_inverter_manager_inverter_4_maximum_charging_current
+                name: Maximum Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I4 Maximum Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_4_solar_charging_current
+                name: Solar Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I4 Solar Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_4_grid_charging_current
+                name: Grid Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I4 Grid Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_4_charge_full_current
+                name: Charge Full Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I4 Charge Full Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_4_soc_alarm
+                name: SOC Alarm
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I4 SOC Alarm
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_4_soc_discharge_stop
+                name: SOC Discharge Stop
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I4 SOC Discharge Stop
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_4_soc_full
+                name: SOC Full
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I4 SOC Full
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_4_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I4 Inverter to Grid SOC
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_4_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I4 Grid to Inverter SOC
+                    deck: anenji-editors
+        - name: Inverter 5
+          icon: mdi:solar-power
+          visibility:
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
+              state_not: unknown
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
+              state_not: unavailable
+          card:
+            type: entities
+            title: Inverter 5 settings
+            show_header_toggle: false
+            card_mod:
+              style: |
+                ha-card { border-radius: 14px; }
+            entities:
+              - entity: input_text.anenji_inverter_5_friendly_name
+                name: Friendly Name
+              - entity: switch.garage_anenji_inverter_manager_inverter_5_eco_mode
+                name: Eco Mode
+              - entity: number.garage_anenji_inverter_manager_inverter_5_maximum_charging_current
+                name: Maximum Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I5 Maximum Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_5_solar_charging_current
+                name: Solar Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I5 Solar Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_5_grid_charging_current
+                name: Grid Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I5 Grid Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_5_charge_full_current
+                name: Charge Full Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I5 Charge Full Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_5_soc_alarm
+                name: SOC Alarm
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I5 SOC Alarm
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_5_soc_discharge_stop
+                name: SOC Discharge Stop
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I5 SOC Discharge Stop
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_5_soc_full
+                name: SOC Full
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I5 SOC Full
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_5_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I5 Inverter to Grid SOC
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_5_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I5 Grid to Inverter SOC
+                    deck: anenji-editors
+        - name: Inverter 6
+          icon: mdi:solar-power
+          visibility:
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
+              state_not: unknown
+            - condition: state
+              entity: sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
+              state_not: unavailable
+          card:
+            type: entities
+            title: Inverter 6 settings
+            show_header_toggle: false
+            card_mod:
+              style: |
+                ha-card { border-radius: 14px; }
+            entities:
+              - entity: input_text.anenji_inverter_6_friendly_name
+                name: Friendly Name
+              - entity: switch.garage_anenji_inverter_manager_inverter_6_eco_mode
+                name: Eco Mode
+              - entity: number.garage_anenji_inverter_manager_inverter_6_maximum_charging_current
+                name: Maximum Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I6 Maximum Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_6_solar_charging_current
+                name: Solar Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I6 Solar Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_6_grid_charging_current
+                name: Grid Charging Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I6 Grid Charging Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_6_charge_full_current
+                name: Charge Full Current
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I6 Charge Full Current
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_6_soc_alarm
+                name: SOC Alarm
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I6 SOC Alarm
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_6_soc_discharge_stop
+                name: SOC Discharge Stop
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I6 SOC Discharge Stop
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_6_soc_full
+                name: SOC Full
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I6 SOC Full
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_6_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I6 Inverter to Grid SOC
+                    deck: anenji-editors
+              - entity: number.garage_anenji_inverter_manager_inverter_6_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+                type: simple-entity
+                tap_action:
+                  action: fire-dom-event
+                  tabdeck_popup:
+                    tab: I6 Grid to Inverter SOC
+                    deck: anenji-editors
+      - type: custom:tabdeck-card
+        event_id: anenji-editors
+        popup: hidden
+        tabs:
+        - name: I1 Maximum Charging Current
+          card:
+            type: entities
+            title: Maximum Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_1_maximum_charging_current
+                name: Maximum Charging Current
+        - name: I1 Solar Charging Current
+          card:
+            type: entities
+            title: Solar Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_1_solar_charging_current
+                name: Solar Charging Current
+        - name: I1 Grid Charging Current
+          card:
+            type: entities
+            title: Grid Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_1_grid_charging_current
+                name: Grid Charging Current
+        - name: I1 Charge Full Current
+          card:
+            type: entities
+            title: Charge Full Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_1_charge_full_current
+                name: Charge Full Current
+        - name: I1 SOC Alarm
+          card:
+            type: entities
+            title: SOC Alarm
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_1_soc_alarm
+                name: SOC Alarm
+        - name: I1 SOC Discharge Stop
+          card:
+            type: entities
+            title: SOC Discharge Stop
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_1_soc_discharge_stop
+                name: SOC Discharge Stop
+        - name: I1 SOC Full
+          card:
+            type: entities
+            title: SOC Full
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_1_soc_full
+                name: SOC Full
+        - name: I1 Inverter to Grid SOC
+          card:
+            type: entities
+            title: Inverter to Grid SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_1_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+        - name: I1 Grid to Inverter SOC
+          card:
+            type: entities
+            title: Grid to Inverter SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_1_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+        - name: I2 Maximum Charging Current
+          card:
+            type: entities
+            title: Maximum Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_2_maximum_charging_current
+                name: Maximum Charging Current
+        - name: I2 Solar Charging Current
+          card:
+            type: entities
+            title: Solar Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_2_solar_charging_current
+                name: Solar Charging Current
+        - name: I2 Grid Charging Current
+          card:
+            type: entities
+            title: Grid Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_2_grid_charging_current
+                name: Grid Charging Current
+        - name: I2 Charge Full Current
+          card:
+            type: entities
+            title: Charge Full Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_2_charge_full_current
+                name: Charge Full Current
+        - name: I2 SOC Alarm
+          card:
+            type: entities
+            title: SOC Alarm
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_2_soc_alarm
+                name: SOC Alarm
+        - name: I2 SOC Discharge Stop
+          card:
+            type: entities
+            title: SOC Discharge Stop
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_2_soc_discharge_stop
+                name: SOC Discharge Stop
+        - name: I2 SOC Full
+          card:
+            type: entities
+            title: SOC Full
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_2_soc_full
+                name: SOC Full
+        - name: I2 Inverter to Grid SOC
+          card:
+            type: entities
+            title: Inverter to Grid SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_2_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+        - name: I2 Grid to Inverter SOC
+          card:
+            type: entities
+            title: Grid to Inverter SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_2_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+        - name: I3 Maximum Charging Current
+          card:
+            type: entities
+            title: Maximum Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_3_maximum_charging_current
+                name: Maximum Charging Current
+        - name: I3 Solar Charging Current
+          card:
+            type: entities
+            title: Solar Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_3_solar_charging_current
+                name: Solar Charging Current
+        - name: I3 Grid Charging Current
+          card:
+            type: entities
+            title: Grid Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_3_grid_charging_current
+                name: Grid Charging Current
+        - name: I3 Charge Full Current
+          card:
+            type: entities
+            title: Charge Full Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_3_charge_full_current
+                name: Charge Full Current
+        - name: I3 SOC Alarm
+          card:
+            type: entities
+            title: SOC Alarm
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_3_soc_alarm
+                name: SOC Alarm
+        - name: I3 SOC Discharge Stop
+          card:
+            type: entities
+            title: SOC Discharge Stop
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_3_soc_discharge_stop
+                name: SOC Discharge Stop
+        - name: I3 SOC Full
+          card:
+            type: entities
+            title: SOC Full
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_3_soc_full
+                name: SOC Full
+        - name: I3 Inverter to Grid SOC
+          card:
+            type: entities
+            title: Inverter to Grid SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_3_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+        - name: I3 Grid to Inverter SOC
+          card:
+            type: entities
+            title: Grid to Inverter SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_3_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+        - name: I4 Maximum Charging Current
+          card:
+            type: entities
+            title: Maximum Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_4_maximum_charging_current
+                name: Maximum Charging Current
+        - name: I4 Solar Charging Current
+          card:
+            type: entities
+            title: Solar Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_4_solar_charging_current
+                name: Solar Charging Current
+        - name: I4 Grid Charging Current
+          card:
+            type: entities
+            title: Grid Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_4_grid_charging_current
+                name: Grid Charging Current
+        - name: I4 Charge Full Current
+          card:
+            type: entities
+            title: Charge Full Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_4_charge_full_current
+                name: Charge Full Current
+        - name: I4 SOC Alarm
+          card:
+            type: entities
+            title: SOC Alarm
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_4_soc_alarm
+                name: SOC Alarm
+        - name: I4 SOC Discharge Stop
+          card:
+            type: entities
+            title: SOC Discharge Stop
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_4_soc_discharge_stop
+                name: SOC Discharge Stop
+        - name: I4 SOC Full
+          card:
+            type: entities
+            title: SOC Full
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_4_soc_full
+                name: SOC Full
+        - name: I4 Inverter to Grid SOC
+          card:
+            type: entities
+            title: Inverter to Grid SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_4_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+        - name: I4 Grid to Inverter SOC
+          card:
+            type: entities
+            title: Grid to Inverter SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_4_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+        - name: I5 Maximum Charging Current
+          card:
+            type: entities
+            title: Maximum Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_5_maximum_charging_current
+                name: Maximum Charging Current
+        - name: I5 Solar Charging Current
+          card:
+            type: entities
+            title: Solar Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_5_solar_charging_current
+                name: Solar Charging Current
+        - name: I5 Grid Charging Current
+          card:
+            type: entities
+            title: Grid Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_5_grid_charging_current
+                name: Grid Charging Current
+        - name: I5 Charge Full Current
+          card:
+            type: entities
+            title: Charge Full Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_5_charge_full_current
+                name: Charge Full Current
+        - name: I5 SOC Alarm
+          card:
+            type: entities
+            title: SOC Alarm
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_5_soc_alarm
+                name: SOC Alarm
+        - name: I5 SOC Discharge Stop
+          card:
+            type: entities
+            title: SOC Discharge Stop
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_5_soc_discharge_stop
+                name: SOC Discharge Stop
+        - name: I5 SOC Full
+          card:
+            type: entities
+            title: SOC Full
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_5_soc_full
+                name: SOC Full
+        - name: I5 Inverter to Grid SOC
+          card:
+            type: entities
+            title: Inverter to Grid SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_5_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+        - name: I5 Grid to Inverter SOC
+          card:
+            type: entities
+            title: Grid to Inverter SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_5_grid_to_inverter_soc
+                name: Grid to Inverter SOC
+        - name: I6 Maximum Charging Current
+          card:
+            type: entities
+            title: Maximum Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_6_maximum_charging_current
+                name: Maximum Charging Current
+        - name: I6 Solar Charging Current
+          card:
+            type: entities
+            title: Solar Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_6_solar_charging_current
+                name: Solar Charging Current
+        - name: I6 Grid Charging Current
+          card:
+            type: entities
+            title: Grid Charging Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_6_grid_charging_current
+                name: Grid Charging Current
+        - name: I6 Charge Full Current
+          card:
+            type: entities
+            title: Charge Full Current
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_6_charge_full_current
+                name: Charge Full Current
+        - name: I6 SOC Alarm
+          card:
+            type: entities
+            title: SOC Alarm
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_6_soc_alarm
+                name: SOC Alarm
+        - name: I6 SOC Discharge Stop
+          card:
+            type: entities
+            title: SOC Discharge Stop
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_6_soc_discharge_stop
+                name: SOC Discharge Stop
+        - name: I6 SOC Full
+          card:
+            type: entities
+            title: SOC Full
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_6_soc_full
+                name: SOC Full
+        - name: I6 Inverter to Grid SOC
+          card:
+            type: entities
+            title: Inverter to Grid SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_6_inverter_to_grid_soc
+                name: Inverter to Grid SOC
+        - name: I6 Grid to Inverter SOC
+          card:
+            type: entities
+            title: Grid to Inverter SOC
+            show_header_toggle: false
+            entities:
+              - entity: number.garage_anenji_inverter_manager_inverter_6_grid_to_inverter_soc
+                name: Grid to Inverter SOC
   - title: Diagnostics
     path: diagnostics
     icon: mdi:stethoscope
@@ -1927,3 +2120,699 @@ views:
             - sensor.garage_anenji_inverter_manager_inverter_6_temperature_1
             - sensor.garage_anenji_inverter_manager_inverter_6_temperature_2
             - sensor.garage_anenji_inverter_manager_inverter_6_temperature_3
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 1 raw configuration
+          entities:
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_40000
+              name: "on_off (40000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_40001
+              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41000
+              name: "OutPriority (41000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41001
+              name: "Output Volt Set (41001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41002
+              name: "Output Frequency Set (41002)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41003
+              name: "Line Range Set (41003)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41004
+              name: "Para Mode Set (41004)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41005
+              name: "Eco Enable (41005)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41006
+              name: "Charge Priority (41006)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41011
+              name: "Mute Enable (41011)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41012
+              name: "On Grid Set (41012)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41014
+              name: "NG Function Enabled (41014)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41018
+              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41022
+              name: "Battery Active Enable (41022)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41023
+              name: "On Grid Active Power Set (W) (41023)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41025
+              name: "Hybrid Priority Enable (41025)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41027
+              name: "On Grid Standard Set (41027)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41031
+              name: "External CT Host Enable (41031)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41032
+              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41065
+              name: "Island Enable (41065)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41078
+              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41079
+              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41080
+              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41081
+              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41091
+              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41100
+              name: "Battery Type (41100)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41101
+              name: "Cv Volt (41101)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41102
+              name: "Float Volt (41102)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41104
+              name: "Cv Charge Time Set (min) (41104)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41105
+              name: "Cv Charge Back Volt (volts) (41105)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41106
+              name: "Inverter 2 Line Volt (v) (41106)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41107
+              name: "Line Back 2 Inverter Volt (v) (41107)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41108
+              name: "Battery Low Voltage (v) (41108)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41109
+              name: "Battery Delay Off Voltage (v) (41109)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41112
+              name: "Battery End Of Discharge Volts (V) (41112)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41113
+              name: "BMS-Setup (41113)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41114
+              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41120
+              name: "On Time Line Charge Enable (41120)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41121
+              name: "Line Charge Start Time1(HH-mm) (41121)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41122
+              name: "Line Charge End Time 1(HH-mm) (41122)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41123
+              name: "Line Charge Start Time2(HH-mm) (41123)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41124
+              name: "Line Charge End Time 2(HH-mm) (41124)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41127
+              name: "On time battery discharge enable (41127)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41128
+              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41129
+              name: "Battery Discharge End Time 1(HH-mm) (41129)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41130
+              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41131
+              name: "Battery Discharge End Time 2(HH-mm) (41131)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41135
+              name: "Battery Connection Way (41135)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41138
+              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41103
+              name: "600 (41103)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41110
+              name: "448 (41110)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41111
+              name: "30 (41111)"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 2 raw configuration
+          entities:
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_40000
+              name: "on_off (40000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_40001
+              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41000
+              name: "OutPriority (41000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41001
+              name: "Output Volt Set (41001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41002
+              name: "Output Frequency Set (41002)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41003
+              name: "Line Range Set (41003)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41004
+              name: "Para Mode Set (41004)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41005
+              name: "Eco Enable (41005)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41006
+              name: "Charge Priority (41006)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41011
+              name: "Mute Enable (41011)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41012
+              name: "On Grid Set (41012)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41014
+              name: "NG Function Enabled (41014)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41018
+              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41022
+              name: "Battery Active Enable (41022)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41023
+              name: "On Grid Active Power Set (W) (41023)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41025
+              name: "Hybrid Priority Enable (41025)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41027
+              name: "On Grid Standard Set (41027)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41031
+              name: "External CT Host Enable (41031)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41032
+              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41065
+              name: "Island Enable (41065)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41078
+              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41079
+              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41080
+              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41081
+              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41091
+              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41100
+              name: "Battery Type (41100)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41101
+              name: "Cv Volt (41101)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41102
+              name: "Float Volt (41102)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41104
+              name: "Cv Charge Time Set (min) (41104)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41105
+              name: "Cv Charge Back Volt (volts) (41105)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41106
+              name: "Inverter 2 Line Volt (v) (41106)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41107
+              name: "Line Back 2 Inverter Volt (v) (41107)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41108
+              name: "Battery Low Voltage (v) (41108)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41109
+              name: "Battery Delay Off Voltage (v) (41109)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41112
+              name: "Battery End Of Discharge Volts (V) (41112)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41113
+              name: "BMS-Setup (41113)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41114
+              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41120
+              name: "On Time Line Charge Enable (41120)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41121
+              name: "Line Charge Start Time1(HH-mm) (41121)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41122
+              name: "Line Charge End Time 1(HH-mm) (41122)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41123
+              name: "Line Charge Start Time2(HH-mm) (41123)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41124
+              name: "Line Charge End Time 2(HH-mm) (41124)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41127
+              name: "On time battery discharge enable (41127)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41128
+              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41129
+              name: "Battery Discharge End Time 1(HH-mm) (41129)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41130
+              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41131
+              name: "Battery Discharge End Time 2(HH-mm) (41131)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41135
+              name: "Battery Connection Way (41135)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41138
+              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41103
+              name: "600 (41103)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41110
+              name: "448 (41110)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41111
+              name: "30 (41111)"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 3 raw configuration
+          entities:
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_40000
+              name: "on_off (40000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_40001
+              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41000
+              name: "OutPriority (41000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41001
+              name: "Output Volt Set (41001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41002
+              name: "Output Frequency Set (41002)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41003
+              name: "Line Range Set (41003)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41004
+              name: "Para Mode Set (41004)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41005
+              name: "Eco Enable (41005)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41006
+              name: "Charge Priority (41006)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41011
+              name: "Mute Enable (41011)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41012
+              name: "On Grid Set (41012)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41014
+              name: "NG Function Enabled (41014)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41018
+              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41022
+              name: "Battery Active Enable (41022)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41023
+              name: "On Grid Active Power Set (W) (41023)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41025
+              name: "Hybrid Priority Enable (41025)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41027
+              name: "On Grid Standard Set (41027)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41031
+              name: "External CT Host Enable (41031)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41032
+              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41065
+              name: "Island Enable (41065)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41078
+              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41079
+              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41080
+              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41081
+              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41091
+              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41100
+              name: "Battery Type (41100)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41101
+              name: "Cv Volt (41101)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41102
+              name: "Float Volt (41102)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41104
+              name: "Cv Charge Time Set (min) (41104)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41105
+              name: "Cv Charge Back Volt (volts) (41105)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41106
+              name: "Inverter 2 Line Volt (v) (41106)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41107
+              name: "Line Back 2 Inverter Volt (v) (41107)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41108
+              name: "Battery Low Voltage (v) (41108)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41109
+              name: "Battery Delay Off Voltage (v) (41109)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41112
+              name: "Battery End Of Discharge Volts (V) (41112)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41113
+              name: "BMS-Setup (41113)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41114
+              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41120
+              name: "On Time Line Charge Enable (41120)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41121
+              name: "Line Charge Start Time1(HH-mm) (41121)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41122
+              name: "Line Charge End Time 1(HH-mm) (41122)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41123
+              name: "Line Charge Start Time2(HH-mm) (41123)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41124
+              name: "Line Charge End Time 2(HH-mm) (41124)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41127
+              name: "On time battery discharge enable (41127)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41128
+              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41129
+              name: "Battery Discharge End Time 1(HH-mm) (41129)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41130
+              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41131
+              name: "Battery Discharge End Time 2(HH-mm) (41131)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41135
+              name: "Battery Connection Way (41135)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41138
+              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41103
+              name: "600 (41103)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41110
+              name: "448 (41110)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41111
+              name: "30 (41111)"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 4 raw configuration
+          entities:
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_40000
+              name: "on_off (40000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_40001
+              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41000
+              name: "OutPriority (41000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41001
+              name: "Output Volt Set (41001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41002
+              name: "Output Frequency Set (41002)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41003
+              name: "Line Range Set (41003)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41004
+              name: "Para Mode Set (41004)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41005
+              name: "Eco Enable (41005)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41006
+              name: "Charge Priority (41006)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41011
+              name: "Mute Enable (41011)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41012
+              name: "On Grid Set (41012)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41014
+              name: "NG Function Enabled (41014)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41018
+              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41022
+              name: "Battery Active Enable (41022)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41023
+              name: "On Grid Active Power Set (W) (41023)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41025
+              name: "Hybrid Priority Enable (41025)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41027
+              name: "On Grid Standard Set (41027)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41031
+              name: "External CT Host Enable (41031)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41032
+              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41065
+              name: "Island Enable (41065)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41078
+              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41079
+              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41080
+              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41081
+              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41091
+              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41100
+              name: "Battery Type (41100)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41101
+              name: "Cv Volt (41101)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41102
+              name: "Float Volt (41102)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41104
+              name: "Cv Charge Time Set (min) (41104)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41105
+              name: "Cv Charge Back Volt (volts) (41105)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41106
+              name: "Inverter 2 Line Volt (v) (41106)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41107
+              name: "Line Back 2 Inverter Volt (v) (41107)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41108
+              name: "Battery Low Voltage (v) (41108)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41109
+              name: "Battery Delay Off Voltage (v) (41109)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41112
+              name: "Battery End Of Discharge Volts (V) (41112)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41113
+              name: "BMS-Setup (41113)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41114
+              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41120
+              name: "On Time Line Charge Enable (41120)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41121
+              name: "Line Charge Start Time1(HH-mm) (41121)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41122
+              name: "Line Charge End Time 1(HH-mm) (41122)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41123
+              name: "Line Charge Start Time2(HH-mm) (41123)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41124
+              name: "Line Charge End Time 2(HH-mm) (41124)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41127
+              name: "On time battery discharge enable (41127)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41128
+              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41129
+              name: "Battery Discharge End Time 1(HH-mm) (41129)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41130
+              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41131
+              name: "Battery Discharge End Time 2(HH-mm) (41131)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41135
+              name: "Battery Connection Way (41135)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41138
+              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41103
+              name: "600 (41103)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41110
+              name: "448 (41110)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41111
+              name: "30 (41111)"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 5 raw configuration
+          entities:
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_40000
+              name: "on_off (40000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_40001
+              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41000
+              name: "OutPriority (41000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41001
+              name: "Output Volt Set (41001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41002
+              name: "Output Frequency Set (41002)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41003
+              name: "Line Range Set (41003)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41004
+              name: "Para Mode Set (41004)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41005
+              name: "Eco Enable (41005)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41006
+              name: "Charge Priority (41006)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41011
+              name: "Mute Enable (41011)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41012
+              name: "On Grid Set (41012)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41014
+              name: "NG Function Enabled (41014)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41018
+              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41022
+              name: "Battery Active Enable (41022)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41023
+              name: "On Grid Active Power Set (W) (41023)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41025
+              name: "Hybrid Priority Enable (41025)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41027
+              name: "On Grid Standard Set (41027)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41031
+              name: "External CT Host Enable (41031)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41032
+              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41065
+              name: "Island Enable (41065)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41078
+              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41079
+              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41080
+              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41081
+              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41091
+              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41100
+              name: "Battery Type (41100)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41101
+              name: "Cv Volt (41101)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41102
+              name: "Float Volt (41102)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41104
+              name: "Cv Charge Time Set (min) (41104)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41105
+              name: "Cv Charge Back Volt (volts) (41105)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41106
+              name: "Inverter 2 Line Volt (v) (41106)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41107
+              name: "Line Back 2 Inverter Volt (v) (41107)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41108
+              name: "Battery Low Voltage (v) (41108)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41109
+              name: "Battery Delay Off Voltage (v) (41109)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41112
+              name: "Battery End Of Discharge Volts (V) (41112)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41113
+              name: "BMS-Setup (41113)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41114
+              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41120
+              name: "On Time Line Charge Enable (41120)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41121
+              name: "Line Charge Start Time1(HH-mm) (41121)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41122
+              name: "Line Charge End Time 1(HH-mm) (41122)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41123
+              name: "Line Charge Start Time2(HH-mm) (41123)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41124
+              name: "Line Charge End Time 2(HH-mm) (41124)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41127
+              name: "On time battery discharge enable (41127)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41128
+              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41129
+              name: "Battery Discharge End Time 1(HH-mm) (41129)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41130
+              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41131
+              name: "Battery Discharge End Time 2(HH-mm) (41131)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41135
+              name: "Battery Connection Way (41135)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41138
+              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41103
+              name: "600 (41103)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41110
+              name: "448 (41110)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41111
+              name: "30 (41111)"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 6 raw configuration
+          entities:
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_40000
+              name: "on_off (40000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_40001
+              name: "Machine Restart Control (SmartValue Default tab, 9/9) (40001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41000
+              name: "OutPriority (41000)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41001
+              name: "Output Volt Set (41001)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41002
+              name: "Output Frequency Set (41002)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41003
+              name: "Line Range Set (41003)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41004
+              name: "Para Mode Set (41004)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41005
+              name: "Eco Enable (41005)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41006
+              name: "Charge Priority (41006)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41011
+              name: "Mute Enable (41011)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41012
+              name: "On Grid Set (41012)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41014
+              name: "NG Function Enabled (41014)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41018
+              name: "Local Time Set (year/month/day/hour/minute/second) (41018)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41022
+              name: "Battery Active Enable (41022)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41023
+              name: "On Grid Active Power Set (W) (41023)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41025
+              name: "Hybrid Priority Enable (41025)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41027
+              name: "On Grid Standard Set (41027)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41031
+              name: "External CT Host Enable (41031)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41032
+              name: "Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) (41032)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41065
+              name: "Island Enable (41065)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41078
+              name: "Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) (41078)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41079
+              name: "Second Output On Time (min) (SmartValue Default tab, 4/9) (41079)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41080
+              name: "Second Output Off Voltage (V) (SmartValue Default tab, 6/9) (41080)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41081
+              name: "Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) (41081)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41091
+              name: "Output Phase Setting (SmartValue Default tab, 1/9) (41091)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41100
+              name: "Battery Type (41100)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41101
+              name: "Cv Volt (41101)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41102
+              name: "Float Volt (41102)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41104
+              name: "Cv Charge Time Set (min) (41104)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41105
+              name: "Cv Charge Back Volt (volts) (41105)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41106
+              name: "Inverter 2 Line Volt (v) (41106)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41107
+              name: "Line Back 2 Inverter Volt (v) (41107)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41108
+              name: "Battery Low Voltage (v) (41108)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41109
+              name: "Battery Delay Off Voltage (v) (41109)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41112
+              name: "Battery End Of Discharge Volts (V) (41112)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41113
+              name: "BMS-Setup (41113)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41114
+              name: "BMS protocol setup (SmartValue Default tab, 5/9) (41114)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41120
+              name: "On Time Line Charge Enable (41120)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41121
+              name: "Line Charge Start Time1(HH-mm) (41121)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41122
+              name: "Line Charge End Time 1(HH-mm) (41122)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41123
+              name: "Line Charge Start Time2(HH-mm) (41123)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41124
+              name: "Line Charge End Time 2(HH-mm) (41124)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41127
+              name: "On time battery discharge enable (41127)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41128
+              name: "Battery Discharge Start Time 1(HH-mm) (41128)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41129
+              name: "Battery Discharge End Time 1(HH-mm) (41129)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41130
+              name: "Battery Discharge Start Time 2(HH-mm) (41130)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41131
+              name: "Battery Discharge End Time 2(HH-mm) (41131)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41135
+              name: "Battery Connection Way (41135)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41138
+              name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41103
+              name: "600 (41103)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41110
+              name: "448 (41110)"
+            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41111
+              name: "30 (41111)"
