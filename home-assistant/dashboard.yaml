@@ -911,8 +911,6 @@ views:
     path: setup
     icon: mdi:cog
     cards:
-      - type: markdown
-        content: 'Eco Mode is editable with serial verification and readback. Other settings are raw read-only values.'
       - type: conditional
         conditions:
           - condition: state
