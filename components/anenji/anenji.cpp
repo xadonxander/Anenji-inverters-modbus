@@ -8,6 +8,26 @@ namespace esphome {
 namespace anenji {
 
 static const char *const TAG = "anenji";
+namespace {
+struct Writable { uint16_t reg, min, max, scale; };
+constexpr Writable WRITABLE[] = {{41007,0,80,10},{41008,0,80,10},{41009,0,60,10},{41013,2,15,10},{41115,0,100,1},{41116,0,100,1},{41117,0,100,1},{41118,0,100,1},{41119,10,100,1}};
+}
+void SettingNumber::control(float value) { if (manager_) manager_->request_number(slot_,index_,value); }
+void AnenjiManager::publish_setting_(uint8_t slot,uint16_t reg,uint16_t raw) {
+  if (slot>=6) return;
+  if (reg==41005 && raw<=1 && eco_[slot]) eco_[slot]->publish_state(raw==1);
+  for (size_t i=0;i<sizeof(WRITABLE)/sizeof(WRITABLE[0]);i++)
+    if (WRITABLE[i].reg==reg && numbers_[slot][i]) numbers_[slot][i]->publish_state(float(raw)/WRITABLE[i].scale);
+}
+void AnenjiManager::request_number(uint8_t slot,uint8_t index,float value) {
+  if (index>=sizeof(WRITABLE)/sizeof(WRITABLE[0]) || slot>=max_inverters_ || eco_slot_!=255 || discovering_ ||
+      std::none_of(devices_.begin(),devices_.end(),[slot](const Inverter &d){return d.slot==slot;})) return;
+  const auto &w=WRITABLE[index];
+  if (!std::isfinite(value) || value<w.min || value>w.max || std::fabs(value-std::round(value))>0.001f) return;
+  if (!numbers_[slot][index] || !std::isfinite(numbers_[slot][index]->state)) return;
+  write_reg_=w.reg; write_value_=uint16_t(std::lround(value*w.scale)); eco_slot_=slot; eco_stage_=0;
+}
+
 
 uint16_t AnenjiManager::crc16_(const uint8_t *data, size_t size) {
   uint16_t crc = 0xFFFF;
@@ -110,10 +130,10 @@ void AnenjiManager::request_eco(uint8_t slot, bool state) {
       std::none_of(devices_.begin(), devices_.end(), [slot](const Inverter &d){return d.slot==slot;})) {
     ESP_LOGW(TAG, "Eco write rejected: busy or inverter unavailable"); return;
   }
-  eco_slot_=slot; eco_value_=state; eco_stage_=0;
+  eco_slot_=slot; write_reg_=41005; write_value_=state; eco_stage_=0;
 }
 void AnenjiManager::send_eco_write_() {
-  uint8_t request[8]={active_address_,6,0xA0,0x2D,0,uint8_t(eco_value_),0,0};
+  uint8_t request[8]={active_address_,6,uint8_t(write_reg_>>8),uint8_t(write_reg_),uint8_t(write_value_>>8),uint8_t(write_value_),0,0};
   auto crc=crc16_(request,6); request[6]=uint8_t(crc); request[7]=uint8_t(crc>>8);
   while (available()) read();
   rx_.clear();
@@ -139,7 +159,7 @@ void AnenjiManager::process_frame_() {
   if (phase_==Phase::ECO_WRITE) {
     for (size_t i=0;i+8<=rx_.size();i++) {
       const auto *p=rx_.data()+i;
-      if (p[0]==active_address_ && p[1]==6 && p[2]==0xA0 && p[3]==0x2D && p[4]==0 && p[5]==uint8_t(eco_value_) && crc16_(p,6)==(uint16_t(p[6])|(uint16_t(p[7])<<8))) {
+      if (p[0]==active_address_ && p[1]==6 && p[2]==uint8_t(write_reg_>>8) && p[3]==uint8_t(write_reg_) && p[4]==uint8_t(write_value_>>8) && p[5]==uint8_t(write_value_) && crc16_(p,6)==(uint16_t(p[6])|(uint16_t(p[7])<<8))) {
         eco_stage_=2; complete_request_(true); return;
       }
     }
@@ -180,9 +200,9 @@ void AnenjiManager::process_frame_() {
   }
   if (phase_==Phase::ECO_VERIFY) {
     uint16_t raw=(uint16_t(rx_[3])<<8)|rx_[4];
-    if (eco_slot_<6 && raw<=1 && eco_[eco_slot_]) eco_[eco_slot_]->publish_state(raw==1);
-    ESP_LOGI(TAG,"Eco readback %u requested %u",raw,unsigned(eco_value_));
-    complete_request_(raw==uint16_t(eco_value_)); return;
+    publish_setting_(eco_slot_,write_reg_,raw);
+    ESP_LOGI(TAG,"Setting %u readback %u requested %u",write_reg_,raw,write_value_);
+    complete_request_(raw==write_value_); return;
   }
   if (phase_ == Phase::WAIT_PROBE && rx_[2] == 2) {
     const float volts = float((uint16_t(rx_[3]) << 8) | rx_[4]) / 10.0f;
@@ -227,7 +247,7 @@ void AnenjiManager::process_frame_() {
       const uint32_t wide = m.words == 2 ? uint32_t(raw) | (uint32_t((uint16_t(rx_[pos+2])<<8)|rx_[pos+3])<<16) : raw;
       const float value=m.divisor<0 ? float(int16_t(raw)) / -m.divisor : float(wide)/m.divisor;
       metrics_[active_slot_][i]->publish_state(value);
-      if (BLOCKS[m.block].reg+m.offset==41005 && raw<=1 && eco_[active_slot_]) eco_[active_slot_]->publish_state(raw==1);
+      publish_setting_(active_slot_,BLOCKS[m.block].reg+m.offset,raw);
     }
     float voltage = float((uint16_t(rx_[3]) << 8) | rx_[4]) / 10.0f;
     for (auto &d : devices_) {
@@ -251,7 +271,7 @@ void AnenjiManager::start_next_() {
     if (it==devices_.end()) { eco_slot_=255; return; }
     if (eco_stage_==0) send_read_(it->address,SERIAL_REG,SERIAL_COUNT,Phase::ECO_ID);
     else if (eco_stage_==1) send_eco_write_();
-    else send_read_(it->address,41005,1,Phase::ECO_VERIFY);
+    else send_read_(it->address,write_reg_,1,Phase::ECO_VERIFY);
     return;
   }
   // A rescan must preempt normal polling, even when devices are already known.
