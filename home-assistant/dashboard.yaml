@@ -926,6 +926,8 @@ views:
           title: Inverter 1 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_1_serial
+            - entity: input_text.anenji_inverter_1_friendly_name
+              name: Friendly Name
             - entity: switch.garage_anenji_inverter_manager_inverter_1_eco_mode
               name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_40000
@@ -1063,6 +1065,8 @@ views:
           title: Inverter 2 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_2_serial
+            - entity: input_text.anenji_inverter_2_friendly_name
+              name: Friendly Name
             - entity: switch.garage_anenji_inverter_manager_inverter_2_eco_mode
               name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_40000
@@ -1200,6 +1204,8 @@ views:
           title: Inverter 3 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_3_serial
+            - entity: input_text.anenji_inverter_3_friendly_name
+              name: Friendly Name
             - entity: switch.garage_anenji_inverter_manager_inverter_3_eco_mode
               name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_40000
@@ -1337,6 +1343,8 @@ views:
           title: Inverter 4 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_4_serial
+            - entity: input_text.anenji_inverter_4_friendly_name
+              name: Friendly Name
             - entity: switch.garage_anenji_inverter_manager_inverter_4_eco_mode
               name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_40000
@@ -1474,6 +1482,8 @@ views:
           title: Inverter 5 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_5_serial
+            - entity: input_text.anenji_inverter_5_friendly_name
+              name: Friendly Name
             - entity: switch.garage_anenji_inverter_manager_inverter_5_eco_mode
               name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_40000
@@ -1611,6 +1621,8 @@ views:
           title: Inverter 6 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_6_serial
+            - entity: input_text.anenji_inverter_6_friendly_name
+              name: Friendly Name
             - entity: switch.garage_anenji_inverter_manager_inverter_6_eco_mode
               name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_40000
