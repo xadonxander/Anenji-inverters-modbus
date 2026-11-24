@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include "esphome/components/number/number.h"
 #include "esphome/components/switch/switch.h"
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/components/text_sensor/text_sensor.h"
@@ -25,6 +26,14 @@ class EcoSwitch : public switch_::Switch {
   uint8_t slot_{0};
 };
 
+class SettingNumber : public number::Number {
+ public:
+  void configure(AnenjiManager *manager, uint8_t slot, uint8_t index) { manager_=manager; slot_=slot; index_=index; }
+ protected:
+  void control(float value) override;
+  AnenjiManager *manager_{nullptr};
+  uint8_t slot_{0}, index_{0};
+};
 class AnenjiManager : public PollingComponent, public uart::UARTDevice {
  public:
   void set_direction_output(output::BinaryOutput *out) { direction_ = out; }
@@ -38,6 +47,8 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
   void set_system_sensor(uint8_t index, sensor::Sensor *s) { system_[index] = s; }
   void set_eco(uint8_t slot, EcoSwitch *s) { eco_[slot]=s; }
   void request_eco(uint8_t slot, bool state);
+  void request_number(uint8_t slot, uint8_t index, float value);
+  void set_setting_number(uint8_t slot, uint8_t index, SettingNumber *n) { numbers_[slot][index]=n; }
   void setup() override;
   void loop() override;
   void update() override;
@@ -54,7 +65,9 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
   enum class Phase : uint8_t { IDLE, WAIT_PROBE, SERIAL_GAP, WAIT_SERIAL, WAIT_VOLTAGE, ECO_ID, ECO_WRITE, ECO_VERIFY };
   EcoSwitch *eco_[6]{};
   uint8_t eco_slot_{255}, eco_stage_{0};
-  bool eco_value_{false};
+  uint16_t write_reg_{41005}, write_value_{0};
+  SettingNumber *numbers_[6][9]{};
+  void publish_setting_(uint8_t slot, uint16_t reg, uint16_t raw);
   void send_eco_write_();
   struct Binding { char serial[51]; };
   std::array<Binding, 6> bindings_{};
