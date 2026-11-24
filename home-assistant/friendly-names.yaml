@@ -1,0 +1,25 @@
+input_text:
+  anenji_inverter_1_friendly_name:
+    name: ANENJI Inverter 1 Friendly Name
+    max: 64
+    icon: mdi:rename-box
+  anenji_inverter_2_friendly_name:
+    name: ANENJI Inverter 2 Friendly Name
+    max: 64
+    icon: mdi:rename-box
+  anenji_inverter_3_friendly_name:
+    name: ANENJI Inverter 3 Friendly Name
+    max: 64
+    icon: mdi:rename-box
+  anenji_inverter_4_friendly_name:
+    name: ANENJI Inverter 4 Friendly Name
+    max: 64
+    icon: mdi:rename-box
+  anenji_inverter_5_friendly_name:
+    name: ANENJI Inverter 5 Friendly Name
+    max: 64
+    icon: mdi:rename-box
+  anenji_inverter_6_friendly_name:
+    name: ANENJI Inverter 6 Friendly Name
+    max: 64
+    icon: mdi:rename-box
