@@ -42,7 +42,7 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
   struct Binding { char serial[51]; };
   std::array<Binding, 6> bindings_{};
   std::array<ESPPreferenceObject, 6> prefs_{};
-  sensor::Sensor *metrics_[6][17]{};
+  sensor::Sensor *metrics_[6][36]{};
   text_sensor::TextSensor *serial_sensors_[6]{};
   sensor::Sensor *address_sensors_[6]{};
   sensor::Sensor *system_[7]{};
