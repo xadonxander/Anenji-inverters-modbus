@@ -24,6 +24,7 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
   void set_metric(uint8_t slot, uint8_t metric, sensor::Sensor *s) { metrics_[slot][metric] = s; }
   void set_serial_sensor(uint8_t slot, text_sensor::TextSensor *s) { serial_sensors_[slot] = s; }
   void set_address_sensor(uint8_t slot, sensor::Sensor *s) { address_sensors_[slot] = s; }
+  void set_system_sensor(uint8_t index, sensor::Sensor *s) { system_[index] = s; }
   void setup() override;
   void loop() override;
   void update() override;
@@ -44,6 +45,8 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
   sensor::Sensor *metrics_[6][17]{};
   text_sensor::TextSensor *serial_sensors_[6]{};
   sensor::Sensor *address_sensors_[6]{};
+  sensor::Sensor *system_[7]{};
+  void publish_system_();
   uint8_t block_{0}, active_slot_{255};
   uint8_t bind_(const std::string &serial);
   void invalidate_(uint8_t slot, uint8_t block);
