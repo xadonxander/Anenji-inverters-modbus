@@ -45,6 +45,23 @@ void AnenjiManager::invalidate_(uint8_t slot, uint8_t block) {
   for (size_t i=0;i<sizeof(METRICS)/sizeof(METRICS[0]);i++)
     if (METRICS[i].block == block && metrics_[slot][i] && !std::isnan(metrics_[slot][i]->state)) metrics_[slot][i]->publish_state(NAN);
 }
+void AnenjiManager::publish_system_() {
+  size_t bound=0;
+  for (uint8_t i=0;i<max_inverters_;i++) if (bindings_[i].serial[0]) ++bound;
+  if (system_[0]) system_[0]->publish_state(devices_.size());
+  if (system_[1]) system_[1]->publish_state(bound);
+  const uint8_t indices[]={1,4,7,12,13};
+  for (uint8_t j=0;j<5;j++) {
+    float sum=0;
+    bool valid=bound>0 && devices_.size()==bound;
+    for (const auto &d:devices_) {
+      auto *s=metrics_[d.slot][indices[j]];
+      if (!s || !std::isfinite(s->state)) { valid=false; break; }
+      sum+=s->state;
+    }
+    if (system_[j+2]) system_[j+2]->publish_state(valid ? sum : NAN);
+  }
+}
 void AnenjiManager::setup() {
   for (uint8_t i=0;i<max_inverters_;i++) {
     prefs_[i]=global_preferences->make_preference<Binding>(0xA6E10000UL+i);
@@ -90,6 +107,7 @@ void AnenjiManager::complete_request_(bool success) {
   if (!success && (phase_ == Phase::WAIT_SERIAL || phase_ == Phase::WAIT_PROBE))
     ESP_LOGW(TAG, "Serial discovery failed at address %u (received %u bytes)", active_address_, unsigned(rx_.size()));
   if (!success && phase_ == Phase::WAIT_VOLTAGE) invalidate_(active_slot_, block_ == 0 ? 7 : block_-1);
+  if (phase_ == Phase::WAIT_VOLTAGE && block_ == 0 && poll_index_ >= devices_.size()) publish_system_();
   phase_ = Phase::IDLE;
   last_bus_activity_ = millis();
   rx_.clear();
@@ -172,7 +190,7 @@ void AnenjiManager::process_frame_() {
 void AnenjiManager::start_next_() {
   const uint32_t now = millis();
   // A rescan must preempt normal polling, even when devices are already known.
-  if (!discovering_ &&
+  if (!discovering_ && block_ == 0 && poll_index_ >= devices_.size() &&
       now - last_discovery_ >= (devices_.size() < max_inverters_ ? 30000UL : 300000UL)) {
     discovering_ = true;
     next_scan_ = scan_start_;
@@ -199,6 +217,12 @@ void AnenjiManager::start_next_() {
         for (uint8_t j=0;j<8;j++) invalidate_(i,j);
       }
     }
+    if (system_[0]) system_[0]->publish_state(devices_.size());
+    size_t bound=0;
+    for (uint8_t i=0;i<max_inverters_;i++) if (bindings_[i].serial[0]) ++bound;
+    if (system_[1]) system_[1]->publish_state(bound);
+    if (devices_.size()!=bound || bound==0)
+      for (uint8_t i=2;i<7;i++) if (system_[i]) system_[i]->publish_state(NAN);
     ESP_LOGI(TAG, "Discovery complete: %u serial-identified inverters", unsigned(devices_.size()));
     for (const auto &d : devices_)
       ESP_LOGI(TAG, "  address=%u serial=%s", d.address, d.serial.c_str());
