@@ -1,6 +1,7 @@
 #include "anenji.h"
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 #include "esphome/core/hal.h"
 
 namespace esphome {
@@ -18,7 +19,39 @@ uint16_t AnenjiManager::crc16_(const uint8_t *data, size_t size) {
   return crc;
 }
 
+namespace {
+struct ReadBlock { uint16_t reg; uint8_t count; };
+constexpr ReadBlock BLOCKS[] = {{30000,6},{30024,1},{30046,4},{30058,3},{30068,3},{30071,5},{52044,16},{52071,2}};
+struct Metric { uint8_t block, offset; int16_t divisor; };
+constexpr Metric METRICS[] = {{0,0,10},{0,1,10},{0,2,1},{1,0,10},{2,3,1},{3,0,10},{3,1,-10},{4,0,-1},{5,0,10},{5,2,-10},{5,3,-10},{5,4,-10},{6,0,10},{6,2,10},{6,10,10},{6,12,10},{7,0,10}};
+}
+uint8_t AnenjiManager::bind_(const std::string &serial) {
+  for (uint8_t i=0;i<max_inverters_;i++) if (serial == bindings_[i].serial) return i;
+  for (uint8_t i=0;i<max_inverters_;i++) {
+    if (bindings_[i].serial[0]) continue;
+    if (serial.size() >= sizeof(bindings_[i].serial)) return 255;
+    std::memcpy(bindings_[i].serial, serial.c_str(), serial.size()+1);
+    if (!prefs_[i].save(&bindings_[i])) {
+      bindings_[i].serial[0]=0;
+      return 255;
+    }
+    global_preferences->sync();
+    return i;
+  }
+  return 255;
+}
+void AnenjiManager::invalidate_(uint8_t slot, uint8_t block) {
+  if (slot >= 6) return;
+  for (size_t i=0;i<sizeof(METRICS)/sizeof(METRICS[0]);i++)
+    if (METRICS[i].block == block && metrics_[slot][i]) metrics_[slot][i]->publish_state(NAN);
+}
 void AnenjiManager::setup() {
+  for (uint8_t i=0;i<max_inverters_;i++) {
+    prefs_[i]=global_preferences->make_preference<Binding>(0xA6E10000UL+i);
+    prefs_[i].load(&bindings_[i]);
+    bindings_[i].serial[50]=0;
+    if (serial_sensors_[i] && bindings_[i].serial[0]) serial_sensors_[i]->publish_state(bindings_[i].serial);
+  }
   if (direction_ != nullptr) direction_->turn_off();
   next_scan_ = scan_start_;
   last_bus_activity_ = millis();
@@ -56,6 +89,7 @@ void AnenjiManager::send_read_(uint8_t address, uint16_t reg, uint16_t count, Ph
 void AnenjiManager::complete_request_(bool success) {
   if (!success && (phase_ == Phase::WAIT_SERIAL || phase_ == Phase::WAIT_PROBE))
     ESP_LOGW(TAG, "Serial discovery failed at address %u (received %u bytes)", active_address_, unsigned(rx_.size()));
+  if (!success && phase_ == Phase::WAIT_VOLTAGE) invalidate_(active_slot_, block_ == 0 ? 7 : block_-1);
   phase_ = Phase::IDLE;
   last_bus_activity_ = millis();
   rx_.clear();
@@ -96,20 +130,33 @@ void AnenjiManager::process_frame_() {
     ESP_LOGI(TAG, "Address %u serial response: %s", active_address_, serial.c_str());
     while (!serial.empty() && serial.back() == ' ') serial.pop_back();
     if (!serial.empty()) {
+      const uint8_t slot = bind_(serial);
+      if (slot == 255) { complete_request_(true); return; }
+      if (serial_sensors_[slot]) serial_sensors_[slot]->publish_state(serial);
+      if (address_sensors_[slot]) address_sensors_[slot]->publish_state(active_address_);
       auto it = std::find_if(devices_.begin(), devices_.end(),
                              [&](const Inverter &d) { return d.serial == serial; });
       if (it == devices_.end() && devices_.size() < max_inverters_) {
-        devices_.push_back({serial, active_address_, NAN, millis()});
+        devices_.push_back({serial, active_address_, NAN, millis(), slot});
         ESP_LOGI(TAG, "Discovered inverter serial=%s address=%u", serial.c_str(), active_address_);
       } else if (it != devices_.end()) {
         it->address = active_address_;
         it->last_seen = millis();
       }
     }
-  } else if (phase_ == Phase::WAIT_VOLTAGE && rx_[2] == 2) {
+  } else if (phase_ == Phase::WAIT_VOLTAGE) {
+    const uint8_t completed_block = block_ == 0 ? 7 : block_-1;
+    for (size_t i=0;i<sizeof(METRICS)/sizeof(METRICS[0]);i++) {
+      const auto &m=METRICS[i];
+      if (m.block != completed_block || active_slot_ >= 6 || !metrics_[active_slot_][i]) continue;
+      const size_t pos=3+2*m.offset;
+      const uint16_t raw=(uint16_t(rx_[pos])<<8)|rx_[pos+1];
+      const float value=m.divisor<0 ? float(int16_t(raw)) / -m.divisor : float(raw)/m.divisor;
+      metrics_[active_slot_][i]->publish_state(value);
+    }
     float voltage = float((uint16_t(rx_[3]) << 8) | rx_[4]) / 10.0f;
     for (auto &d : devices_) {
-      if (d.address == active_address_) {
+      if (d.slot == active_slot_ && completed_block == 0) {
         d.battery_voltage = voltage;
         d.last_seen = millis();
         ESP_LOGD(TAG, "serial=%s battery=%.1f V (address=%u)", d.serial.c_str(), voltage, active_address_);
@@ -129,6 +176,9 @@ void AnenjiManager::start_next_() {
       now - last_discovery_ >= (devices_.size() < max_inverters_ ? 30000UL : 300000UL)) {
     discovering_ = true;
     next_scan_ = scan_start_;
+    devices_.clear();
+    block_ = 0;
+    for (uint8_t i=0;i<max_inverters_;i++) if (address_sensors_[i]) address_sensors_[i]->publish_state(NAN);
     ESP_LOGI(TAG, "Starting periodic ANENJI address scan %u-%u", scan_start_, scan_end_);
   }
   if (discovering_) {
@@ -143,6 +193,11 @@ void AnenjiManager::start_next_() {
     // Avoid a duplicate immediate polling cycle after discovery.
     last_cycle_ = now;
     poll_index_ = devices_.size();
+    block_ = 0;
+    for (uint8_t i=0;i<max_inverters_;i++) {
+      if (std::none_of(devices_.begin(), devices_.end(), [i](const Inverter &d){return d.slot==i;}))
+        for (uint8_t j=0;j<8;j++) invalidate_(i,j);
+    }
     ESP_LOGI(TAG, "Discovery complete: %u serial-identified inverters", unsigned(devices_.size()));
     for (const auto &d : devices_)
       ESP_LOGI(TAG, "  address=%u serial=%s", d.address, d.serial.c_str());
@@ -154,8 +209,11 @@ void AnenjiManager::start_next_() {
     poll_index_ = 0;
     last_cycle_ = now;
   }
-  const auto &device = devices_[poll_index_++];
-  send_read_(device.address, VOLTAGE_REG, 1, Phase::WAIT_VOLTAGE);
+  const auto &device = devices_[poll_index_];
+  active_slot_ = device.slot;
+  const auto &read = BLOCKS[block_];
+  if (++block_ >= sizeof(BLOCKS)/sizeof(BLOCKS[0])) { block_=0; ++poll_index_; }
+  send_read_(device.address, read.reg, read.count, Phase::WAIT_VOLTAGE);
 }
 
 void AnenjiManager::loop() {
