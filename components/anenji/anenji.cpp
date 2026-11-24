@@ -21,9 +21,10 @@ uint16_t AnenjiManager::crc16_(const uint8_t *data, size_t size) {
 
 namespace {
 struct ReadBlock { uint16_t reg; uint8_t count; };
-constexpr ReadBlock BLOCKS[] = {{30000,6},{30024,1},{30046,4},{30058,3},{30068,3},{30071,5},{52044,16},{52071,2}};
-struct Metric { uint8_t block, offset; int16_t divisor; };
-constexpr Metric METRICS[] = {{0,0,10},{0,1,10},{0,2,1},{1,0,10},{2,3,1},{3,0,10},{3,1,-10},{4,0,-1},{5,0,10},{5,2,-10},{5,3,-10},{5,4,-10},{6,0,10},{6,2,10},{6,10,10},{6,12,10},{7,0,10}};
+constexpr ReadBlock BLOCKS[] = {{30000,6},{30024,1},{30046,4},{30058,3},{30068,3},{30071,5},{52044,16},{52071,2},{30011,3},{30025,2}};
+constexpr size_t BLOCK_COUNT = sizeof(BLOCKS)/sizeof(BLOCKS[0]);
+struct Metric { uint8_t block, offset; int16_t divisor; uint8_t words; };
+constexpr Metric METRICS[] = {{0,0,10,1},{0,1,-10,1},{0,2,1,1},{1,0,10,1},{2,3,-1,1},{3,0,10,1},{3,1,-10,1},{4,0,-1,1},{5,0,10,1},{5,2,-10,1},{5,3,-10,1},{5,4,-10,1},{6,0,10,1},{6,2,10,1},{6,10,10,2},{6,12,10,2},{7,0,10,2},{0,3,1,1},{0,4,-10,1},{0,5,-10,1},{2,0,-1,1},{2,1,-1,1},{2,2,1,1},{3,2,100,1},{6,1,10,1},{6,3,10,1},{6,4,10,1},{6,6,10,2},{6,8,10,2},{6,14,10,1},{6,15,10,1},{8,0,10,1},{8,1,10,1},{8,2,1,1},{9,0,-10,1},{9,1,100,1}};
 }
 uint8_t AnenjiManager::bind_(const std::string &serial) {
   for (uint8_t i=0;i<max_inverters_;i++) if (serial == bindings_[i].serial) return i;
@@ -106,7 +107,7 @@ void AnenjiManager::send_read_(uint8_t address, uint16_t reg, uint16_t count, Ph
 void AnenjiManager::complete_request_(bool success) {
   if (!success && (phase_ == Phase::WAIT_SERIAL || phase_ == Phase::WAIT_PROBE))
     ESP_LOGW(TAG, "Serial discovery failed at address %u (received %u bytes)", active_address_, unsigned(rx_.size()));
-  if (!success && phase_ == Phase::WAIT_VOLTAGE) invalidate_(active_slot_, block_ == 0 ? 7 : block_-1);
+  if (!success && phase_ == Phase::WAIT_VOLTAGE) invalidate_(active_slot_, block_ == 0 ? BLOCK_COUNT-1 : block_-1);
   if (phase_ == Phase::WAIT_VOLTAGE && block_ == 0 && poll_index_ >= devices_.size()) publish_system_();
   phase_ = Phase::IDLE;
   last_bus_activity_ = millis();
@@ -124,7 +125,17 @@ void AnenjiManager::process_frame_() {
     const uint16_t crc = uint16_t(p[expected-2]) | (uint16_t(p[expected-1]) << 8);
     if (crc16_(p, expected-2) == crc) { matched = true; break; }
   }
-  if (!matched) return;
+  if (!matched) {
+    for (size_t i=0; i+5<=rx_.size(); ++i) {
+      const auto *p=rx_.data()+i;
+      if (p[0]==active_address_ && p[1]==0x83 && crc16_(p,3)==(uint16_t(p[3])|(uint16_t(p[4])<<8))) {
+        ESP_LOGW(TAG, "Modbus exception address=%u code=0x%02X", active_address_, p[2]);
+        complete_request_(false);
+        return;
+      }
+    }
+    return;
+  }
   if (offset) {
     ESP_LOGW(TAG, "Discarding %u unrelated RX bytes before valid response", unsigned(offset));
     rx_.erase(rx_.begin(), rx_.begin() + offset);
@@ -163,13 +174,14 @@ void AnenjiManager::process_frame_() {
       }
     }
   } else if (phase_ == Phase::WAIT_VOLTAGE) {
-    const uint8_t completed_block = block_ == 0 ? 7 : block_-1;
+    const uint8_t completed_block = block_ == 0 ? BLOCK_COUNT-1 : block_-1;
     for (size_t i=0;i<sizeof(METRICS)/sizeof(METRICS[0]);i++) {
       const auto &m=METRICS[i];
       if (m.block != completed_block || active_slot_ >= 6 || !metrics_[active_slot_][i]) continue;
       const size_t pos=3+2*m.offset;
       const uint16_t raw=(uint16_t(rx_[pos])<<8)|rx_[pos+1];
-      const float value=m.divisor<0 ? float(int16_t(raw)) / -m.divisor : float(raw)/m.divisor;
+      const uint32_t wide = m.words == 2 ? uint32_t(raw) | (uint32_t((uint16_t(rx_[pos+2])<<8)|rx_[pos+3])<<16) : raw;
+      const float value=m.divisor<0 ? float(int16_t(raw)) / -m.divisor : float(wide)/m.divisor;
       metrics_[active_slot_][i]->publish_state(value);
     }
     float voltage = float((uint16_t(rx_[3]) << 8) | rx_[4]) / 10.0f;
@@ -214,7 +226,7 @@ void AnenjiManager::start_next_() {
     for (uint8_t i=0;i<max_inverters_;i++) {
       if (bindings_[i].serial[0] && std::none_of(devices_.begin(), devices_.end(), [i](const Inverter &d){return d.slot==i;})) {
         if (address_sensors_[i] && !std::isnan(address_sensors_[i]->state)) address_sensors_[i]->publish_state(NAN);
-        for (uint8_t j=0;j<8;j++) invalidate_(i,j);
+        for (uint8_t j=0;j<BLOCK_COUNT;j++) invalidate_(i,j);
       }
     }
     if (system_[0]) system_[0]->publish_state(devices_.size());
