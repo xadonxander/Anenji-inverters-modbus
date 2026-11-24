@@ -41,5 +41,24 @@ async def to_code(config):
         addr = await sensor.new_sensor(sensor.sensor_schema(accuracy_decimals=0)({"name": f"{prefix} Modbus Address", CONF_ID: f"{config[CONF_ID]}_slot_{slot}_address"}))
         cg.add(var.set_address_sensor(slot, addr))
         for metric, (name, unit, decimals, device_class) in enumerate([["Battery Voltage","V",1,"voltage"],["Battery Current Raw","A",1,"current"],["Battery SOC","%",0,"battery"],["AC Output Voltage","V",1,"voltage"],["AC Generation Power","W",0,"power"],["Grid Voltage","V",1,"voltage"],["Grid Current","A",1,"current"],["Grid Power","W",0,"power"],["DC Bus Voltage","V",1,"voltage"],["Temperature 1","°C",1,"temperature"],["Temperature 2","°C",1,"temperature"],["Temperature 3","°C",1,"temperature"],["AC Energy Today","kWh",1,"energy"],["Battery Discharge Today","kWh",1,"energy"],["PV Energy Total Low Word","kWh",1,"energy"],["Used Energy Total Low Word","kWh",1,"energy"],["AC Energy Total Low Word","kWh",1,"energy"]]):
-            s = await sensor.new_sensor(sensor.sensor_schema(unit_of_measurement=unit, accuracy_decimals=decimals, device_class=device_class, state_class="measurement" if unit != "kWh" else ("total_increasing" if name in ("AC Energy Today", "Battery Discharge Today") else None))({"name": f"{prefix} {name}", CONF_ID: f"{config[CONF_ID]}_slot_{slot}_metric_{metric}"}))
+            s = await sensor.new_sensor(sensor.sensor_schema(unit_of_measurement=unit, accuracy_decimals=decimals, device_class=device_class, **({"state_class": "measurement"} if unit != "kWh" else ({"state_class": "total_increasing"} if name in ("AC Energy Today", "Battery Discharge Today") else {})))({"name": f"{prefix} {name}", CONF_ID: f"{config[CONF_ID]}_slot_{slot}_metric_{metric}"}))
             cg.add(var.set_metric(slot, metric, s))
+
+    for index, (name, unit, decimals, device_class, state_class) in enumerate([
+        ("Discovered Inverters", "", 0, None, "measurement"),
+        ("Registered Inverters", "", 0, None, "measurement"),
+        ("System Battery Current Raw Sum", "A", 1, "current", "measurement"),
+        ("System AC Generation Power", "W", 0, "power", "measurement"),
+        ("System Grid Power", "W", 0, "power", "measurement"),
+        ("System AC Energy Today", "kWh", 1, "energy", "total_increasing"),
+        ("System Battery Discharge Today", "kWh", 1, "energy", "total_increasing"),
+    ]):
+        options = {"accuracy_decimals": decimals, "state_class": state_class}
+        if unit:
+            options["unit_of_measurement"] = unit
+        if device_class:
+            options["device_class"] = device_class
+        s = await sensor.new_sensor(sensor.sensor_schema(**options)({
+            "name": name, CONF_ID: f"{config[CONF_ID]}_system_{index}"
+        }))
+        cg.add(var.set_system_sensor(index, s))
