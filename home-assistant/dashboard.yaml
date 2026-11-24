@@ -912,7 +912,7 @@ views:
     icon: mdi:cog
     cards:
       - type: markdown
-        content: 'Live raw configuration register readback. Editing is not enabled yet. Register values are unscaled.'
+        content: 'Eco Mode is editable with serial verification and readback. Other settings are raw read-only values.'
       - type: conditional
         conditions:
           - condition: state
@@ -926,6 +926,8 @@ views:
           title: Inverter 1 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_1_serial
+            - entity: switch.garage_anenji_inverter_manager_inverter_1_eco_mode
+              name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_40000
               name: "on_off (40000)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_40001
@@ -1061,6 +1063,8 @@ views:
           title: Inverter 2 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_2_serial
+            - entity: switch.garage_anenji_inverter_manager_inverter_2_eco_mode
+              name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_40000
               name: "on_off (40000)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_40001
@@ -1196,6 +1200,8 @@ views:
           title: Inverter 3 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_3_serial
+            - entity: switch.garage_anenji_inverter_manager_inverter_3_eco_mode
+              name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_40000
               name: "on_off (40000)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_40001
@@ -1331,6 +1337,8 @@ views:
           title: Inverter 4 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_4_serial
+            - entity: switch.garage_anenji_inverter_manager_inverter_4_eco_mode
+              name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_40000
               name: "on_off (40000)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_40001
@@ -1466,6 +1474,8 @@ views:
           title: Inverter 5 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_5_serial
+            - entity: switch.garage_anenji_inverter_manager_inverter_5_eco_mode
+              name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_40000
               name: "on_off (40000)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_40001
@@ -1601,6 +1611,8 @@ views:
           title: Inverter 6 configuration
           entities:
             - sensor.garage_anenji_inverter_manager_inverter_6_serial
+            - entity: switch.garage_anenji_inverter_manager_inverter_6_eco_mode
+              name: Eco Mode
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_40000
               name: "on_off (40000)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_40001
