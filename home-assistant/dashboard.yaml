@@ -24,10 +24,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -61,10 +61,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -98,10 +98,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -135,10 +135,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -172,10 +172,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -209,10 +209,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -250,10 +250,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -360,10 +360,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -470,10 +470,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -580,10 +580,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -690,10 +690,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -800,10 +800,10 @@ views:
       - type: conditional
         conditions:
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
             state_not: unknown
           - condition: state
-            entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
             state_not: unavailable
         card:
           type: vertical-stack
@@ -907,10 +907,121 @@ views:
                 - sensor.garage_anenji_inverter_manager_inverter_6_pv_power
                 - sensor.garage_anenji_inverter_manager_inverter_6_ac_output_power
                 - sensor.garage_anenji_inverter_manager_inverter_6_grid_power
-  - title: Diagnostics
+  - title: Configuration / Setup
     path: diagnostics
     icon: mdi:cog
     cards:
+      - type: markdown
+        title: Configuration / Setup
+        content: >-
+          Settings catalog from captured SmartValue traffic. Live configuration readback and writes are not implemented yet. Values below are register references, not current settings.
+      - type: markdown
+        title: Output and operating modes
+        content: |
+          | Setting | Register |
+          | --- | --- |
+          | on_off | 40000 |
+          | OutPriority | 41000 |
+          | Output Volt Set | 41001 |
+          | Output Frequency Set | 41002 |
+          | Line Range Set | 41003 |
+          | Para Mode Set | 41004 |
+          | Eco Enable | 41005 |
+          | Mute Enable | 41011 |
+          | NG Function Enabled | 41014 |
+          | Configuration as mapped; **41010 Unmapped** | 41000–41014 |
+      - type: markdown
+        title: Charging
+        content: |
+          | Setting | Register |
+          | --- | --- |
+          | Charge Priority | 41006 |
+          | Max Charge Current Set (A) | 41007 |
+          | Charge Current By PV Set | 41008 |
+          | Charge Current By Line Set (A) | 41009 |
+          | Charge Full Current Set | 41013 |
+          | Hybrid Priority Enable | 41025 |
+          | Battery hybrid current (A) (SmartValue Default tab, 8/9) | 41138 |
+      - type: markdown
+        title: Battery and protection
+        content: |
+          | Setting | Register |
+          | --- | --- |
+          | Battery Type | 41100 |
+          | Cv Volt | 41101 |
+          | Float Volt | 41102 |
+          | Cv Charge Time Set (min) | 41104 |
+          | Cv Charge Back Volt (volts) | 41105 |
+          | Inverter 2 Line Volt (v) | 41106 |
+          | Line Back 2 Inverter Volt (v) | 41107 |
+          | Battery Low Voltage (v) | 41108 |
+          | Battery Delay Off Voltage (v) | 41109 |
+          | Battery End Of Discharge Volts (V) | 41112 |
+          | Battery State Of Charge Alarm (%) | 41115 |
+          | Battery Stop State Of Charge (%) | 41116 |
+          | Battery Full State Of Charge (%) | 41117 |
+          | Inverter 2 Line State of charge (%) | 41118 |
+          | Line Back 2 inverter State of Charge (%) | 41119 |
+          | Battery Connection Way | 41135 |
+          | 600 | 41103 |
+          | 448 | 41110 |
+          | 30 | 41111 |
+          | Battery configuration mapped except **41103 Unmapped** | 41100–41112 |
+          | SOC settings and line charge schedule | 41115–41124 |
+      - type: markdown
+        title: BMS
+        content: |
+          | Setting | Register |
+          | --- | --- |
+          | BMS-Setup | 41113 |
+          | BMS protocol setup (SmartValue Default tab, 5/9) | 41114 |
+      - type: markdown
+        title: Grid and phase
+        content: |
+          | Setting | Register |
+          | --- | --- |
+          | On Grid Set | 41012 |
+          | On Grid Active Power Set (W) | 41023 |
+          | On Grid Standard Set | 41027 |
+          | External CT Host Enable | 41031 |
+          | Output phase setting (SmartValue Default tab, 2/9; phase-angle selection) | 41032 |
+          | Island Enable | 41065 |
+          | Anti-reserve Compensate (W) (SmartValue Default tab, 3/9) | 41078 |
+          | Output Phase Setting (SmartValue Default tab, 1/9) | 41091 |
+      - type: markdown
+        title: Schedules
+        content: |
+          | Setting | Register |
+          | --- | --- |
+          | On Time Line Charge Enable | 41120 |
+          | Line Charge Start Time1(HH-mm) | 41121 |
+          | Line Charge End Time 1(HH-mm) | 41122 |
+          | Line Charge Start Time2(HH-mm) | 41123 |
+          | Line Charge End Time 2(HH-mm) | 41124 |
+          | On time battery discharge enable | 41127 |
+          | Battery Discharge Start Time 1(HH-mm) | 41128 |
+          | Battery Discharge End Time 1(HH-mm) | 41129 |
+          | Battery Discharge Start Time 2(HH-mm) | 41130 |
+          | Battery Discharge End Time 2(HH-mm) | 41131 |
+          | Discharge schedule and battery topology; **41132–41134 Unmapped** | 41127–41135 |
+      - type: markdown
+        title: Secondary output
+        content: |
+          | Setting | Register |
+          | --- | --- |
+          | Second Output On Time (min) (SmartValue Default tab, 4/9) | 41079 |
+          | Second Output Off Voltage (V) (SmartValue Default tab, 6/9) | 41080 |
+          | Secondary Output Off SOC (%) (SmartValue Default tab, 7/9) | 41081 |
+      - type: markdown
+        title: System
+        content: |
+          | Setting | Register |
+          | --- | --- |
+          | Machine Restart Control (SmartValue Default tab, 9/9) | 40001 |
+          | Local Time Set (year/month/day/hour/minute/second) | 41018–41020 |
+          | Battery Active Enable | 41022 |
+          | 9 | 41018 |
+          | RTC packed 2026-11-22 23:28:39; **41021 Unmapped**; 41024 reactive power set 0 Var, 41026 PF set 1.00 | 41018–41026 |
       - type: entities
         title: Controller
         entities:
