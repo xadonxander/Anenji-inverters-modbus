@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include "esphome/components/switch/switch.h"
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/components/text_sensor/text_sensor.h"
 #include "esphome/core/preferences.h"
@@ -14,6 +15,16 @@
 namespace esphome {
 namespace anenji {
 
+class AnenjiManager;
+class EcoSwitch : public switch_::Switch {
+ public:
+  void configure(AnenjiManager *manager, uint8_t slot) { manager_=manager; slot_=slot; }
+ protected:
+  void write_state(bool state) override;
+  AnenjiManager *manager_{nullptr};
+  uint8_t slot_{0};
+};
+
 class AnenjiManager : public PollingComponent, public uart::UARTDevice {
  public:
   void set_direction_output(output::BinaryOutput *out) { direction_ = out; }
@@ -25,6 +36,8 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
   void set_serial_sensor(uint8_t slot, text_sensor::TextSensor *s) { serial_sensors_[slot] = s; }
   void set_address_sensor(uint8_t slot, sensor::Sensor *s) { address_sensors_[slot] = s; }
   void set_system_sensor(uint8_t index, sensor::Sensor *s) { system_[index] = s; }
+  void set_eco(uint8_t slot, EcoSwitch *s) { eco_[slot]=s; }
+  void request_eco(uint8_t slot, bool state);
   void setup() override;
   void loop() override;
   void update() override;
@@ -38,7 +51,11 @@ class AnenjiManager : public PollingComponent, public uart::UARTDevice {
     uint32_t last_seen{0};
     uint8_t slot{255};
   };
-  enum class Phase : uint8_t { IDLE, WAIT_PROBE, SERIAL_GAP, WAIT_SERIAL, WAIT_VOLTAGE };
+  enum class Phase : uint8_t { IDLE, WAIT_PROBE, SERIAL_GAP, WAIT_SERIAL, WAIT_VOLTAGE, ECO_ID, ECO_WRITE, ECO_VERIFY };
+  EcoSwitch *eco_[6]{};
+  uint8_t eco_slot_{255}, eco_stage_{0};
+  bool eco_value_{false};
+  void send_eco_write_();
   struct Binding { char serial[51]; };
   std::array<Binding, 6> bindings_{};
   std::array<ESPPreferenceObject, 6> prefs_{};
