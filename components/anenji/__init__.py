@@ -44,7 +44,7 @@ async def to_code(config):
             s = await sensor.new_sensor(sensor.sensor_schema(unit_of_measurement=unit, accuracy_decimals=decimals, **({"device_class": device_class} if device_class else {}), state_class="total_increasing" if unit == "kWh" else "measurement")({"name": f"{prefix} {name}", CONF_ID: f"{config[CONF_ID]}_slot_{slot}_metric_{metric}"}))
             cg.add(var.set_metric(slot, metric, s))
 
-        for index, reg in enumerate([40000,40001,41000,41001,41002,41003,41004,41005,41006,41007,41008,41009,41011,41012,41013,41014,41018,41022,41023,41025,41027,41031,41032,41065,41078,41079,41080,41081,41091,41100,41101,41102,41104,41105,41106,41107,41108,41109,41112,41113,41114,41115,41116,41117,41118,41119,41120,41121,41122,41123,41124,41127,41128,41129,41130,41131,41135,41138,41018,41103,41110,41111,41000,41018,41100,41115,41127]):
+        for index, reg in enumerate([40000, 40001, 41000, 41001, 41002, 41003, 41004, 41005, 41006, 41007, 41008, 41009, 41011, 41012, 41013, 41014, 41018, 41022, 41023, 41025, 41027, 41031, 41032, 41065, 41078, 41079, 41080, 41081, 41091, 41100, 41101, 41102, 41104, 41105, 41106, 41107, 41108, 41109, 41112, 41113, 41114, 41115, 41116, 41117, 41118, 41119, 41120, 41121, 41122, 41123, 41124, 41127, 41128, 41129, 41130, 41131, 41135, 41138, 41103, 41110, 41111]):
             s = await sensor.new_sensor(sensor.sensor_schema(accuracy_decimals=0)({"name": f"{prefix} Setting {reg}", CONF_ID: f"{config[CONF_ID]}_slot_{slot}_setting_{reg}"}))
             cg.add(var.set_metric(slot, 36 + index, s))
 
