@@ -1,0 +1,1037 @@
+title: ANENJI Inverters
+views:
+  - title: Overview
+    path: overview
+    icon: mdi:solar-power
+    cards:
+      - type: entities
+        title: System overview
+        entities:
+          - entity: sensor.garage_anenji_inverter_manager_discovered_inverters
+            name: "discovered inverters"
+          - entity: sensor.garage_anenji_inverter_manager_registered_inverters
+            name: "registered inverters"
+          - entity: sensor.garage_anenji_inverter_manager_system_battery_current_sum
+            name: "system battery current sum"
+          - entity: sensor.garage_anenji_inverter_manager_system_ac_generation_power
+            name: "system ac generation power"
+          - entity: sensor.garage_anenji_inverter_manager_system_grid_power
+            name: "system grid power"
+          - entity: sensor.garage_anenji_inverter_manager_system_ac_energy_today
+            name: "system ac energy today"
+          - entity: sensor.garage_anenji_inverter_manager_system_battery_discharge_today
+            name: "system battery discharge today"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: gauge
+              name: Inverter 1 SOC
+              entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_soc
+              min: 0
+              max: 100
+              severity:
+                red: 0
+                yellow: 20
+                green: 40
+            - type: entities
+              title: Inverter 1
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+                  name: "serial"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_pv_energy_today
+                  name: "pv energy today"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: gauge
+              name: Inverter 2 SOC
+              entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_soc
+              min: 0
+              max: 100
+              severity:
+                red: 0
+                yellow: 20
+                green: 40
+            - type: entities
+              title: Inverter 2
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+                  name: "serial"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_pv_energy_today
+                  name: "pv energy today"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: gauge
+              name: Inverter 3 SOC
+              entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_soc
+              min: 0
+              max: 100
+              severity:
+                red: 0
+                yellow: 20
+                green: 40
+            - type: entities
+              title: Inverter 3
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+                  name: "serial"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_pv_energy_today
+                  name: "pv energy today"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: gauge
+              name: Inverter 4 SOC
+              entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_soc
+              min: 0
+              max: 100
+              severity:
+                red: 0
+                yellow: 20
+                green: 40
+            - type: entities
+              title: Inverter 4
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+                  name: "serial"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_pv_energy_today
+                  name: "pv energy today"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: gauge
+              name: Inverter 5 SOC
+              entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_soc
+              min: 0
+              max: 100
+              severity:
+                red: 0
+                yellow: 20
+                green: 40
+            - type: entities
+              title: Inverter 5
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+                  name: "serial"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_pv_energy_today
+                  name: "pv energy today"
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: gauge
+              name: Inverter 6 SOC
+              entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_soc
+              min: 0
+              max: 100
+              severity:
+                red: 0
+                yellow: 20
+                green: 40
+            - type: entities
+              title: Inverter 6
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+                  name: "serial"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_pv_energy_today
+                  name: "pv energy today"
+  - title: Inverter details
+    path: details
+    icon: mdi:chart-line
+    cards:
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: entities
+              title: Inverter 1 identity
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_1_serial
+                - sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
+            - type: entities
+              title: Solar
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_pv_voltage
+                  name: "pv voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_pv_current
+                  name: "pv current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_pv_energy_today
+                  name: "pv energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_pv_energy_total
+                  name: "pv energy total"
+            - type: entities
+              title: Battery
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_soc
+                  name: "battery soc"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_charging_power
+                  name: "battery charging power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_charging_current
+                  name: "ac charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_pv_charging_current
+                  name: "pv charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_charge_today
+                  name: "battery charge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_discharge_today
+                  name: "battery discharge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_charge_total
+                  name: "battery charge total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_battery_discharge_total
+                  name: "battery discharge total"
+            - type: entities
+              title: AC output
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_output_voltage
+                  name: "ac output voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_output_current
+                  name: "ac output current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_output_frequency
+                  name: "ac output frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_output_apparent_power
+                  name: "ac output apparent power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_output_load
+                  name: "ac output load"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_generation_power
+                  name: "ac generation power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_energy_today
+                  name: "ac energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_ac_energy_total
+                  name: "ac energy total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_load_energy_today
+                  name: "load energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_load_energy_total
+                  name: "load energy total"
+            - type: entities
+              title: Grid
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_grid_voltage
+                  name: "grid voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_grid_current
+                  name: "grid current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_grid_frequency
+                  name: "grid frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_grid_charging_energy_today
+                  name: "grid charging energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_load_energy_from_grid_today
+                  name: "load energy from grid today"
+            - type: entities
+              title: Hardware
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_dc_bus_voltage
+                  name: "dc bus voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_temperature_1
+                  name: "temperature 1"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_temperature_2
+                  name: "temperature 2"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_1_temperature_3
+                  name: "temperature 3"
+            - type: history-graph
+              title: Inverter 1 power (24 hours)
+              hours_to_show: 24
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_1_pv_power
+                - sensor.garage_anenji_inverter_manager_inverter_1_ac_output_power
+                - sensor.garage_anenji_inverter_manager_inverter_1_grid_power
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: entities
+              title: Inverter 2 identity
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_2_serial
+                - sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
+            - type: entities
+              title: Solar
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_pv_voltage
+                  name: "pv voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_pv_current
+                  name: "pv current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_pv_energy_today
+                  name: "pv energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_pv_energy_total
+                  name: "pv energy total"
+            - type: entities
+              title: Battery
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_soc
+                  name: "battery soc"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_charging_power
+                  name: "battery charging power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_charging_current
+                  name: "ac charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_pv_charging_current
+                  name: "pv charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_charge_today
+                  name: "battery charge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_discharge_today
+                  name: "battery discharge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_charge_total
+                  name: "battery charge total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_battery_discharge_total
+                  name: "battery discharge total"
+            - type: entities
+              title: AC output
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_output_voltage
+                  name: "ac output voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_output_current
+                  name: "ac output current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_output_frequency
+                  name: "ac output frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_output_apparent_power
+                  name: "ac output apparent power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_output_load
+                  name: "ac output load"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_generation_power
+                  name: "ac generation power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_energy_today
+                  name: "ac energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_ac_energy_total
+                  name: "ac energy total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_load_energy_today
+                  name: "load energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_load_energy_total
+                  name: "load energy total"
+            - type: entities
+              title: Grid
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_grid_voltage
+                  name: "grid voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_grid_current
+                  name: "grid current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_grid_frequency
+                  name: "grid frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_grid_charging_energy_today
+                  name: "grid charging energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_load_energy_from_grid_today
+                  name: "load energy from grid today"
+            - type: entities
+              title: Hardware
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_dc_bus_voltage
+                  name: "dc bus voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_temperature_1
+                  name: "temperature 1"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_temperature_2
+                  name: "temperature 2"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_2_temperature_3
+                  name: "temperature 3"
+            - type: history-graph
+              title: Inverter 2 power (24 hours)
+              hours_to_show: 24
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_2_pv_power
+                - sensor.garage_anenji_inverter_manager_inverter_2_ac_output_power
+                - sensor.garage_anenji_inverter_manager_inverter_2_grid_power
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: entities
+              title: Inverter 3 identity
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_3_serial
+                - sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
+            - type: entities
+              title: Solar
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_pv_voltage
+                  name: "pv voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_pv_current
+                  name: "pv current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_pv_energy_today
+                  name: "pv energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_pv_energy_total
+                  name: "pv energy total"
+            - type: entities
+              title: Battery
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_soc
+                  name: "battery soc"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_charging_power
+                  name: "battery charging power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_charging_current
+                  name: "ac charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_pv_charging_current
+                  name: "pv charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_charge_today
+                  name: "battery charge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_discharge_today
+                  name: "battery discharge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_charge_total
+                  name: "battery charge total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_battery_discharge_total
+                  name: "battery discharge total"
+            - type: entities
+              title: AC output
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_output_voltage
+                  name: "ac output voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_output_current
+                  name: "ac output current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_output_frequency
+                  name: "ac output frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_output_apparent_power
+                  name: "ac output apparent power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_output_load
+                  name: "ac output load"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_generation_power
+                  name: "ac generation power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_energy_today
+                  name: "ac energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_ac_energy_total
+                  name: "ac energy total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_load_energy_today
+                  name: "load energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_load_energy_total
+                  name: "load energy total"
+            - type: entities
+              title: Grid
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_grid_voltage
+                  name: "grid voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_grid_current
+                  name: "grid current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_grid_frequency
+                  name: "grid frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_grid_charging_energy_today
+                  name: "grid charging energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_load_energy_from_grid_today
+                  name: "load energy from grid today"
+            - type: entities
+              title: Hardware
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_dc_bus_voltage
+                  name: "dc bus voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_temperature_1
+                  name: "temperature 1"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_temperature_2
+                  name: "temperature 2"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_3_temperature_3
+                  name: "temperature 3"
+            - type: history-graph
+              title: Inverter 3 power (24 hours)
+              hours_to_show: 24
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_3_pv_power
+                - sensor.garage_anenji_inverter_manager_inverter_3_ac_output_power
+                - sensor.garage_anenji_inverter_manager_inverter_3_grid_power
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: entities
+              title: Inverter 4 identity
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_4_serial
+                - sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
+            - type: entities
+              title: Solar
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_pv_voltage
+                  name: "pv voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_pv_current
+                  name: "pv current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_pv_energy_today
+                  name: "pv energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_pv_energy_total
+                  name: "pv energy total"
+            - type: entities
+              title: Battery
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_soc
+                  name: "battery soc"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_charging_power
+                  name: "battery charging power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_charging_current
+                  name: "ac charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_pv_charging_current
+                  name: "pv charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_charge_today
+                  name: "battery charge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_discharge_today
+                  name: "battery discharge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_charge_total
+                  name: "battery charge total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_battery_discharge_total
+                  name: "battery discharge total"
+            - type: entities
+              title: AC output
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_output_voltage
+                  name: "ac output voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_output_current
+                  name: "ac output current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_output_frequency
+                  name: "ac output frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_output_apparent_power
+                  name: "ac output apparent power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_output_load
+                  name: "ac output load"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_generation_power
+                  name: "ac generation power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_energy_today
+                  name: "ac energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_ac_energy_total
+                  name: "ac energy total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_load_energy_today
+                  name: "load energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_load_energy_total
+                  name: "load energy total"
+            - type: entities
+              title: Grid
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_grid_voltage
+                  name: "grid voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_grid_current
+                  name: "grid current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_grid_frequency
+                  name: "grid frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_grid_charging_energy_today
+                  name: "grid charging energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_load_energy_from_grid_today
+                  name: "load energy from grid today"
+            - type: entities
+              title: Hardware
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_dc_bus_voltage
+                  name: "dc bus voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_temperature_1
+                  name: "temperature 1"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_temperature_2
+                  name: "temperature 2"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_4_temperature_3
+                  name: "temperature 3"
+            - type: history-graph
+              title: Inverter 4 power (24 hours)
+              hours_to_show: 24
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_4_pv_power
+                - sensor.garage_anenji_inverter_manager_inverter_4_ac_output_power
+                - sensor.garage_anenji_inverter_manager_inverter_4_grid_power
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: entities
+              title: Inverter 5 identity
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_5_serial
+                - sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
+            - type: entities
+              title: Solar
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_pv_voltage
+                  name: "pv voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_pv_current
+                  name: "pv current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_pv_energy_today
+                  name: "pv energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_pv_energy_total
+                  name: "pv energy total"
+            - type: entities
+              title: Battery
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_soc
+                  name: "battery soc"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_charging_power
+                  name: "battery charging power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_charging_current
+                  name: "ac charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_pv_charging_current
+                  name: "pv charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_charge_today
+                  name: "battery charge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_discharge_today
+                  name: "battery discharge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_charge_total
+                  name: "battery charge total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_battery_discharge_total
+                  name: "battery discharge total"
+            - type: entities
+              title: AC output
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_output_voltage
+                  name: "ac output voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_output_current
+                  name: "ac output current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_output_frequency
+                  name: "ac output frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_output_apparent_power
+                  name: "ac output apparent power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_output_load
+                  name: "ac output load"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_generation_power
+                  name: "ac generation power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_energy_today
+                  name: "ac energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_ac_energy_total
+                  name: "ac energy total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_load_energy_today
+                  name: "load energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_load_energy_total
+                  name: "load energy total"
+            - type: entities
+              title: Grid
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_grid_voltage
+                  name: "grid voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_grid_current
+                  name: "grid current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_grid_frequency
+                  name: "grid frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_grid_charging_energy_today
+                  name: "grid charging energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_load_energy_from_grid_today
+                  name: "load energy from grid today"
+            - type: entities
+              title: Hardware
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_dc_bus_voltage
+                  name: "dc bus voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_temperature_1
+                  name: "temperature 1"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_temperature_2
+                  name: "temperature 2"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_5_temperature_3
+                  name: "temperature 3"
+            - type: history-graph
+              title: Inverter 5 power (24 hours)
+              hours_to_show: 24
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_5_pv_power
+                - sensor.garage_anenji_inverter_manager_inverter_5_ac_output_power
+                - sensor.garage_anenji_inverter_manager_inverter_5_grid_power
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+            state_not: unavailable
+        card:
+          type: vertical-stack
+          cards:
+            - type: entities
+              title: Inverter 6 identity
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_6_serial
+                - sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
+            - type: entities
+              title: Solar
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_pv_voltage
+                  name: "pv voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_pv_current
+                  name: "pv current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_pv_power
+                  name: "pv power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_pv_energy_today
+                  name: "pv energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_pv_energy_total
+                  name: "pv energy total"
+            - type: entities
+              title: Battery
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_voltage
+                  name: "battery voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_current
+                  name: "battery current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_soc
+                  name: "battery soc"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_charging_power
+                  name: "battery charging power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_charging_current
+                  name: "ac charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_pv_charging_current
+                  name: "pv charging current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_charge_today
+                  name: "battery charge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_discharge_today
+                  name: "battery discharge today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_charge_total
+                  name: "battery charge total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_battery_discharge_total
+                  name: "battery discharge total"
+            - type: entities
+              title: AC output
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_output_voltage
+                  name: "ac output voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_output_current
+                  name: "ac output current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_output_frequency
+                  name: "ac output frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_output_power
+                  name: "ac output power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_output_apparent_power
+                  name: "ac output apparent power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_output_load
+                  name: "ac output load"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_generation_power
+                  name: "ac generation power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_energy_today
+                  name: "ac energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_ac_energy_total
+                  name: "ac energy total"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_load_energy_today
+                  name: "load energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_load_energy_total
+                  name: "load energy total"
+            - type: entities
+              title: Grid
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_grid_voltage
+                  name: "grid voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_grid_current
+                  name: "grid current"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_grid_frequency
+                  name: "grid frequency"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_grid_power
+                  name: "grid power"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_grid_charging_energy_today
+                  name: "grid charging energy today"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_load_energy_from_grid_today
+                  name: "load energy from grid today"
+            - type: entities
+              title: Hardware
+              entities:
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_dc_bus_voltage
+                  name: "dc bus voltage"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_temperature_1
+                  name: "temperature 1"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_temperature_2
+                  name: "temperature 2"
+                - entity: sensor.garage_anenji_inverter_manager_inverter_6_temperature_3
+                  name: "temperature 3"
+            - type: history-graph
+              title: Inverter 6 power (24 hours)
+              hours_to_show: 24
+              entities:
+                - sensor.garage_anenji_inverter_manager_inverter_6_pv_power
+                - sensor.garage_anenji_inverter_manager_inverter_6_ac_output_power
+                - sensor.garage_anenji_inverter_manager_inverter_6_grid_power
+  - title: Diagnostics
+    path: diagnostics
+    icon: mdi:cog
+    cards:
+      - type: entities
+        title: Controller
+        entities:
+          - entity: sensor.garage_anenji_inverter_manager_wifi_signal
+            name: "wifi signal"
+          - entity: sensor.garage_anenji_inverter_manager_esp32_uptime
+            name: "esp32 uptime"
+          - entity: sensor.garage_anenji_inverter_manager_esp32_temperature
+            name: "esp32 temperature"
+          - entity: sensor.garage_anenji_inverter_manager_esp32_ip_address
+            name: "esp32 ip address"
+          - entity: sensor.garage_anenji_inverter_manager_discovered_inverters
+            name: "discovered inverters"
+          - entity: sensor.garage_anenji_inverter_manager_registered_inverters
+            name: "registered inverters"
+          - button.garage_anenji_inverter_manager_restart_inverter_manager
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_1_serial
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 1 diagnostics
+          entities:
+            - sensor.garage_anenji_inverter_manager_inverter_1_serial
+            - sensor.garage_anenji_inverter_manager_inverter_1_modbus_address
+            - sensor.garage_anenji_inverter_manager_inverter_1_dc_bus_voltage
+            - sensor.garage_anenji_inverter_manager_inverter_1_temperature_1
+            - sensor.garage_anenji_inverter_manager_inverter_1_temperature_2
+            - sensor.garage_anenji_inverter_manager_inverter_1_temperature_3
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_2_serial
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 2 diagnostics
+          entities:
+            - sensor.garage_anenji_inverter_manager_inverter_2_serial
+            - sensor.garage_anenji_inverter_manager_inverter_2_modbus_address
+            - sensor.garage_anenji_inverter_manager_inverter_2_dc_bus_voltage
+            - sensor.garage_anenji_inverter_manager_inverter_2_temperature_1
+            - sensor.garage_anenji_inverter_manager_inverter_2_temperature_2
+            - sensor.garage_anenji_inverter_manager_inverter_2_temperature_3
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_3_serial
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 3 diagnostics
+          entities:
+            - sensor.garage_anenji_inverter_manager_inverter_3_serial
+            - sensor.garage_anenji_inverter_manager_inverter_3_modbus_address
+            - sensor.garage_anenji_inverter_manager_inverter_3_dc_bus_voltage
+            - sensor.garage_anenji_inverter_manager_inverter_3_temperature_1
+            - sensor.garage_anenji_inverter_manager_inverter_3_temperature_2
+            - sensor.garage_anenji_inverter_manager_inverter_3_temperature_3
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_4_serial
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 4 diagnostics
+          entities:
+            - sensor.garage_anenji_inverter_manager_inverter_4_serial
+            - sensor.garage_anenji_inverter_manager_inverter_4_modbus_address
+            - sensor.garage_anenji_inverter_manager_inverter_4_dc_bus_voltage
+            - sensor.garage_anenji_inverter_manager_inverter_4_temperature_1
+            - sensor.garage_anenji_inverter_manager_inverter_4_temperature_2
+            - sensor.garage_anenji_inverter_manager_inverter_4_temperature_3
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_5_serial
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 5 diagnostics
+          entities:
+            - sensor.garage_anenji_inverter_manager_inverter_5_serial
+            - sensor.garage_anenji_inverter_manager_inverter_5_modbus_address
+            - sensor.garage_anenji_inverter_manager_inverter_5_dc_bus_voltage
+            - sensor.garage_anenji_inverter_manager_inverter_5_temperature_1
+            - sensor.garage_anenji_inverter_manager_inverter_5_temperature_2
+            - sensor.garage_anenji_inverter_manager_inverter_5_temperature_3
+      - type: conditional
+        conditions:
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+            state_not: unknown
+          - condition: state
+            entity: sensor.garage_anenji_inverter_manager_inverter_6_serial
+            state_not: unavailable
+        card:
+          type: entities
+          title: Inverter 6 diagnostics
+          entities:
+            - sensor.garage_anenji_inverter_manager_inverter_6_serial
+            - sensor.garage_anenji_inverter_manager_inverter_6_modbus_address
+            - sensor.garage_anenji_inverter_manager_inverter_6_dc_bus_voltage
+            - sensor.garage_anenji_inverter_manager_inverter_6_temperature_1
+            - sensor.garage_anenji_inverter_manager_inverter_6_temperature_2
+            - sensor.garage_anenji_inverter_manager_inverter_6_temperature_3
