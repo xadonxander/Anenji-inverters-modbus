@@ -43,7 +43,7 @@ uint8_t AnenjiManager::bind_(const std::string &serial) {
 void AnenjiManager::invalidate_(uint8_t slot, uint8_t block) {
   if (slot >= 6) return;
   for (size_t i=0;i<sizeof(METRICS)/sizeof(METRICS[0]);i++)
-    if (METRICS[i].block == block && metrics_[slot][i]) metrics_[slot][i]->publish_state(NAN);
+    if (METRICS[i].block == block && metrics_[slot][i] && !std::isnan(metrics_[slot][i]->state)) metrics_[slot][i]->publish_state(NAN);
 }
 void AnenjiManager::setup() {
   for (uint8_t i=0;i<max_inverters_;i++) {
@@ -178,7 +178,6 @@ void AnenjiManager::start_next_() {
     next_scan_ = scan_start_;
     devices_.clear();
     block_ = 0;
-    for (uint8_t i=0;i<max_inverters_;i++) if (address_sensors_[i]) address_sensors_[i]->publish_state(NAN);
     ESP_LOGI(TAG, "Starting periodic ANENJI address scan %u-%u", scan_start_, scan_end_);
   }
   if (discovering_) {
@@ -195,8 +194,10 @@ void AnenjiManager::start_next_() {
     poll_index_ = devices_.size();
     block_ = 0;
     for (uint8_t i=0;i<max_inverters_;i++) {
-      if (std::none_of(devices_.begin(), devices_.end(), [i](const Inverter &d){return d.slot==i;}))
+      if (bindings_[i].serial[0] && std::none_of(devices_.begin(), devices_.end(), [i](const Inverter &d){return d.slot==i;})) {
+        if (address_sensors_[i] && !std::isnan(address_sensors_[i]->state)) address_sensors_[i]->publish_state(NAN);
         for (uint8_t j=0;j<8;j++) invalidate_(i,j);
+      }
     }
     ESP_LOGI(TAG, "Discovery complete: %u serial-identified inverters", unsigned(devices_.size()));
     for (const auto &d : devices_)
