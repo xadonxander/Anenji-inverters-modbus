@@ -1042,24 +1042,12 @@ views:
               name: "Battery Connection Way (41135)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41138
               name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41018
-              name: "9 (41018)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41103
               name: "600 (41103)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41110
               name: "448 (41110)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41111
               name: "30 (41111)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41000
-              name: "Configuration as mapped; **41010 Unmapped** (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41018
-              name: "RTC packed 2026-11-22 23:28:39; **41021 Unmapped**; 41024 reactive power set 0 Var, 41026 PF set 1.00 (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41100
-              name: "Battery configuration mapped except **41103 Unmapped** (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41115
-              name: "SOC settings and line charge schedule (41115)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_1_setting_41127
-              name: "Discharge schedule and battery topology; **41132–41134 Unmapped** (41127)"
       - type: conditional
         conditions:
           - condition: state
@@ -1189,24 +1177,12 @@ views:
               name: "Battery Connection Way (41135)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41138
               name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41018
-              name: "9 (41018)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41103
               name: "600 (41103)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41110
               name: "448 (41110)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41111
               name: "30 (41111)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41000
-              name: "Configuration as mapped; **41010 Unmapped** (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41018
-              name: "RTC packed 2026-11-22 23:28:39; **41021 Unmapped**; 41024 reactive power set 0 Var, 41026 PF set 1.00 (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41100
-              name: "Battery configuration mapped except **41103 Unmapped** (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41115
-              name: "SOC settings and line charge schedule (41115)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_2_setting_41127
-              name: "Discharge schedule and battery topology; **41132–41134 Unmapped** (41127)"
       - type: conditional
         conditions:
           - condition: state
@@ -1336,24 +1312,12 @@ views:
               name: "Battery Connection Way (41135)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41138
               name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41018
-              name: "9 (41018)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41103
               name: "600 (41103)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41110
               name: "448 (41110)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41111
               name: "30 (41111)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41000
-              name: "Configuration as mapped; **41010 Unmapped** (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41018
-              name: "RTC packed 2026-11-22 23:28:39; **41021 Unmapped**; 41024 reactive power set 0 Var, 41026 PF set 1.00 (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41100
-              name: "Battery configuration mapped except **41103 Unmapped** (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41115
-              name: "SOC settings and line charge schedule (41115)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_3_setting_41127
-              name: "Discharge schedule and battery topology; **41132–41134 Unmapped** (41127)"
       - type: conditional
         conditions:
           - condition: state
@@ -1483,24 +1447,12 @@ views:
               name: "Battery Connection Way (41135)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41138
               name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41018
-              name: "9 (41018)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41103
               name: "600 (41103)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41110
               name: "448 (41110)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41111
               name: "30 (41111)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41000
-              name: "Configuration as mapped; **41010 Unmapped** (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41018
-              name: "RTC packed 2026-11-22 23:28:39; **41021 Unmapped**; 41024 reactive power set 0 Var, 41026 PF set 1.00 (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41100
-              name: "Battery configuration mapped except **41103 Unmapped** (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41115
-              name: "SOC settings and line charge schedule (41115)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_4_setting_41127
-              name: "Discharge schedule and battery topology; **41132–41134 Unmapped** (41127)"
       - type: conditional
         conditions:
           - condition: state
@@ -1630,24 +1582,12 @@ views:
               name: "Battery Connection Way (41135)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41138
               name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41018
-              name: "9 (41018)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41103
               name: "600 (41103)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41110
               name: "448 (41110)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41111
               name: "30 (41111)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41000
-              name: "Configuration as mapped; **41010 Unmapped** (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41018
-              name: "RTC packed 2026-11-22 23:28:39; **41021 Unmapped**; 41024 reactive power set 0 Var, 41026 PF set 1.00 (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41100
-              name: "Battery configuration mapped except **41103 Unmapped** (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41115
-              name: "SOC settings and line charge schedule (41115)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_5_setting_41127
-              name: "Discharge schedule and battery topology; **41132–41134 Unmapped** (41127)"
       - type: conditional
         conditions:
           - condition: state
@@ -1777,24 +1717,12 @@ views:
               name: "Battery Connection Way (41135)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41138
               name: "Battery hybrid current (A) (SmartValue Default tab, 8/9) (41138)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41018
-              name: "9 (41018)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41103
               name: "600 (41103)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41110
               name: "448 (41110)"
             - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41111
               name: "30 (41111)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41000
-              name: "Configuration as mapped; **41010 Unmapped** (41000)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41018
-              name: "RTC packed 2026-11-22 23:28:39; **41021 Unmapped**; 41024 reactive power set 0 Var, 41026 PF set 1.00 (41018)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41100
-              name: "Battery configuration mapped except **41103 Unmapped** (41100)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41115
-              name: "SOC settings and line charge schedule (41115)"
-            - entity: sensor.garage_anenji_inverter_manager_inverter_6_setting_41127
-              name: "Discharge schedule and battery topology; **41132–41134 Unmapped** (41127)"
   - title: Diagnostics
     path: diagnostics
     icon: mdi:stethoscope
